@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as THREE from 'three';
-import { vertexShader, fragmentShader } from './shaders';
+import { vertexShader, fragmentShader, setRandomShader } from './shaders';
 import { throttle, debounce } from 'lodash';
 import scrollSpeed from 'utils/scrollSpeed';
 import { TweenMax, Power2, TimelineLite, TweenLite } from "gsap/TweenMax";
@@ -25,10 +25,11 @@ export default class Scene extends Component {
         this.nb = 1;
         this.w = window.innerWidth;
         this.h = window.innerHeight;
-        this.userScrollSpeed = 1.;
+        this.userScrollSpeed = 0.;
         this.renderer = null;
         this.scene = null;
         this.mesh = null;
+        this.random = Math.floor(Math.random() * 100.) + 1.;
         this.MyTexture = loader.load(this.img,
             (texture) => {
                 // this.w = texture.image.width
@@ -51,6 +52,7 @@ export default class Scene extends Component {
 
         this.uniforms = {
             time: { type: "f", value: 1.0 },
+            random: { type: "f", value: this.random },
             resolution: { type: "v2", value: new THREE.Vector2() },
             uvRate1: { type: "f", value: new THREE.Vector2(1, 1) },
             userScrollSpeed: { type: "f", value: this.userScrollSpeed }
@@ -79,6 +81,7 @@ export default class Scene extends Component {
         this.animate();
         // console.log(this.props.this.scene.current != null ? this.props.this.scene.current.getBoundingClientRect().x : 'nullll');
         // console.log(this.canvas.clientHeight);
+        setRandomShader(this.uniforms.random.value);
         console.log(this.props.name);
         console.log("this.img", this.img);
         setTimeout(() => {
@@ -121,10 +124,12 @@ export default class Scene extends Component {
         this.uniforms.texture = { type: "sampler2D", value: this.MyTexture };
         this.uniforms.map = { type: "sampler2D", value: this.MyMap };
 
-        let setSkew = throttle((skew) => {
+        let setSpeed = throttle((speed) => {
             console.log('SET');
             // this.uniforms.userScrollSpeed.value = skew;
-            TweenLite.to(this.uniforms.userScrollSpeed, 1, { value: skew * 5 })
+            console.log(this.uniforms.userScrollSpeed.value);
+            
+            TweenLite.to(this.uniforms.userScrollSpeed, 1, { value: speed * 5 })
         }, 100);
 
         let setBack = debounce(() => {
@@ -137,7 +142,7 @@ export default class Scene extends Component {
             const speed = scrollSpeed();
             // this.userScrollSpeed = speed;
 
-            setSkew(speed / 200);
+            setSpeed(speed / 200);
             setBack();
         };
 

@@ -1,4 +1,11 @@
-const random = Math.random();
+let randomFunction = null;
+const setRandomShader = (_params) => {
+  // console.log('_params', _params);
+  randomFunction = _params >= 50 ? "sin" : "cos"
+  console.log("randomFunction", randomFunction);
+}
+
+setRandomShader();
 const vertexShader = `
   varying vec2 vUv;
   varying vec2 vUv1;
@@ -22,16 +29,21 @@ const fragmentShader = `
   varying vec2 vUv;
   varying vec2 vUv1;
   uniform float time;
+  uniform float random;
   uniform sampler2D texture;
+  uniform float userScrollSpeed;
+  uniform sampler2D map;
+
 
   void main() {
-    float distort = cos(vUv.y * abs(sin(time/${random}/10.)*3. + vUv.x * 2.) / abs(sin(.5)) + time/2.)*.1;
-    vec4 color = texture2D(texture, vec2(vUv.x + distort * .5,vUv.y + distort * .2));
+    float map = texture2D(map, vUv).r;
+    float distort = ${randomFunction}(vUv.y * abs(${randomFunction}(time/10.*random/100.) * userScrollSpeed + vUv.x * 2.) / abs(${randomFunction}(random/100.)) + time/2.)*0.1*random/100.;
+    vec4 color = texture2D(texture, vec2(vUv.x + distort * map * .5,vUv.y + distort * map * random/100.));
     gl_FragColor = vec4(vec3(color.r, color.g , color.b) * 1.0, 1.0);
   }
 `
 
-export { vertexShader, fragmentShader }
+export { vertexShader, fragmentShader, setRandomShader }
 
 // varying vec2 vUv;
 // uniform float time;
