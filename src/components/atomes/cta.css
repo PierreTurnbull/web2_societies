@@ -13,3 +13,5 @@
   color: #5c5c5c; }
   .cta:not(:last-child) {
     margin-right: 20px; }
+  .cta:hover {
+    cursor: pointer; }
