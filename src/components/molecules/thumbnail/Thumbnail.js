@@ -18,9 +18,9 @@ export class Thumbnail extends Component {
   render() {
     return (
       <div className="thumbnail" ref={this.scene}>
-        <img src={this.props.background} alt="bakcground" />
+        {/* <img src={this.props.background} alt="bakcground" /> */}
         <h2 className="title">{this.props.title}</h2>
-        <this.props.cta className="cta" />
+        <this.props.cta svgUrl={this.props.svgUrl} />
         {
           this.props.canvas && <Scene
             // img={this.props.ImageMonks}

@@ -112,7 +112,8 @@ export default class Scene extends Component {
                 //     type: "v2", value: new THREE.Vector2(texture.image.width, texture.image.height)
                 // }
             });
-        this.MyMap = loader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDFfVJb6RQW58GJ-JAf4E5WHhdYsiONQgLZrbCPk0fBCRl0gN_',
+        // this.MyMap = loader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDFfVJb6RQW58GJ-JAf4E5WHhdYsiONQgLZrbCPk0fBCRl0gN_',
+        this.MyMap = loader.load('http://1.bp.blogspot.com/-0CYPYbf9D9U/UhfKYvhG9iI/AAAAAAAAAFg/gwKYb7k32CA/s1600/smoke.tif',
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height

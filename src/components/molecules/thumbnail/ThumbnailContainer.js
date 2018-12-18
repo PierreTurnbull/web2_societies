@@ -5,8 +5,10 @@ import ImageMonks from "images/moines.jpg"
 import ImageJarawa from "images/jarawa.jpg"
 import ImageRasta from "images/rasta.jpeg"
 import Scene from '../../atomes/Scene/Scene';
+import arrowLeftIcon from 'images/icons/arrow.svg';
 
 import "./thumbnailContainer.css"
+import ArrowIconContainer from '../../atomes/arrowIcon/ArrowIconContainer';
 export default class ThumbnailContainer extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +29,7 @@ export default class ThumbnailContainer extends Component {
                     background={ImageMonks}
                     title="Les moines du Mont Athos"
                     name="1"
-                    cta={() => <Cta text="wassup" onClick={() => console.log('click')} />}
+                    cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={()=>console.log('click')} />}
                     ref={this.scene1}
                     refu={this.scene1}
                     canvas={true}
@@ -37,7 +39,7 @@ export default class ThumbnailContainer extends Component {
                     background={ImageJarawa}
                     title="Les Jarawas des Andaman"
                     name="2"
-                    cta={() => <Cta text="wassup" onClick={() => console.log('click')} />}
+                    cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={()=>console.log('click')} />}
                     ref={this.scene2}
                     refu={this.scene2}
                     canvas={true}
@@ -47,7 +49,7 @@ export default class ThumbnailContainer extends Component {
                     background={ImageRasta}
                     title="Les rastas de Jamaïque"
                     name="3"
-                    cta={() => <Cta text="wassup" onClick={() => console.log('click')} />}
+                    cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={()=>console.log('click')} />}
                     ref={this.scene3}
                     refu={this.scene3}
                     canvas={true}

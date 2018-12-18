@@ -37,8 +37,8 @@ const fragmentShader = `
 
   void main() {
     float map = texture2D(map, vUv).r;
-    float distort = ${randomFunction}(vUv.y * abs(${randomFunction}(time/10.*random/100.) * userScrollSpeed + vUv.x * 2.) / abs(${randomFunction}(random/100.)) + time/2.)*0.1*random/100.;
-    vec4 color = texture2D(texture, vec2(vUv.x + distort * map * .5,vUv.y + distort * map * random/100.));
+    float distort = ${randomFunction}(vUv.y * abs(${randomFunction}(time/5.) * userScrollSpeed + vUv.x * 5.) / abs(${randomFunction}(random/100.)) + time/2.)*0.1 * map;
+    vec4 color = texture2D(texture, vec2(vUv.x + distort * .5,vUv.y + distort * random/100.));
     gl_FragColor = vec4(vec3(color.r, color.g , color.b) * 1.0, 1.0);
   }
 `
