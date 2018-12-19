@@ -4,7 +4,8 @@
   overflow: hidden;
   position: relative;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.5); }
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer; }
   .thumbnail .thumbnailCanvas {
     position: absolute;
     top: 0;

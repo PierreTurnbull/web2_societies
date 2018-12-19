@@ -17,7 +17,7 @@ export class Thumbnail extends Component {
 
   render() {
     return (
-      <div className="thumbnail" ref={this.scene}>
+      <div className="thumbnail" ref={this.scene} style={{backgroundImage: this.props.gradient}}>
         {/* <img src={this.props.background} alt="bakcground" /> */}
         <h2 className="title">{this.props.title}</h2>
         <this.props.cta svgUrl={this.props.svgUrl} />

@@ -3,7 +3,7 @@ import Thumbnail from './Thumbnail';
 import Cta from '../../atomes/Cta';
 import ImageMonks from "images/moines.jpg"
 import ImageJarawa from "images/jarawa.jpg"
-import ImageRasta from "images/rasta.jpeg"
+import ImageRasta from "images/rastaa.jpeg"
 import Scene from '../../atomes/Scene/Scene';
 import arrowLeftIcon from 'images/icons/arrow.svg';
 
@@ -20,8 +20,10 @@ export default class ThumbnailContainer extends Component {
     // componentDidMount() {
     //     console.log(this.scene1.current.scene.current);
     // }
-
     render() {
+        const gradientMonks = "linear-gradient(to right, rgba(87, 18, 0, 0.1), rgba(87, 18, 0, 0.1))";
+        const gradientJarawa = "linear-gradient(to right, rgba(146, 154, 63, 0.1), rgba(146, 154, 63, 0.1))";
+        const gradientRasta = "linear-gradient(to right, rgba(63, 154, 146, 0.1), rgba(63, 154, 146, 0.1))";
         return (
             <div className="thumbnailContainer">
                 <Thumbnail
@@ -29,30 +31,33 @@ export default class ThumbnailContainer extends Component {
                     background={ImageMonks}
                     title="Les moines du Mont Athos"
                     name="1"
-                    cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={()=>console.log('click')} />}
+                    cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={() => console.log('click')} />}
                     ref={this.scene1}
                     refu={this.scene1}
                     canvas={true}
+                    gradient={gradientMonks}
                 />
                 <Thumbnail
                     key={2}
                     background={ImageJarawa}
                     title="Les Jarawas des Andaman"
                     name="2"
-                    cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={()=>console.log('click')} />}
+                    cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={() => console.log('click')} />}
                     ref={this.scene2}
                     refu={this.scene2}
                     canvas={true}
+                    gradient={gradientJarawa}
                 />
                 <Thumbnail
                     key={3}
                     background={ImageRasta}
                     title="Les rastas de Jamaïque"
                     name="3"
-                    cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={()=>console.log('click')} />}
+                    cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={() => console.log('click')} />}
                     ref={this.scene3}
                     refu={this.scene3}
                     canvas={true}
+                    gradient={gradientRasta}
                 />
                 {/* <Scene
                     img1={ImageMonks}

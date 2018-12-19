@@ -113,7 +113,8 @@ export default class Scene extends Component {
                 // }
             });
         // this.MyMap = loader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDFfVJb6RQW58GJ-JAf4E5WHhdYsiONQgLZrbCPk0fBCRl0gN_',
-        this.MyMap = loader.load('http://1.bp.blogspot.com/-0CYPYbf9D9U/UhfKYvhG9iI/AAAAAAAAAFg/gwKYb7k32CA/s1600/smoke.tif',
+        // this.MyMap = loader.load('http://1.bp.blogspot.com/-0CYPYbf9D9U/UhfKYvhG9iI/AAAAAAAAAFg/gwKYb7k32CA/s1600/smoke.tif',
+        this.MyMap = loader.load(this.img,
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height
@@ -129,7 +130,7 @@ export default class Scene extends Component {
             console.log('SET');
             // this.uniforms.userScrollSpeed.value = skew;
             console.log(this.uniforms.userScrollSpeed.value);
-            
+
             TweenLite.to(this.uniforms.userScrollSpeed, 1, { value: speed * 5 })
         }, 100);
 
@@ -193,15 +194,32 @@ export default class Scene extends Component {
         this.material.uniforms.uvRate1.value.y = h / w;
 
         if (w / h > 1) {
-            console.log('>>>>>>>>>>>>>>>>>>>>');
-            this.mesh.scale.y = w / h;
+            console.log('>');
+            this.mesh.scale.x = w / h;
+        } else {
+            console.log('<');
+            this.mesh.scale.x = 1;
+            // this.mesh.scale.y = w / h * this.mesh.scale.x;
         }
 
-        this.mesh.scale.x = w / h;
-        camera.updateProjectionMatrix();
+        // this.mesh.scale.x = w / h;
+        // if (this.MyTexture.image) {
+        //     const imageWidth = this.MyTexture.image.width;
+        //     const imageHeight = this.MyTexture.image.height;
+        //     console.log(imageWidth / imageHeight);
+        //     if (imageWidth / imageHeight > 1) {
+        //         console.log('>');
+        //         this.mesh.scale.x = imageHeight / imageHeight;
+        //     } else {
+        //         console.log('<');
+        //         // this.mesh.scale.x = 1;
+        //         // this.mesh.scale.y = w / h * this.mesh.scale.x;
+        //     }
+        // }
         this.uniforms.resolution.value.x = this.renderer.domElement.width;
         this.uniforms.resolution.value.y = this.renderer.domElement.height;
 
+        camera.updateProjectionMatrix();
         this.uniforms.size = {
             type: "v2", value: new THREE.Vector2(this.renderer.domElement.width, this.renderer.domElement.height)
         }
