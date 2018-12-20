@@ -21,9 +21,9 @@ export default class ThumbnailContainer extends Component {
     //     console.log(this.scene1.current.scene.current);
     // }
     render() {
-        const gradientMonks = "linear-gradient(to right, rgba(87, 18, 0, 0.1), rgba(87, 18, 0, 0.1))";
-        const gradientJarawa = "linear-gradient(to right, rgba(146, 154, 63, 0.1), rgba(146, 154, 63, 0.1))";
-        const gradientRasta = "linear-gradient(to right, rgba(63, 154, 146, 0.1), rgba(63, 154, 146, 0.1))";
+        const gradientMonks = "linear-gradient(to right, rgba(87, 18, 0, 0.2), rgba(87, 18, 0, 0.4))";
+        const gradientJarawa = "linear-gradient(to right, rgba(146, 154, 63, 0.2), rgba(146, 154, 63, 0.4))";
+        const gradientRasta = "linear-gradient(to right, rgba(63, 154, 146, 0.2), rgba(63, 154, 146, 0.4))";
         return (
             <div className="thumbnailContainer">
                 <Thumbnail
