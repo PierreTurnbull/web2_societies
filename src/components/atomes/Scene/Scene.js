@@ -31,6 +31,7 @@ export default class Scene extends Component {
         this.imageWidth = null;
         this.imageHeight = null;
         this.geometry = null;
+        this.holdValue = this.props.holdValue;
         this.loader = new THREE.TextureLoader()
         this.random = Math.floor(Math.random() * 100.) + 1.;
         this.MyTexture = this.loader.load(this.img,
@@ -128,6 +129,7 @@ export default class Scene extends Component {
 
         this.uniforms.texture = { type: "sampler2D", value: this.MyTexture };
         this.uniforms.map = { type: "sampler2D", value: this.MyMap };
+        this.uniforms.holdValue = { type: "sampler2D", value: this.props.holdValue };
 
         let setSpeed = throttle((speed) => {
             console.log('SET');
@@ -171,6 +173,7 @@ export default class Scene extends Component {
     animate() {
         requestAnimationFrame(this.animate);
         this.uniforms.time.value += 0.03;
+        this.uniforms.holdValue.value = this.props.holdValue;
         // console.log(this.uniforms.userScrollSpeed.value);
         this.renderer.render(this.scene, camera);
     }

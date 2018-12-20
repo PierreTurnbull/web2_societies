@@ -9,6 +9,7 @@ import arrowLeftIcon from 'images/icons/arrow.svg';
 
 import "./thumbnailContainer.css"
 import ArrowIconContainer from '../../atomes/arrowIcon/ArrowIconContainer';
+import Cursor from '../../atomes/cursor/Cursor';
 export default class ThumbnailContainer extends Component {
     constructor(props) {
         super(props);

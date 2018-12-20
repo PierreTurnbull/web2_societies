@@ -29,15 +29,16 @@ const fragmentShader = `
   varying vec2 vUv;
   varying vec2 vUv1;
   uniform float time;
+  uniform float holdValue;
   uniform float random;
   uniform sampler2D texture;
   uniform float userScrollSpeed;
   uniform sampler2D map;
 
   void main() {
-    float map = texture2D(map, vUv).r;
-    float distort = sin( sin(time)) / (vUv.x + vUv.y - 200.) * (map) + (sin( sin(time)) * vUv.x/500.) / 2.;
-    vec4 color = texture2D(texture, vec2(vUv.x + distort, vUv.y + distort));
+    float map = texture2D(map, vUv/50. / abs(cos(5.))).r * 20.;
+    float distort = sin( sin(time)) / (vUv.x + vUv.y - 200.) * (map + map * holdValue/30.) + (sin( sin(time)) * vUv.x/500.) / 2.;
+    vec4 color = texture2D(texture, vec2(vUv.x + distort * holdValue/50. + distort, vUv.y + distort * holdValue/50. + distort));
     gl_FragColor = vec4(vec3(color.r, color.g , color.b) * 1.0, 1.0);
   }
   `
