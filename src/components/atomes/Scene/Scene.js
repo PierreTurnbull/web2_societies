@@ -11,8 +11,7 @@ import { TweenMax, Power2, TimelineLite, TweenLite } from "gsap/TweenMax";
 
 THREE.ImageUtils.crossOrigin = '';
 // const images = [img, imgz];
-let camera, scene, geometry;
-let loader = new THREE.TextureLoader();
+let camera;
 // let userScrollSpeed = 1.;
 export default class Scene extends Component {
 
@@ -29,23 +28,27 @@ export default class Scene extends Component {
         this.renderer = null;
         this.scene = null;
         this.mesh = null;
+        this.imageWidth = null;
+        this.imageHeight = null;
+        this.geometry = null;
+        this.loader = new THREE.TextureLoader()
         this.random = Math.floor(Math.random() * 100.) + 1.;
-        this.MyTexture = loader.load(this.img,
+        this.MyTexture = this.loader.load(this.img,
             (texture) => {
-                // this.w = texture.image.width
-                // this.h = texture.image.height
+                this.imageWidth = texture.image.width
+                this.imageHeight = texture.image.height
                 this.uniforms.size = {
                     type: "v2", value: new THREE.Vector2(this.w, this.h)
                 }
             });
         // setTimeout(() => {
         //     this.nb = 1;
-        //     this.MyTexture = loader.load(this.img);
+        //     this.MyTexture = this.loader.load(this.img);
         //     this.uniforms.texture = { type: "sampler2D", value: this.MyTexture };
         // }, 1000)
         // setTimeout(() => {
         //     this.nb = 0;
-        //     this.MyTexture = loader.load(this.img);
+        //     this.MyTexture = this.loader.load(this.img);
         //     this.uniforms.texture = { type: "sampler2D", value: this.MyTexture };
         // }, 2000)
         console.log(this.w, this.h);
@@ -53,7 +56,7 @@ export default class Scene extends Component {
         this.uniforms = {
             time: { type: "f", value: 1.0 },
             random: { type: "f", value: this.random },
-            resolution: { type: "v2", value: new THREE.Vector2() },
+            resolution: { type: "v2", value: new THREE.Vector2(this.imageWidth, this.imageHeight) },
             uvRate1: { type: "f", value: new THREE.Vector2(1, 1) },
             userScrollSpeed: { type: "f", value: this.userScrollSpeed }
         };
@@ -101,10 +104,10 @@ export default class Scene extends Component {
         this.scene = new THREE.Scene();
         // this.scene = this.scene.clone();
         // geometry = new THREE.PlaneGeometry(1, 1, 1);
-        geometry = new THREE.PlaneGeometry(1, 1, 1);
+        this.geometry = new THREE.PlaneGeometry(1, 1, 1);
 
-        geometry.verticesNeedUpdate = true;
-        this.MyTexture = loader.load(this.img,
+        this.geometry.verticesNeedUpdate = true;
+        this.MyTexture = this.loader.load(this.img,
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height
@@ -112,9 +115,9 @@ export default class Scene extends Component {
                 //     type: "v2", value: new THREE.Vector2(texture.image.width, texture.image.height)
                 // }
             });
-        // this.MyMap = loader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDFfVJb6RQW58GJ-JAf4E5WHhdYsiONQgLZrbCPk0fBCRl0gN_',
-        // this.MyMap = loader.load('http://1.bp.blogspot.com/-0CYPYbf9D9U/UhfKYvhG9iI/AAAAAAAAAFg/gwKYb7k32CA/s1600/smoke.tif',
-        this.MyMap = loader.load(this.img,
+        // this.MyMap = this.loader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDFfVJb6RQW58GJ-JAf4E5WHhdYsiONQgLZrbCPk0fBCRl0gN_',
+        // this.MyMap = this.loader.load('http://1.bp.blogspot.com/-0CYPYbf9D9U/UhfKYvhG9iI/AAAAAAAAAFg/gwKYb7k32CA/s1600/smoke.tif',
+        this.MyMap = this.loader.load(this.img,
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height
@@ -152,7 +155,7 @@ export default class Scene extends Component {
         //     type: "v2", value: new THREE.Vector2(10, 10)
         // }
 
-        this.mesh = new THREE.Mesh(geometry, this.material);
+        this.mesh = new THREE.Mesh(this.geometry, this.material);
         this.scene.add(this.mesh);
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -161,9 +164,6 @@ export default class Scene extends Component {
         this.renderer.setClearColor('#ff0000');
         this.canvas.appendChild(this.renderer.domElement);
 
-        // setTimeout(() => {
-        //     // this.props.this.scene.current.appendChild(renderer.domElement);
-        // }, 2000);
         this.onWindowResize();
         window.addEventListener('resize', this.onWindowResize, false);
     }
@@ -182,6 +182,7 @@ export default class Scene extends Component {
         //     fragmentShader: fragmentShader
         // });
         // console.log(this.canvas);
+        console.group('RESIZE');
         let w = this.canvas.clientWidth;
         let h = this.canvas.clientHeight;
         this.renderer.setSize(w, h);
@@ -193,29 +194,44 @@ export default class Scene extends Component {
 
         this.material.uniforms.uvRate1.value.y = h / w;
 
-        if (w / h > 1) {
-            console.log('>');
-            this.mesh.scale.x = w / h;
-        } else {
-            console.log('<');
-            this.mesh.scale.x = 1;
-            // this.mesh.scale.y = w / h * this.mesh.scale.x;
-        }
+        // if (w / h > 1) {
+        //     console.log('>');
+        //     this.mesh.scale.x = w / h;
+        // } else {
+        //     console.log('<');
+        //     this.mesh.scale.x = 1;
+        //     // this.mesh.scale.y = w / h * this.mesh.scale.x;
+        // }
 
         // this.mesh.scale.x = w / h;
-        // if (this.MyTexture.image) {
-        //     const imageWidth = this.MyTexture.image.width;
-        //     const imageHeight = this.MyTexture.image.height;
-        //     console.log(imageWidth / imageHeight);
-        //     if (imageWidth / imageHeight > 1) {
-        //         console.log('>');
-        //         this.mesh.scale.x = imageHeight / imageHeight;
-        //     } else {
-        //         console.log('<');
-        //         // this.mesh.scale.x = 1;
-        //         // this.mesh.scale.y = w / h * this.mesh.scale.x;
-        //     }
-        // }
+            // console.log(this.imageWidth / this.imageHeight);
+            if (w / h > 1) { // container paysage ?
+                console.log('> container paysage');
+                if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
+                    console.log("image portrait");
+                    this.mesh.scale.x = w/h;
+                    this.mesh.scale.y = this.imageHeight/this.imageWidth * w/h;
+                } else {// image paysage ?
+                    console.log("image paysage");
+                    this.mesh.scale.x = w/h;
+                    this.mesh.scale.y = 1;
+                }
+            } else { // container portrait ?
+                console.log('< container portrait');
+                if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
+                    console.log("image portrait");
+                    this.mesh.scale.x = 1;
+                    this.mesh.scale.y = this.mesh.scale.x * h/w;
+                } else { // image paysage ?
+                    console.log("image paysage");
+                    this.mesh.scale.x = 1;
+                    this.mesh.scale.y = this.mesh.scale.x * h/w;
+                }
+                // this.mesh.scale.y = h/w;
+                // this.mesh.scale.x = 1;
+                // this.mesh.scale.y = 1;
+            }
+        
         this.uniforms.resolution.value.x = this.renderer.domElement.width;
         this.uniforms.resolution.value.y = this.renderer.domElement.height;
 
@@ -223,6 +239,8 @@ export default class Scene extends Component {
         this.uniforms.size = {
             type: "v2", value: new THREE.Vector2(this.renderer.domElement.width, this.renderer.domElement.height)
         }
+        console.groupEnd();
+        
     }
     render() {
         return (
