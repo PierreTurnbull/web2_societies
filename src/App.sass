@@ -1,3 +1,4 @@
+// AktivGrotesk
 @font-face 
     font-family: 'AktivGrotesk'
     font-weight: 900
@@ -19,5 +20,43 @@
     font-weight: 600
     src: url("./fonts/AktivGrotesk/AktivGrotesk-Regular.otf") format("truetype")
 
+// PlayfairDisplay
+@font-face 
+    font-family: 'PlayfairDisplay'
+    font-weight: 900
+    src: url("./fonts/PlayfairDisplay/PlayfairDisplay-Black.ttf") format("truetype")
+@font-face 
+    font-family: 'PlayfairDisplay'
+    font-weight: 300
+    src: url("./fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf") format("truetype")
+@font-face 
+    font-family: 'PlayfairDisplay'
+    font-weight: 600
+    src: url("./fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf") format("truetype")
+
 *
     box-sizing: border-box
+
+    @media all and (max-width: 768px)
+        .h2
+            font-family: PlayfairDisplay
+            font-size: 22px
+            font-weight: 300
+            font-style: normal
+            font-stretch: normal
+            line-height: normal
+            letter-spacing: normal
+            color: #ffffff
+            margin: 24px 0
+        .p
+            font-family: AktivGrotesk
+            font-size: 14px
+            font-weight: 100
+            font-style: normal
+            font-stretch: normal
+            line-height: 1.14
+            letter-spacing: normal
+            color: #ffffff
+            margin-bottom: 16px
+            b
+                font-weight: 300

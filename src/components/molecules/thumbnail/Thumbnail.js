@@ -30,6 +30,7 @@ export class Thumbnail extends Component {
   onHoldComplete = () => {
     console.log("colmelpf");
     this.setState({onHoldComplete: true})
+    this.props.onComplete(this.props.society);
     // this.animation.pause();
     // TweenLite.to(this, 1, { holdValue: 100, paused: true, onUpdate: this.incrementHoldValue });
   }

@@ -4,7 +4,7 @@ import "./cta.css"
 export default function Cta(props) {
     return (
         <button
-            className="cta"
+            className={`cta ${props.white && 'cta-white'}`}
             onClick={props.onClick}
         >
             {props.text}

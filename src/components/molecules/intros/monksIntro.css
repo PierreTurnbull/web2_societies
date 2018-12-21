@@ -1,0 +1,13 @@
+.monksIntro {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background-image: linear-gradient(to top, rgba(87, 18, 0, 0), rgba(87, 18, 0, 0.4)); }
+  .monksIntro .monks_center {
+    height: 302px;
+    width: auto; }
+
+.wrap {
+  padding: 24px; }
