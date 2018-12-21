@@ -5,14 +5,14 @@ export default class Vote extends Component {
     render() {
         return (
             <div className="vote">
-                <div className="voteBtn">
+                <button className="voteBtn">
                     <p>Oui</p>
                     <p>58%</p>
-                </div>
-                <div className="voteBtn">
+                </button>
+                <button className="voteBtn">
                     <p>Non</p>
                     <p>42%</p>
-                </div>
+                </button>
             </div>
         )
     }

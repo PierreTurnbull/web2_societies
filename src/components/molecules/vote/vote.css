@@ -1,12 +1,21 @@
 .vote {
   color: white;
   display: flex;
-  width: 100%; }
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative; }
+  .vote::before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 2px;
+    background: #171717; }
   .vote .voteBtn {
     flex: 1;
     text-align: center;
     background: #2b2b2b;
-    padding: 20px;
+    padding: 10px 20px;
     font-family: AktivGrotesk;
     font-size: 14px;
     font-weight: 300;
@@ -15,8 +24,10 @@
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #ffffff; }
+    color: #ffffff;
+    border: none; }
     .vote .voteBtn:first-child {
-      border-radius: 5px 0 0 5px; }
+      border-radius: 5px 0 0 5px;
+      background: #1f1f1f; }
     .vote .voteBtn:last-child {
       border-radius: 0 5px 5px 0; }
