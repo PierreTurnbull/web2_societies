@@ -13,11 +13,11 @@
     src: url("./fonts/AktivGrotesk/AktivGrotesk-Light.otf") format("truetype")
 @font-face 
     font-family: 'AktivGrotesk'
-    font-weight: 300
+    font-weight: 400
     src: url("./fonts/AktivGrotesk/AktivGrotesk-Medium.otf") format("truetype")
 @font-face 
     font-family: 'AktivGrotesk'
-    font-weight: 600
+    font-weight: 300
     src: url("./fonts/AktivGrotesk/AktivGrotesk-Regular.otf") format("truetype")
 
 // PlayfairDisplay
@@ -36,27 +36,58 @@
 
 *
     box-sizing: border-box
-
-    @media all and (max-width: 768px)
-        .h2
-            font-family: PlayfairDisplay
-            font-size: 22px
-            font-weight: 300
-            font-style: normal
-            font-stretch: normal
-            line-height: normal
-            letter-spacing: normal
-            color: #ffffff
-            margin: 24px 0
-        .p
-            font-family: AktivGrotesk
-            font-size: 14px
-            font-weight: 100
-            font-style: normal
-            font-stretch: normal
-            line-height: 1.14
-            letter-spacing: normal
-            color: #ffffff
-            margin-bottom: 16px
-            b
-                font-weight: 300
+hr
+    height: 1px
+    background-color: #2b2b2b
+    border: none
+.h2
+    font-family: PlayfairDisplay
+    font-size: 42px
+    font-weight: 300
+    font-style: normal
+    font-stretch: normal
+    line-height: normal
+    letter-spacing: normal
+    color: #ffffff
+    margin: 24px 0
+    width: 100%
+    text-align: left
+.h3
+    font-family: PlayfairDisplay
+    font-size: 34px
+    font-weight: 300
+    font-style: normal
+    font-stretch: normal
+    line-height: normal
+    letter-spacing: normal
+    color: #ffffff
+    margin: 64px 0
+    width: 100%
+    text-align: left
+.p
+    font-family: AktivGrotesk
+    font-size: 18px
+    font-weight: 100
+    font-style: normal
+    font-stretch: normal
+    line-height: 1.33
+    letter-spacing: 1.5
+    color: #ffffff
+    margin-bottom: 32px
+    opacity: .6
+    b
+        font-weight: 300
+@media all and (max-width: 768px)
+    .h2
+        font-size: 42px
+    .h3
+        font-size: 24px
+    .p
+        font-size: 14px
+@media all and (max-width: 480px)
+    .h2
+        font-size: 22px
+    .h3
+        font-size: 22px
+    .p
+        font-size: 14px

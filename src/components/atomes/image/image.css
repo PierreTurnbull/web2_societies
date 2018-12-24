@@ -1,36 +1,71 @@
+.societyContentImage {
+  position: relative;
+  margin-bottom: 64px;
+  flex: 2; }
+  .societyContentImage img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    display: block; }
+  .societyContentImage .gradient {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2; }
+
+.societyContentImage.fullWidth {
+  padding: 0;
+  margin: 0 -32px 32px -32px; }
+  .societyContentImage.fullWidth img {
+    height: 400px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; }
+
+.societyContentImage.left {
+  margin-left: 0;
+  margin-right: 32px; }
+  .societyContentImage.left img {
+    height: 400px; }
+
+.societyContentImage.right {
+  margin-left: 32px;
+  margin-right: 0; }
+  .societyContentImage.right img {
+    height: 400px; }
+
 @media all and (max-width: 768px) {
   .societyContentImage {
-    position: relative;
+    margin-bottom: 32px; }
+    .societyContentImage img {
+      height: 256px; }
+  .societyContentImage.fullWidth {
+    margin: 0 -32px 32px -32px; }
+    .societyContentImage.fullWidth img {
+      height: 256px; }
+  .societyContentImage.left {
+    margin-right: 24px; }
+    .societyContentImage.left img {
+      height: 400px; }
+  .societyContentImage.right {
+    margin-left: 24px; }
+    .societyContentImage.right img {
+      height: 400px; } }
+
+@media all and (max-width: 750px) {
+  .societyContentImage {
     margin-bottom: 24px; }
     .societyContentImage img {
-      height: 240px;
-      width: 100%;
-      object-fit: cover; }
-    .societyContentImage .gradient {
-      position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 2; }
-  .fullWidth {
+      height: 240px; }
+  .societyContentImage.fullWidth {
     padding: 0;
-    margin: 0 -24px 0 -24px; }
-    .fullWidth img {
-      height: 240px;
-      width: 100%;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1; }
-  .left {
-    padding-left: 0;
-    padding-right: 64px; }
-    .left img {
-      height: 200px; }
-  .right {
-    padding-left: 64px;
-    padding-right: 0; }
-    .right img {
-      height: 200px; } }
+    margin: 0 -32px 32px -32px; }
+  .societyContentImage.left {
+    margin-right: 64px; }
+  .societyContentImage.right {
+    margin-left: 64px; } }

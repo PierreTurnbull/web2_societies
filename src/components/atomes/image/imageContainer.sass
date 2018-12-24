@@ -1,0 +1,59 @@
+.imageContainer
+    display: flex
+    align-items: center
+    justify-content: center
+    .imageAdornment
+        color: white
+        display: flex
+        justify-content: space-around
+        width: 30%
+        text-align: center
+        p
+            text-align: center
+            font-family: AktivGrotesk
+            word-break: break-all
+            width: 14px
+            font-size: 28px
+            text-transform: uppercase
+            font-weight: 300
+            &:nth-child(1)
+                opacity: .2
+            &:nth-child(2)
+                opacity: .4
+            &:nth-child(3)
+                opacity: .6
+            &:nth-child(4)
+                opacity: .8
+    .imageAdornment.border
+        border: 1px solid white
+        p
+            text-shadow: 0px 0 white, 0 0px white, 0px 0 white, 0 0px white
+.imageContainer.horizontal
+    flex-direction: row
+.imageContainer.vertical
+    flex-direction: row-reverse
+    .imageAdornment
+        flex-direction: column
+        flex: 1
+        p
+            width: 100%
+            line-height: 0.79
+            letter-spacing: 5.4px
+            font-size: 38px
+            margin: 16px 0
+            color: black
+            text-shadow: -.5px 0 white, 0 .5px white, .5px 0 white, 0 -.5px white
+            &:nth-child(1)
+                opacity: .2
+            &:nth-child(2)
+                opacity: .6
+            &:nth-child(3)
+                opacity: .9
+            &:nth-child(4)
+                opacity: .6
+            &:nth-child(5)
+                opacity: .2
+@media all and (max-width: 750px)
+    .imageContainer
+        .imageAdornment
+            display: none
