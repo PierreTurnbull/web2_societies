@@ -16,7 +16,13 @@ export class Thumbnail extends Component {
     this.background = this.props.background;
     // this.scene3 = React.createRef();
     this.holdValue = 0.0;
-    this.animation = TweenLite.to(this, 1, { holdValue: 100, paused: true, onUpdate: this.incrementHoldValue, onComplete: this.onHoldComplete });
+    this.animation = TweenLite.to(this, 1.3, { 
+        holdValue: 100, 
+        paused: true, 
+        onUpdate: this.incrementHoldValue, 
+        onComplete: this.onHoldComplete,
+        ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0.326 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
+      });
   }
 
   incrementHoldValue = () => {
@@ -40,7 +46,7 @@ export class Thumbnail extends Component {
       <div
         className="thumbnail"
         ref={this.scene}
-        style={{ backgroundImage: this.props.gradient }}
+        style={{ backgroundImage: this.props.gradient}}
         onMouseDown={() => {
           this.animation.play();
         }}

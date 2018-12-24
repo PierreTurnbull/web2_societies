@@ -105,7 +105,7 @@ export default class Scene extends Component {
         this.scene = new THREE.Scene();
         // this.scene = this.scene.clone();
         // geometry = new THREE.PlaneGeometry(1, 1, 1);
-        this.geometry = new THREE.PlaneGeometry(1, 1, 1);
+        this.geometry = new THREE.PlaneGeometry(1, 1, 100, 100);
 
         this.geometry.verticesNeedUpdate = true;
         this.MyTexture = this.loader.load(this.img,
@@ -163,7 +163,7 @@ export default class Scene extends Component {
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
-        this.renderer.setClearColor('#ff0000');
+        // this.renderer.setClearColor('#000000');
         this.canvas.appendChild(this.renderer.domElement);
 
         this.onWindowResize();

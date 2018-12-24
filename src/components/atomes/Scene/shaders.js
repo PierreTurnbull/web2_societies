@@ -12,6 +12,9 @@ const vertexShader = `
   uniform vec2 size;
   uniform vec2 resolution;
   uniform vec2 uvRate1;
+  uniform float holdValue;
+  uniform float userScrollSpeed;
+  uniform float time;
 
   void main() {
     vUv = uv;
@@ -20,11 +23,12 @@ const vertexShader = `
     vUv *= uvRate1.xy;
 
     vUv += 0.5;
+    vec3 newPosition = position;
+    newPosition.z = sin(position.y * abs(sin(time) * holdValue/7.) + holdValue/50.) * sin(position.x);
 
-    gl_Position =  projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    gl_Position =  projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
   }
 `
-
 const fragmentShader = `
   varying vec2 vUv;
   varying vec2 vUv1;
@@ -37,8 +41,8 @@ const fragmentShader = `
 
   void main() {
     float map = texture2D(map, vUv/50. / abs(cos(5.))).r * 20.;
-    float distort = sin( sin(time)) / (vUv.x + vUv.y - 200.) * (map + map * holdValue/30.) + (sin( sin(time)) * vUv.x/500.) / 2.;
-    vec4 color = texture2D(texture, vec2(vUv.x + distort * holdValue/50. + distort, vUv.y + distort * holdValue/50. + distort));
+    float distort = sin( sin(time)/10. + sin(time) * (holdValue/1000.)) * 0.03;
+    vec4 color = texture2D(texture, vec2(vUv.x + distort + (distort * map), vUv.y + distort + (distort * map) ));
     gl_FragColor = vec4(vec3(color.r, color.g , color.b) * 1.0, 1.0);
   }
   `
