@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Scene from 'components/atomes/Scene/Scene';
-import { TweenLite, TweenMax, TimelineMax } from "gsap/TweenMax";
+import { TweenLite } from "gsap/TweenMax";
 
 import "./thumbnail.css"
 export class Thumbnail extends Component {

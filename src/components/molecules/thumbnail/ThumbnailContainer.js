@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import Thumbnail from './Thumbnail';
-import Cta from '../../atomes/Cta';
 import ImageMonks from "images/moines.jpg"
 import ImageJarawa from "images/jarawa.jpg"
 import ImageRasta from "images/rastaa.jpeg"
-import Scene from '../../atomes/Scene/Scene';
 import arrowLeftIcon from 'images/icons/arrow.svg';
 import { withRouter } from "react-router";
 
 import "./thumbnailContainer.css"
 import ArrowIconContainer from '../../atomes/arrowIcon/ArrowIconContainer';
-import Cursor from '../../atomes/cursor/Cursor';
+// import Cursor from '../../atomes/cursor/Cursor';
 class ThumbnailContainer extends Component {
     state = {
         redirect: false

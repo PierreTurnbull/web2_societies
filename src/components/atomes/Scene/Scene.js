@@ -3,16 +3,11 @@ import * as THREE from 'three';
 import { vertexShader, fragmentShader, setRandomShader } from './shaders';
 import { throttle, debounce } from 'lodash';
 import scrollSpeed from 'utils/scrollSpeed';
-import { TweenMax, Power2, TimelineLite, TweenLite } from "gsap/TweenMax";
+import { TweenLite } from "gsap/TweenMax";
 
-
-// import img from './lol.jpeg';
-// import imgz from './mdr.jpeg';
 
 THREE.ImageUtils.crossOrigin = '';
-// const images = [img, imgz];
 let camera;
-// let userScrollSpeed = 1.;
 export default class Scene extends Component {
 
     constructor(props) {
@@ -86,13 +81,6 @@ export default class Scene extends Component {
         // console.log(this.props.this.scene.current != null ? this.props.this.scene.current.getBoundingClientRect().x : 'nullll');
         // console.log(this.canvas.clientHeight);
         setRandomShader(this.uniforms.random.value);
-        console.log(this.props.name);
-        console.log("this.img", this.img);
-        setTimeout(() => {
-            console.group("SIZE");
-            console.log("1", this.props.scene.current.getBoundingClientRect().x)
-            console.groupEnd();
-        }, 2000)
     }
     componentWillUnmount() {
         this.renderer.dispose()
@@ -105,7 +93,7 @@ export default class Scene extends Component {
         this.scene = new THREE.Scene();
         // this.scene = this.scene.clone();
         // geometry = new THREE.PlaneGeometry(1, 1, 1);
-        this.geometry = new THREE.PlaneGeometry(1, 1, 100, 100);
+        this.geometry = new THREE.PlaneGeometry(1, 1, 20, 20);
 
         this.geometry.verticesNeedUpdate = true;
         this.MyTexture = this.loader.load(this.img,

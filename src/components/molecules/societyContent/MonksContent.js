@@ -1,7 +1,6 @@
 import React from 'react'
 import Title from 'components/atomes/title/Title';
 
-import Image from '../../atomes/image/Image';
 import Quote from '../../atomes/Quote/Quote';
 import VoteContainer from '../vote/VoteContainer';
 import ImageContainer from '../../atomes/image/ImageContainer';

@@ -11,7 +11,7 @@ export class Home extends Component {
                 <Header />
                 <Router>
                     <div>
-                        <ThumbnailContainer />
+                        <Route exact path="/" component={() => <ThumbnailContainer />} />
                         <Route path="/rasta" component={() => <SocietyContentContainer />} />
                         <Route path="/monks" component={() => <SocietyContentContainer />} />
                         <Route path="/jarawa" component={() => <SocietyContentContainer />} />
