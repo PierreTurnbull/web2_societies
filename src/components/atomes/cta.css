@@ -9,7 +9,8 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #5c5c5c; }
+  color: #5c5c5c;
+  border: 1px solid; }
   .cta:not(:last-child) {
     margin-right: 20px; }
   .cta:hover {

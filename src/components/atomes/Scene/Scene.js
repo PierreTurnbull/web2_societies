@@ -117,8 +117,9 @@ export default class Scene extends Component {
                 // }
             });
         // this.MyMap = this.loader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDFfVJb6RQW58GJ-JAf4E5WHhdYsiONQgLZrbCPk0fBCRl0gN_',
+        this.MyMap = this.loader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4FXchrGaqzSZ-YmGRFPhzH30VcgbGWl_iVnFpVV_2u6oKeZCy',
         // this.MyMap = this.loader.load('http://1.bp.blogspot.com/-0CYPYbf9D9U/UhfKYvhG9iI/AAAAAAAAAFg/gwKYb7k32CA/s1600/smoke.tif',
-        this.MyMap = this.loader.load(this.img,
+        // this.MyMap = this.loader.load(this.img,
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height
