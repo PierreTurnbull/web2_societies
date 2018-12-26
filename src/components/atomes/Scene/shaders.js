@@ -24,11 +24,12 @@ const vertexShader = `
 
     vUv += 0.5;
     vec3 newPosition = position;
-    newPosition.z = sin(position.y * sin(time) + holdValue/50.) * sin(position.x * cos(time) + holdValue/50.) * 0.1;
+    newPosition.z = (sin(position.y / 1. * sin(holdValue/1000.) * 100.) * sin(position.x / 1. * sin(holdValue/1000.) * .02 ));
 
     gl_Position =  projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
   }
 `
+// newPosition.z = sin(position.y * sin(time) + holdValue/50.) * sin(position.x * cos(time) + holdValue/50.) * 0.1;
 
 const fragmentShader = `
   varying vec2 vUv;
@@ -42,8 +43,8 @@ const fragmentShader = `
 
   void main() {
     float map = texture2D(map, vUv + holdValue/200.).r * 10. / cos(time);
-    float distort = sin( cos(time)) * .001 + sin( cos(time) * (holdValue/200.)) * 0.03;
-    vec4 color = texture2D(texture, vec2(vUv.x + distort + (distort * map), vUv.y + distort + (distort * map) ));
+    float distort = sin( cos(time)) * .001 + sin( cos(time) * (holdValue/200.)) * 0.01;
+    vec4 color = texture2D(texture, vec2(vUv.x + distort*map*2. + (distort * map), vUv.y + distort*map*2. + (distort * map) ));
     gl_FragColor = vec4(vec3(color.r, color.g , color.b) * 1.0, 1.0);
   }
   `

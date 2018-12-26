@@ -83,7 +83,8 @@ export default class Scene extends Component {
         setRandomShader(this.uniforms.random.value);
     }
     componentWillUnmount() {
-        this.renderer.dispose()
+        this.renderer.dispose();
+        window.removeEventListener('resize', this.onWindowResize);
     }
 
     init() {
@@ -93,7 +94,12 @@ export default class Scene extends Component {
         this.scene = new THREE.Scene();
         // this.scene = this.scene.clone();
         // geometry = new THREE.PlaneGeometry(1, 1, 1);
-        this.geometry = new THREE.PlaneGeometry(1, 1, 20, 20);
+        this.geometry = new THREE.PlaneGeometry(
+            1,
+            1,
+            1,
+            1
+        );
 
         this.geometry.verticesNeedUpdate = true;
         this.MyTexture = this.loader.load(this.img,
@@ -106,8 +112,8 @@ export default class Scene extends Component {
             });
         // this.MyMap = this.loader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDFfVJb6RQW58GJ-JAf4E5WHhdYsiONQgLZrbCPk0fBCRl0gN_',
         this.MyMap = this.loader.load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4FXchrGaqzSZ-YmGRFPhzH30VcgbGWl_iVnFpVV_2u6oKeZCy',
-        // this.MyMap = this.loader.load('http://1.bp.blogspot.com/-0CYPYbf9D9U/UhfKYvhG9iI/AAAAAAAAAFg/gwKYb7k32CA/s1600/smoke.tif',
-        // this.MyMap = this.loader.load(this.img,
+            // this.MyMap = this.loader.load('http://1.bp.blogspot.com/-0CYPYbf9D9U/UhfKYvhG9iI/AAAAAAAAAFg/gwKYb7k32CA/s1600/smoke.tif',
+            // this.MyMap = this.loader.load(this.img,
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height
@@ -152,7 +158,7 @@ export default class Scene extends Component {
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
-        // this.renderer.setClearColor('#000000');
+        this.renderer.setClearColor('#ffffff');
         this.canvas.appendChild(this.renderer.domElement);
 
         this.onWindowResize();
@@ -196,43 +202,43 @@ export default class Scene extends Component {
         // }
 
         // this.mesh.scale.x = w / h;
-            // console.log(this.imageWidth / this.imageHeight);
-            if (w / h > 1) { // container paysage ?
-                console.log('> container paysage');
-                if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
-                    console.log("image portrait");
-                    this.mesh.scale.x = w/h;
-                    this.mesh.scale.y = this.imageHeight/this.imageWidth * w/h;
-                } else {// image paysage ?
-                    console.log("image paysage");
-                    this.mesh.scale.x = w/h;
-                    this.mesh.scale.y = 1;
-                }
-            } else { // container portrait ?
-                console.log('< container portrait');
-                if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
-                    console.log("image portrait");
-                    this.mesh.scale.x = 1;
-                    this.mesh.scale.y = this.mesh.scale.x * h/w;
-                } else { // image paysage ?
-                    console.log("image paysage");
-                    this.mesh.scale.x = 1;
-                    this.mesh.scale.y = this.mesh.scale.x * h/w;
-                }
-                // this.mesh.scale.y = h/w;
-                // this.mesh.scale.x = 1;
-                // this.mesh.scale.y = 1;
+        // console.log(this.imageWidth / this.imageHeight);
+        if (w / h > 1) { // container paysage ?
+            console.log('> container paysage');
+            if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
+                console.log("image portrait");
+                this.mesh.scale.x = w / h;
+                this.mesh.scale.y = ( this.mesh.scale.x * h/w) * this.imageHeight/this.imageWidth;
+            } else { // image paysage ?
+                console.log("image paysage", w / h);
+                this.mesh.scale.x = w / h * this.imageWidth/this.imageHeight;
+                this.mesh.scale.y = 1;
             }
-        
-        this.uniforms.resolution.value.x = this.renderer.domElement.width;
-        this.uniforms.resolution.value.y = this.renderer.domElement.height;
+        } else { // container portrait ?
+            console.log('< container portrait');
+            if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
+                console.log("image portrait");
+                this.mesh.scale.x = 1;
+                this.mesh.scale.y = (this.mesh.scale.x * h/w) * this.imageHeight/this.imageWidth;
+            } else { // image paysage ?
+                console.log("image paysage");
+                this.mesh.scale.y = (h/w);
+                this.mesh.scale.x = (this.mesh.scale.y * w/h) * this.imageWidth/this.imageHeight;
+            }
+            // this.mesh.scale.y = h/w;
+            // this.mesh.scale.x = 1;
+            // this.mesh.scale.y = 1;
+        }
+
+        // this.uniforms.resolution.value.x = this.renderer.domElement.width;
+        // this.uniforms.resolution.value.y = this.renderer.domElement.height;
 
         camera.updateProjectionMatrix();
-        this.uniforms.size = {
-            type: "v2", value: new THREE.Vector2(this.renderer.domElement.width, this.renderer.domElement.height)
-        }
+        // this.uniforms.size = {
+        //     type: "v2", value: new THREE.Vector2(this.renderer.domElement.width, this.renderer.domElement.height)
+        // }
         console.groupEnd();
-        
+
     }
     render() {
         return (

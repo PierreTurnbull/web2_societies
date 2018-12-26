@@ -55,7 +55,7 @@ export class Thumbnail extends Component {
         }}
         onMouseLeave={()=>this.reverseAnimation()}
       >
-        {/* <img src={this.props.background} alt="bakcground" /> */}
+        <img src={this.props.background} alt="bakcground" />
         <h2 className="title">{this.props.title}</h2>
         <this.props.cta svgUrl={this.props.svgUrl} />
         <div style={{ background: 'white', height: '1px', width: `${this.holdValue}%` }}></div>
