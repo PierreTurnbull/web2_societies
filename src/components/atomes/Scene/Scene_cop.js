@@ -187,8 +187,8 @@ export default class Scene extends Component {
         this.uniforms2.map = { type: "sampler2D", value: this.MyMap };
         this.uniforms3.map = { type: "sampler2D", value: this.MyMap };
 
-        let setSkew = throttle((skew) => {
-            TweenLite.to(this.uniforms.userScrollSpeed, 1, { value: skew * 5 })
+        let setSpeed = throttle((speed) => {
+            TweenLite.to(this.uniforms.userScrollSpeed, 1, { value: speed * 5 })
         }, 100);
 
         let setBack = debounce(() => {
@@ -198,7 +198,7 @@ export default class Scene extends Component {
         window.onscroll = () => {
             const speed = scrollSpeed();
             // this.userScrollSpeed = speed;
-            setSkew(speed / 200);
+            setSpeed(speed / 200);
             setBack();
         };
 

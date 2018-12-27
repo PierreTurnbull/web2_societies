@@ -11,10 +11,10 @@ import img3 from 'images/monks/3.png';
 
 import "./societyContent.css";
 
-export default function MonksContent() {
+export default function JarawaContent() {
     return (
         <div className="societyContent">
-            <Title h="h3" text="Qui son les moines du Mont Athos" />
+            <Title h="h3" text="Qui sont les jarawa" />
             <ImageContainer
                 src={img1}
                 imageVariant="fullWidth"
@@ -23,7 +23,7 @@ export default function MonksContent() {
             />
             <p className="p">Perferenda dierum <b>reverteris tandem omnem</b> amicitiam cum ad postridie tot in agnitus vel aetatem frustra discesseris adsiduitati ad agnitus unde.</p>
             <p className="p">Ad amicorum se Quod iam neutris dixisse <b>reverteris dixisse ceciderunt dumtaxat amicos habuisset</b> ceciderunt metuat tum habuisset fuerint iam quos diligat.</p>
-            <Title h="h3" text="Qui sont les moines du Mont Athos?" />
+            <Title h="h3" text="Qui sont les moines du les jarawa?" />
             <ImageContainer
                 src={img2}
                 imageVariant="right"
@@ -32,7 +32,7 @@ export default function MonksContent() {
                 gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                 alt="eve"
             />
-            <Quote variant="simple" text="Qui son les moines du Mont Athos" />
+            <Quote variant="simple" text="Qui sont les jarawa" />
             <ImageContainer
                 src={img3}
                 imageVariant="left"

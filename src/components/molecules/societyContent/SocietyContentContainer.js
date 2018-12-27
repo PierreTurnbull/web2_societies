@@ -1,39 +1,63 @@
 import React, { Component } from 'react'
-// import { TweenMax, Power1, TimelineLite, TweenLite } from "gsap/TweenMax";
+import { TweenMax, Power2, TimelineLite, TweenLite } from "gsap/TweenMax";
+import { throttle, debounce } from 'lodash';
 import MonksContent from './MonksContent';
+import JarawaContent from './JarawaContent';
 
 import "./societyContentContainer.css";
 import MonksIntro from '../intros/MonksIntro';
+import SocietyContent from './JarawaContent';
+// import JarawaIntro from '../intros/JarawaIntro';
 export default class SocietyContentContainer extends Component {
 
     constructor(props) {
         super(props);
 
+        // this.handleScroll = this.handleScroll.bind(this)
         this.scrollTime = 1.2;
         this.scrollDistance = 170;
+
+        this.scrollY = 0
+        this.societyContainer = React.createRef()
+
+        this.scroller = {
+            target: this.societyContainer,
+            ease: 0.05, // <= scroll speed
+            endY: 0,
+            y: 0,
+            resizeRequest: 1,
+            scrollRequest: 0,
+        };
     }
 
-    scroll(event) {
+    // handleScroll = throttle((event) => {
+    //     event.persist()
+    //     // TweenMax.to(this, 1, {
+    //     //     scrollY: event.deltaY / 10,
+    //     //     ease:Power2.easeOut,
+    //     //     onUpdate: () => this.updateScroll()
+    //     // });
+    // }, 100)
 
-        console.log(event);
-        
-        // const $window = window;
-        // var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
-        // var scrollTop = $window.scrollTop();
-        // var finalScroll = scrollTop - parseInt(delta * this.scrollDistance);
-
-        // TweenMax.to($window, this.scrollTime, {
-        //     scrollTo: { y: finalScroll, autoKill: true },
-        //     ease: Power1.easeOut,
-        //     overwrite: 5
-        // });
+    updateScroll = () => {
+        // console.log(this.scrollY, this.scroller.target.current.scrollTop);
+        // window.scrollTo({top: window.pageYOffset + this.scrollY});
+        this.scroller.target.current.scrollTop = this.scroller.target.current.scrollTop + this.scrollY;
     }
+
     render() {
         return (
-            <div className="societyContentContainer" onScroll={(e) => this.scroll(e)}>
+            <div
+                className="societyContentContainer"
+                // onWheel={(e) => { e.persist(); this.handleScroll(e) }} 
+                ref={this.societyContainer}>
                 <a href='!'>Retour à l'acceuil</a>
-                <MonksIntro />
-                <MonksContent />
+                {
+                    this.props.societyIntro
+                }
+                {
+                    this.props.societyContent
+                }
             </div>
         )
     }

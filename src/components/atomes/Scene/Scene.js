@@ -208,10 +208,10 @@ export default class Scene extends Component {
             if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
                 console.log("image portrait");
                 this.mesh.scale.x = w / h;
-                this.mesh.scale.y = ( this.mesh.scale.x * h/w) * this.imageHeight/this.imageWidth;
+                this.mesh.scale.y = (this.mesh.scale.x * h / w) * this.imageHeight / this.imageWidth;
             } else { // image paysage ?
                 console.log("image paysage", w / h);
-                this.mesh.scale.x = w / h * this.imageWidth/this.imageHeight;
+                this.mesh.scale.x = w / h * this.imageWidth / this.imageHeight;
                 this.mesh.scale.y = 1;
             }
         } else { // container portrait ?
@@ -219,11 +219,11 @@ export default class Scene extends Component {
             if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
                 console.log("image portrait");
                 this.mesh.scale.x = 1;
-                this.mesh.scale.y = (this.mesh.scale.x * h/w) * this.imageHeight/this.imageWidth;
+                this.mesh.scale.y = (this.mesh.scale.x * h / w) * this.imageHeight / this.imageWidth;
             } else { // image paysage ?
                 console.log("image paysage");
-                this.mesh.scale.y = (h/w);
-                this.mesh.scale.x = (this.mesh.scale.y * w/h) * this.imageWidth/this.imageHeight;
+                this.mesh.scale.y = (h / w);
+                this.mesh.scale.x = (this.mesh.scale.y * w / h) * this.imageWidth / this.imageHeight;
             }
             // this.mesh.scale.y = h/w;
             // this.mesh.scale.x = 1;

@@ -25,8 +25,11 @@ class ThumbnailContainer extends Component {
     //     console.log(this.scene1.current.scene.current);
     // }
     redirectTo = (path) => {
-        // this.setState({redirect: path});
-        this.props.history.push(path);
+        this.setState({redirect: true});
+        setTimeout(() => {
+            this.props.history.push(path);
+            this.setState({redirect: false});
+        }, 1000);
     }
 
     render() {
@@ -35,6 +38,8 @@ class ThumbnailContainer extends Component {
         const gradientRasta = "linear-gradient(to right, rgba(63, 154, 146, 0.2), rgba(63, 154, 146, 0.4))";
         return (
             <div className="thumbnailContainer">
+                <div className={`${this.state.redirect === true ? 'overlay slideIn' : 'overlay'}`}>
+                </div>
                 <Thumbnail
                     key={1}
                     society="monks"
