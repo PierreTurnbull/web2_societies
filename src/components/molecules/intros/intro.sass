@@ -6,6 +6,8 @@
     justify-content: space-between
     flex-direction: column
     position: relative
+    .h2, .p
+        opacity: 1
     .intro_image, .intro_patern_image
         height: 700px
         width: auto
@@ -20,6 +22,7 @@
         max-height: 500px
         object-fit: cover
 .wrap
+    animation: slideIn 3s ease
     padding: 24px
 .MonksGradient
     background-image: $MonksGradient
@@ -34,3 +37,11 @@
         .intro_image
             height: 302px
             width: auto
+
+@keyframes slideIn
+    0%
+        transform: translateY(100px)
+        opacity: 0
+    100%
+        transform: translateY(0px)
+        opacity: 1

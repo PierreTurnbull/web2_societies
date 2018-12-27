@@ -7,8 +7,10 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: 6px;
-  text-align: justify;
-  color: #000000; }
+  text-align: justify; }
+  .logo a {
+    text-decoration: none;
+    color: #000000; }
 
 .t-main-color {
   color: #00c6c8; }

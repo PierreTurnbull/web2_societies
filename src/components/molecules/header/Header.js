@@ -7,7 +7,7 @@ export class Header extends Component {
     return (
       <div className="header">
         <div className="logo">
-          <span><span className="t-main-color">f</span>society</span>
+          <a href="/"><span className="t-main-color">f</span>society</a>
         </div>
         <div className="ctas">
           <Cta text="En savoir plus" onClick={() => console.log("click")} />

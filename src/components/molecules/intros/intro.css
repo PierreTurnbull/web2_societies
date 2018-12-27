@@ -5,6 +5,8 @@
   justify-content: space-between;
   flex-direction: column;
   position: relative; }
+  .intro .h2, .intro .p {
+    opacity: 1; }
   .intro .intro_image, .intro .intro_patern_image {
     height: 700px;
     width: auto;
@@ -20,6 +22,7 @@
     object-fit: cover; }
 
 .wrap {
+  animation: slideIn 3s ease;
   padding: 24px; }
 
 .MonksGradient {
@@ -37,3 +40,11 @@
   .intro .intro_image {
     height: 302px;
     width: auto; } }
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(100px);
+    opacity: 0; }
+  100% {
+    transform: translateY(0px);
+    opacity: 1; } }
