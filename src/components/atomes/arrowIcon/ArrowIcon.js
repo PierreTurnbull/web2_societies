@@ -10,7 +10,7 @@ export default function ArrowIcon(props) {
             fallback={() => <span>Error!</span>}
             loading={() => <span>Loading</span>}
             renumerateIRIElements={false}
-            svgStyle={{ width: 50, height: 50, fill: 'white', transform: 'rotate(45deg)' }}
+            svgStyle={{ width: 70, height: 70, fill: 'white', transform: 'rotate(45deg)' }}
             onClick={props.onClick}
         />
     )

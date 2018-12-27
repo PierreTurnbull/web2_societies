@@ -32,16 +32,18 @@ export default class Scene extends Component {
         this.random = Math.floor(Math.random() * 100.) + 1.;
         this.MyTexture = this.loader.load(this.img,
             (texture) => {
-                this.imageWidth = texture.image.width
-                this.imageHeight = texture.image.height
+                this.imageWidth = texture.image.width;
+                this.imageHeight = texture.image.height;
+                this.onWindowResize();
                 this.uniforms.size = {
                     type: "v2", value: new THREE.Vector2(this.w, this.h)
                 }
             });
         this.MyTexture2 = this.loader.load(this.background2,
             (texture) => {
-                this.imageWidth = texture.image.width
-                this.imageHeight = texture.image.height
+                this.imageWidth = texture.image.width;
+                this.imageHeight = texture.image.height;
+                this.onWindowResize();
                 this.uniforms.size = {
                     type: "v2", value: new THREE.Vector2(this.w, this.h)
                 }
