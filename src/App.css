@@ -80,10 +80,10 @@ hr {
   font-stretch: normal;
   line-height: 1.33;
   letter-spacing: 1.5;
-  color: #ffffff;
-  margin-bottom: 32px;
-  opacity: .6; }
+  color: #999;
+  margin-bottom: 32px; }
   .p b {
+    color: #eee;
     font-weight: 300; }
 
 @media all and (max-width: 768px) {

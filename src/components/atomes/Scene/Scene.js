@@ -16,6 +16,7 @@ export default class Scene extends Component {
         this.animate = this.animate.bind(this);
         this.onWindowResize = this.onWindowResize.bind(this);
         this.img = this.props.img;
+        this.background2 = this.props.background2;
         this.nb = 1;
         this.w = window.innerWidth;
         this.h = window.innerHeight;
@@ -30,6 +31,14 @@ export default class Scene extends Component {
         this.loader = new THREE.TextureLoader()
         this.random = Math.floor(Math.random() * 100.) + 1.;
         this.MyTexture = this.loader.load(this.img,
+            (texture) => {
+                this.imageWidth = texture.image.width
+                this.imageHeight = texture.image.height
+                this.uniforms.size = {
+                    type: "v2", value: new THREE.Vector2(this.w, this.h)
+                }
+            });
+        this.MyTexture2 = this.loader.load(this.background2,
             (texture) => {
                 this.imageWidth = texture.image.width
                 this.imageHeight = texture.image.height
@@ -97,12 +106,20 @@ export default class Scene extends Component {
         this.geometry = new THREE.PlaneGeometry(
             1,
             1,
-            1,
-            1
+            20,
+            20
         );
 
         this.geometry.verticesNeedUpdate = true;
         this.MyTexture = this.loader.load(this.img,
+            (texture) => {
+                // this.w = texture.image.width
+                // this.h = texture.image.height
+                // this.uniforms.size = {
+                //     type: "v2", value: new THREE.Vector2(texture.image.width, texture.image.height)
+                // }
+            });
+        this.MyTexture2 = this.loader.load(this.background2,
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height
@@ -123,6 +140,7 @@ export default class Scene extends Component {
             });
 
         this.uniforms.texture = { type: "sampler2D", value: this.MyTexture };
+        this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
         this.uniforms.map = { type: "sampler2D", value: this.MyMap };
         this.uniforms.holdValue = { type: "sampler2D", value: this.props.holdValue };
 

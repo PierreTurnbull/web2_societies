@@ -14,6 +14,7 @@ export class Thumbnail extends Component {
     // this.scene1 = React.createRef();
     this.scene = React.createRef();
     this.background = this.props.background;
+    this.background2 = this.props.background2;
     // this.scene3 = React.createRef();
     this.holdValue = 0.0;
     this.animation = TweenLite.to(this, 1.3, {
@@ -37,6 +38,11 @@ export class Thumbnail extends Component {
     console.log("colmelpf");
     this.setState({ onHoldComplete: true })
     this.props.onComplete(this.props.society);
+
+    setTimeout(() => { // reset holdValue value animation
+      this.setState({ onHoldComplete: false })
+      this.animation.reverse();
+    }, 1000);
     // this.animation.pause();
     // TweenLite.to(this, 1, { holdValue: 100, paused: true, onUpdate: this.incrementHoldValue });
   }
@@ -69,6 +75,7 @@ export class Thumbnail extends Component {
           this.props.canvas && <Scene
             // img={this.props.ImageMonks}
             img={this.background}
+            background2={this.background2}
             className="thumbnailCanvas"
             scene={this.scene}
             name={this.props.name}

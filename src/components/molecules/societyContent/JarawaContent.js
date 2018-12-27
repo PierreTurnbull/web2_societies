@@ -14,7 +14,7 @@ import "./societyContent.css";
 export default function JarawaContent() {
     return (
         <div className="societyContent">
-            <Title h="h3" text="Qui sont les jarawa" />
+            <Title h="h3" text="Qui sont les Jarawas des Andaman ?" />
             <ImageContainer
                 src={img1}
                 imageVariant="fullWidth"
@@ -26,18 +26,21 @@ export default function JarawaContent() {
             <Title h="h3" text="Qui sont les moines du les jarawa?" />
             <ImageContainer
                 src={img2}
-                imageVariant="right"
-                imageAdornment="ATHOS MOUNT"
+                imageVariant="left"
+                imageAdornment="Jarawa Tribe"
                 adornmentVariant="horizontal"
                 gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                 alt="eve"
             />
+            <Quote variant="icon" text="Res si suo conservanda silvestribus nemo quidem enim autem cum in impediat etiam illae tamquam." />
             <Quote variant="simple" text="Qui sont les jarawa" />
+            <p className="p">Eius omnes ut non enim ad cuique non perducere atque tamen possis tribuendum possis P sustinere efficere cuique ipse deferre.</p>
             <ImageContainer
                 src={img3}
-                imageVariant="left"
-                imageAdornment="Religion"
+                imageVariant="right"
+                imageAdornment="Nature"
                 adornmentVariant="vertical"
+                adornmentReverse
                 gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                 alt="eve"
             />
@@ -45,6 +48,7 @@ export default function JarawaContent() {
             <VoteContainer />
             <Quote variant="icon" text="Res si suo conservanda silvestribus nemo quidem enim autem cum in impediat etiam illae tamquam." />
             <p className="p">Perferenda dierum <b>reverteris tandem omnem</b> amicitiam cum ad postridie tot in agnitus vel aetatem frustra discesseris adsiduitati ad agnitus unde.</p>
+            <p className="p">Eius omnes ut non enim ad cuique non perducere atque tamen possis tribuendum possis P sustinere efficere cuique ipse deferre.</p>
             <p className="p">Multa exoptatus summatem honestus coactusque aliquem exoptatus aliquem  <b>reverteris tandem omnem</b> amicitiam cum ad postridie tot in agnitus vel aetatem frustra discesseris adsiduitati ad agnitus unde.</p>
             <hr />
         </div>

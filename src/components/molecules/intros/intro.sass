@@ -1,13 +1,12 @@
 @import "../../../constants/constants.sass"
-.monksIntro
+.intro
     height: 100%
     display: flex
     align-items: center
     justify-content: space-between
     flex-direction: column
-    background-image: $MonksGradient
     position: relative
-    .monks_center
+    .intro_image, .intro_patern_image
         height: 700px
         width: auto
         position: absolute
@@ -15,12 +14,23 @@
         left: 50%
         transform: translate(-50%, -50%)
         z-index: 1
+    .intro_patern_image
+        z-index: 0
+        width: 100%
+        max-height: 500px
+        object-fit: cover
 .wrap
     padding: 24px
+.MonksGradient
+    background-image: $MonksGradient
+.JarawaGradient
+    background-image: $JarawaGradient
+.RastaGradient
+    background-image: $RastaGradient
 @media all and (max-width: 768px)
     .wrap
         padding: 32px
-    .monksIntro
-        .monks_center
+    .intro
+        .intro_image
             height: 302px
             width: auto

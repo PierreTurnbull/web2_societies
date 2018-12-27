@@ -38,16 +38,24 @@ const fragmentShader = `
   uniform float holdValue;
   uniform float random;
   uniform sampler2D texture;
+  uniform sampler2D texture2;
   uniform float userScrollSpeed;
   uniform sampler2D map;
 
   void main() {
-    float map = texture2D(map, vUv + holdValue/200.).r * 10. / cos(time);
-    float distort = sin( cos(time)) * .001 + sin( cos(time) * (holdValue/200.)) * 0.01;
-    vec4 color = texture2D(texture, vec2(vUv.x + distort*map*2. + (distort * map), vUv.y + distort*map*2. + (distort * map) ));
-    gl_FragColor = vec4(vec3(color.r, color.g , color.b) * 1.0, 1.0);
+    float map = texture2D(map, vec2(vUv.x + holdValue/3000., vUv.y+ holdValue/3000.)).r * 10.;
+    float distort = sin( cos(time)) * .001 + sin( cos(time) * (holdValue/1000.)) * 0.01;
+
+    vec4 rgba1 = texture2D(texture, vec2(vUv.x + sin(distort*map*10.*holdValue/50.), vUv.y - sin(distort*map*10.*holdValue/50.)));
+    vec4 rgba2 = texture2D(texture2, vUv);
+  
+    vec4 color = texture2D(texture, vec2(vUv.x + sin(distort*map*10.*holdValue/50.), vUv.y - sin(distort*map*10.*holdValue/50.)));
+    vec4 rgba = mix(rgba1, 0. + rgba2 * tan(holdValue/100.),holdValue/100.);
+
+    gl_FragColor = vec4(vec3(color.r, color.g, color.b) * 1., 1.0);
   }
   `
+  // vec4 color = texture2D(texture, vec2(vUv.x + distort*map*2. + (distort * map), vUv.y + distort*map*2. + (distort * map) ));
   
   export { vertexShader, fragmentShader, setRandomShader }
   

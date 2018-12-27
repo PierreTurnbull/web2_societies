@@ -4,12 +4,12 @@ import Image from './Image';
 import './imageContainer.css';
 export default class ImageContainer extends Component {
     render() {
-        const { src, imageVariant, adornmentVariant, gradient, alt, imageAdornment } = this.props;
+        const { src, imageVariant, adornmentVariant, gradient, alt, imageAdornment, adornmentReverse } = this.props;
         return (
-            <div className={adornmentVariant ? `imageContainer ${adornmentVariant}` : 'imageContainer'}>
+            <div className={adornmentReverse ? `imageContainer reverse` : 'imageContainer'} >
                 {
                     imageAdornment && (
-                        <div className={`imageAdornment`}>
+                        <div className={adornmentVariant ? `imageAdornment ${adornmentVariant}` : 'imageAdornment'}>
                             <p>{imageAdornment}</p>
                             <p>{imageAdornment}</p>
                             <p>{imageAdornment}</p>

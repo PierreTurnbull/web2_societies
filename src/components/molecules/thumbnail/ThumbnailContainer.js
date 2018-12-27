@@ -3,6 +3,7 @@ import Thumbnail from './Thumbnail';
 import ImageMonks from "images/moines.jpg"
 import ImageJarawa from "images/jarawa.jpg"
 import ImageRasta from "images/rastaa.jpeg"
+import Background2 from "images/rasta.jpg"
 import arrowLeftIcon from 'images/icons/arrow.svg';
 import { withRouter } from "react-router";
 
@@ -44,6 +45,7 @@ class ThumbnailContainer extends Component {
                     key={1}
                     society="monks"
                     background={ImageMonks}
+                    background2={Background2}
                     title="Les moines du Mont Athos"
                     name="1"
                     cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={() => console.log('click')} />}
@@ -57,6 +59,7 @@ class ThumbnailContainer extends Component {
                     key={2}
                     society="jarawa"
                     background={ImageJarawa}
+                    background2={Background2}
                     title="Les Jarawas des Andaman"
                     name="2"
                     cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={() => console.log('click')} />}
@@ -70,6 +73,7 @@ class ThumbnailContainer extends Component {
                     key={3}
                     society="rasta"
                     background={ImageRasta}
+                    background2={Background2}
                     title="Les rastas de Jamaïque"
                     name="3"
                     cta={() => <ArrowIconContainer svgUrl={arrowLeftIcon} onClick={() => console.log('click')} />}

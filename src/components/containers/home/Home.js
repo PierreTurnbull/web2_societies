@@ -6,6 +6,7 @@ import SocietyContentContainer from '../../molecules/societyContent/SocietyConte
 import MonksContent from '../../molecules/societyContent/MonksContent';
 import JarawaContent from '../../molecules/societyContent/JarawaContent';
 import MonksIntro from '../../molecules/intros/MonksIntro';
+import JarawaIntro from '../../molecules/intros/JarawaIntro';
 
 export class Home extends Component {
     render() {
@@ -16,7 +17,7 @@ export class Home extends Component {
                     <div>
                         <Route path="/" component={() => <ThumbnailContainer />} />
                         <Route path="/monks" component={() => <SocietyContentContainer societyIntro={<MonksIntro />} societyContent={<MonksContent />} />} />
-                        <Route path="/jarawa" component={() => <SocietyContentContainer societyIntro={<p className="p">Jarawa</p>} societyContent={<JarawaContent />} />} />
+                        <Route path="/jarawa" component={() => <SocietyContentContainer societyIntro={<JarawaIntro />} societyContent={<JarawaContent />} />} />
                         {/* <Route path="/rasta" component={() => <SocietyContentContainer societyContent={<RastaContent />} />} /> */}
                     </div>
                 </Router>

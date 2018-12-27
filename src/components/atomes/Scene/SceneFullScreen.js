@@ -29,7 +29,11 @@ export default class Scene extends Component {
         this.t = window.innerRigth;
         this.userScrollSpeed = 1.
 
-        // this.MyTexture1 = loader.load(this.props.img,
+        this.img1 = this.props.img1;
+        this.img2 = this.props.img2;
+        this.img3 = this.props.img3;
+
+        // this.MyTexture = loader.load(this.img,
         //     (texture) => {
         //         // this.w = texture.image.width
         //         // this.h = texture.image.height
@@ -101,9 +105,11 @@ export default class Scene extends Component {
         // console.log(this.canvas.clientHeight);
         setTimeout(() => {
             console.group("SIZE");
-            console.log("1", this.props.scene1.current.scene.current.getBoundingClientRect().x)
-            console.log("2", this.props.scene2.current.scene.current.getBoundingClientRect().x);
-            console.log("3", this.props.scene3.current.scene.current.getBoundingClientRect().x);
+            // console.log(this.canvas.clientHeight);
+            
+            // console.log("1", this.props.scene1.current.scene.current.getBoundingClientRect().x)
+            // console.log("2", this.props.scene2.current.scene.current.getBoundingClientRect().x);
+            // console.log("3", this.props.scene3.current.scene.current.getBoundingClientRect().x);
             console.groupEnd();
         }, 2000)
     }
@@ -126,7 +132,7 @@ export default class Scene extends Component {
     }
 
     init() {
-        camera = new THREE.PerspectiveCamera(75, this.canvas.clientWidth / this.canvas.clientHeight, 1, 1000);
+        camera = new THREE.PerspectiveCamera(75, this.canvas.clientWidth / this.canvas.clientHeight, .1, 1000);
         camera.position.z = 1;
         // let dist = camera.position.z - 1;
         // let height = 1;
@@ -140,19 +146,19 @@ export default class Scene extends Component {
         // geometry = new THREE.PlaneGeometry(1, 1, 1);
 
         // geometry = new THREE.PlaneGeometry(1, 1, 1);
-        geometry = new THREE.PlaneGeometry(this.props.scene1.current.scene.current.getBoundingClientRect().width / this.canvas.clientWidth + (150 / this.canvas.clientWidth), this.props.scene1.current.scene.current.getBoundingClientRect().height / this.canvas.clientHeight, 1);
+        geometry = new THREE.PlaneGeometry(this.canvas.clientWidth/this.canvas.clientHeight, 1);
         // geometry = new THREE.PlaneGeometry(1, 1, 1);
         geometry.verticesNeedUpdate = true;
 
-        geometry2 = new THREE.PlaneGeometry(this.props.scene2.current.scene.current.getBoundingClientRect().width / this.canvas.clientWidth + (150 / this.canvas.clientWidth), this.props.scene2.current.scene.current.getBoundingClientRect().height / this.canvas.clientHeight, 1);
+        geometry2 = new THREE.PlaneGeometry(1, 1);
         // geometry2 = new THREE.PlaneGeometry(1, 1, 1);
         geometry2.verticesNeedUpdate = true;
 
-        geometry3 = new THREE.PlaneGeometry(this.props.scene3.current.scene.current.getBoundingClientRect().width / this.canvas.clientWidth + (150 / this.canvas.clientWidth), this.props.scene3.current.scene.current.getBoundingClientRect().height / this.canvas.clientHeight, 1);
+        geometry3 = new THREE.PlaneGeometry(1, 1);
         // geometry3 = new THREE.PlaneGeometry(this.props.scene3.current.scene.current.getBoundingClientRect().width/this.canvas.clientWidth + (160/this.canvas.clientWidth), 1, 1);
         geometry3.verticesNeedUpdate = true;
 
-        this.MyTexture1 = loader.load(this.props.img1,
+        this.MyTexture1 = loader.load(this.img1,
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height
@@ -160,7 +166,7 @@ export default class Scene extends Component {
                 //     type: "v2", value: new THREE.Vector2(texture.image.width, texture.image.height)
                 // }
             });
-        this.MyTexture2 = loader.load(this.props.img2,
+        this.MyTexture2 = loader.load(this.img2,
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height
@@ -168,7 +174,7 @@ export default class Scene extends Component {
                 //     type: "v2", value: new THREE.Vector2(texture.image.width, texture.image.height)
                 // }
             });
-        this.MyTexture3 = loader.load(this.props.img3,
+        this.MyTexture3 = loader.load(this.img3,
             (texture) => {
                 // this.w = texture.image.width
                 // this.h = texture.image.height
@@ -214,9 +220,9 @@ export default class Scene extends Component {
         scene.add(mesh1, mesh2, mesh3);
         // mesh1.position.x = this.props.scene1.current.scene.current.getBoundingClientRect().left/this.canvas.clientWidth;
 
-        // mesh1.position.x = -1 - this.props.scene1.current.scene.current.getBoundingClientRect().left / this.canvas.clientWidth + 140 / this.canvas.clientWidth;
-        // mesh2.position.x = 0;
-        // mesh3.position.x = 1 + this.props.scene1.current.scene.current.getBoundingClientRect().left / this.canvas.clientWidth - 140 / this.canvas.clientWidth;
+        mesh1.position.x = -.3;
+        mesh2.position.x = 0;
+        mesh3.position.x = 1 ;
 
         // console.log("getWorldPosition", mesh1.getWorldPosition());
         console.log("getWorldPosition", mesh1.matrixWorld.getPosition());
@@ -226,8 +232,9 @@ export default class Scene extends Component {
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight, true);
-        renderer.setClearColor('#ff0000')
+        renderer.setClearColor('#000000')
         this.canvas.appendChild(renderer.domElement);
+        
         this.onWindowResize();
         window.addEventListener('resize', this.onWindowResize, false);
     }
@@ -283,21 +290,21 @@ export default class Scene extends Component {
         this.material2.uniforms.uvRate1.value.y = h / w;
         this.material3.uniforms.uvRate1.value.y = h / w;
 
-        if (w / h > 1) {
-            mesh1.scale.y = w / h;
-            mesh2.scale.y = w / h;
-            mesh3.scale.y = w / h;
-        }
+        // if (w / h > 1) {
+        //     mesh1.scale.y = mesh1.scale.y *  h / h;
+        //     mesh2.scale.y = mesh2.scale.y *  h / h;
+        //     mesh3.scale.y = mesh3.scale.y *  h / h;
+        // }
 
         mesh1.scale.x = w / h;
         mesh2.scale.x = w / h;
         mesh3.scale.x = w / h;
 
-        mesh1.position.x = -1 - this.props.scene1.current.scene.current.getBoundingClientRect().left / this.canvas.clientWidth + (150 / this.canvas.clientWidth);
-        mesh2.position.x = 0;
-        // mesh2.position.x = -(this.props.scene2.current.scene.current.getBoundingClientRect().left / this.canvas.clientWidth) / 2;
-        // mesh2.position.x = (this.props.scene2.current.scene.current.getBoundingClientRect().left / this.canvas.clientWidth / this.canvas.clientWidth) / 2;
-        mesh3.position.x = 1 - this.props.scene3.current.scene.current.getBoundingClientRect().left / this.canvas.clientWidth + (150 / this.canvas.clientWidth);
+        // mesh1.position.x = -1 - this.props.scene.current.getBoundingClientRect().left / this.canvas.clientWidth + (150 / this.canvas.clientWidth);
+        // mesh2.position.x = 0;
+        // // mesh2.position.x = -(this.props.scene2.current.scene.current.getBoundingClientRect().left / this.canvas.clientWidth) / 2;
+        // // mesh2.position.x = (this.props.scene2.current.scene.current.getBoundingClientRect().left / this.canvas.clientWidth / this.canvas.clientWidth) / 2;
+        // mesh3.position.x = 1 - this.props.scene3.current.scene.current.getBoundingClientRect().left / this.canvas.clientWidth + (150 / this.canvas.clientWidth);
 
         camera.updateProjectionMatrix();
         this.uniforms.resolution.value.x = renderer.domElement.width;
@@ -307,15 +314,15 @@ export default class Scene extends Component {
         this.uniforms3.resolution.value.x = renderer.domElement.width;
         this.uniforms3.resolution.value.y = renderer.domElement.height;
 
-        this.uniforms.size = {
-            type: "v2", value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height)
-        }
-        this.uniforms2.size = {
-            type: "v2", value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height)
-        }
-        this.uniforms3.size = {
-            type: "v2", value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height)
-        }
+        // this.uniforms.size = {
+        //     type: "v2", value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height)
+        // }
+        // this.uniforms2.size = {
+        //     type: "v2", value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height)
+        // }
+        // this.uniforms3.size = {
+        //     type: "v2", value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height)
+        // }
     }
     render() {
         return (

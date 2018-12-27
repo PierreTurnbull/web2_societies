@@ -29,6 +29,7 @@ export default function MonksContent() {
                 imageVariant="right"
                 imageAdornment="ATHOS MOUNT"
                 adornmentVariant="horizontal"
+                adornmentReverse
                 gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                 alt="eve"
             />
