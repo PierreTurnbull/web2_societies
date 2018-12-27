@@ -9,7 +9,7 @@
   opacity: 0;
   z-index: 0;
   background: black;
-  transition: all 1s ease;
+  transition: all .8s ease;
   z-index: -1; }
 
 .overlay.slideIn {

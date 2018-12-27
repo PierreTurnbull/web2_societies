@@ -7,7 +7,7 @@ export class Thumbnail extends Component {
 
   state = {
     holdValue: 0.0,
-    onHoldComplete: false
+    isHoldComplete: false
   }
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ export class Thumbnail extends Component {
     this.background2 = this.props.background2;
     // this.scene3 = React.createRef();
     this.holdValue = 0.0;
-    this.animation = TweenLite.to(this, 1.3, {
+    this.animation = TweenLite.to(this, 1.5, {
       holdValue: 100,
       paused: true,
       onUpdate: this.incrementHoldValue,
@@ -31,16 +31,16 @@ export class Thumbnail extends Component {
   }
 
   reverseAnimation = () => {
-    !this.state.onHoldComplete && this.animation.reverse();
+    !this.state.isHoldComplete && this.animation.reverse();
   }
 
   onHoldComplete = () => {
     console.log("colmelpf");
-    this.setState({ onHoldComplete: true })
+    this.setState({ isHoldComplete: true })
     this.props.onComplete(this.props.society);
 
     setTimeout(() => { // reset holdValue value animation
-      this.setState({ onHoldComplete: false })
+      this.setState({ isHoldComplete: false })
       this.animation.reverse();
     }, 1000);
     // this.animation.pause();
