@@ -7,24 +7,30 @@ import MonksContent from '../../molecules/societyContent/MonksContent';
 import JarawaContent from '../../molecules/societyContent/JarawaContent';
 import MonksIntro from '../../molecules/intros/MonksIntro';
 import JarawaIntro from '../../molecules/intros/JarawaIntro';
+import { withRouter } from 'react-router'
 
 export class Home extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            redirect: false
+        }
+        //Here ya go
+        this.props.history.listen((location, action) => {
+            this.setState({ redirect: true })
+            console.group("on route change");
+            console.log("on route change");
+            console.groupEnd()
+        });
+    }
     render() {
         return (
             <div>
-                <Header />
-                <Router>
-                    <div>
-                        <Route path="/" component={() => <ThumbnailContainer />} />
-                        <Route path="/monks" component={() => <SocietyContentContainer societyIntro={<MonksIntro />} societyContent={<MonksContent />} />} />
-                        <Route path="/jarawa" component={() => <SocietyContentContainer societyIntro={<JarawaIntro />} societyContent={<JarawaContent />} />} />
-                        {/* <Route path="/rasta" component={() => <SocietyContentContainer societyContent={<RastaContent />} />} /> */}
-                    </div>
-                </Router>
-                <p style={{ padding: "50px 50px 30px 50px", maxWidth: "1150px", margin: "0 auto" }}>© FSOCIETY a été pensé et réalisé par Salah, Alexandre, Pierre et Romain dans le cadre d’un projet à Hétic.</p>
+                <ThumbnailContainer />
             </div>
         )
     }
 }
 
-export default Home
+export default withRouter(Home)

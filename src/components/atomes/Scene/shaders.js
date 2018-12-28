@@ -52,15 +52,9 @@ const fragmentShader = `
     vec4 color = texture2D(texture, vec2(vUv.x + sin(distort*map*10.*holdValue/50.), vUv.y - sin(distort*map*10.*holdValue/50.)));
     vec4 rgba = mix(rgba1, 0. + rgba2 * tan(holdValue/100.),holdValue/100.);
 
-    gl_FragColor = vec4(vec3(color.r, color.g, color.b) * 1., 1.0);
+    gl_FragColor = vec4(vec3(color), 1.0);
   }
   `
   // vec4 color = texture2D(texture, vec2(vUv.x + distort*map*2. + (distort * map), vUv.y + distort*map*2. + (distort * map) ));
   
   export { vertexShader, fragmentShader, setRandomShader }
-  
-  // float distort = ${randomFunction}(vUv.y * abs(${randomFunction}(time/5.) * userScrollSpeed + vUv.x * 5.) / abs(${randomFunction}(random/100.)) + time/2.)*0.1 * map;
-// varying vec2 vUv;
-// uniform float time;
-// uniform sampler2D texture;
-// float distort = sin(vUv.y + time)*0.001;

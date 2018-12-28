@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { TweenMax, Power2, TimelineLite, TweenLite } from "gsap/TweenMax";
+import { Link } from "react-router-dom";
+import { withRouter } from 'react-router'
 import { throttle, debounce } from 'lodash';
 import MonksContent from './MonksContent';
 import JarawaContent from './JarawaContent';
@@ -8,7 +10,7 @@ import "./societyContentContainer.css";
 import MonksIntro from '../intros/MonksIntro';
 import SocietyContent from './JarawaContent';
 // import JarawaIntro from '../intros/JarawaIntro';
-export default class SocietyContentContainer extends Component {
+class SocietyContentContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -46,12 +48,13 @@ export default class SocietyContentContainer extends Component {
     }
 
     render() {
+        
         return (
             <div
                 className="societyContentContainer"
                 // onWheel={(e) => { e.persist(); this.handleScroll(e) }} 
                 ref={this.societyContainer}>
-                <a href='!'>Retour à l'acceuil</a>
+                <p onClick={() => this.props.history.goBack()}>Retour à l'acceuil</p>
                 {
                     this.props.societyIntro
                 }
@@ -62,3 +65,5 @@ export default class SocietyContentContainer extends Component {
         )
     }
 }
+
+export default withRouter(SocietyContentContainer)
