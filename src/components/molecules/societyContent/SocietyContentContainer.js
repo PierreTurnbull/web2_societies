@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import { withRouter } from 'react-router'
 
 import "./societyContentContainer.css";
+import { throttle, debounce } from 'lodash';
+import { TweenMax, Power2, TimelineLite, TweenLite } from "gsap/TweenMax";
+
 // import JarawaIntro from '../intros/JarawaIntro';
 class SocietyContentContainer extends Component {
 
     constructor(props) {
         super(props);
 
-        // this.handleScroll = this.handleScroll.bind(this)
+        this.handleScroll = this.handleScroll.bind(this)
         this.scrollTime = 1.2;
         this.scrollDistance = 170;
 
@@ -17,27 +20,29 @@ class SocietyContentContainer extends Component {
         this.societyContainer = React.createRef()
 
         this.scroller = {
-            target: this.societyContainer,
-            ease: 0.05, // <= scroll speed
-            endY: 0,
-            y: 0,
-            resizeRequest: 1,
-            scrollRequest: 0,
+            target: this.societyContainer
         };
-    }
+    };
 
-    // handleScroll = throttle((event) => {
-    //     event.persist()
-    //     // TweenMax.to(this, 1, {
-    //     //     scrollY: event.deltaY / 10,
-    //     //     ease:Power2.easeOut,
-    //     //     onUpdate: () => this.updateScroll()
-    //     // });
-    // }, 100)
+    handleScroll = throttle((event) => {
+        TweenMax.to(this, Math.abs(event.deltaY / 100), {
+            scrollY: event.deltaY,
+            ease: Power2.easeOut,
+            autoKill: true
+        });
+    }, 0);
+
+    setBack = debounce((event) => {
+        TweenMax.to(this, Math.abs(event.deltaY / 200), {
+            scrollY: event.deltaY / 200,
+            ease: Power2.easeOut,
+            autoKill: true,
+            onUpdate: () => this.updateScroll()
+        });
+    }, 0);
+
 
     updateScroll = () => {
-        // console.log(this.scrollY, this.scroller.target.current.scrollTop);
-        // window.scrollTo({top: window.pageYOffset + this.scrollY});
         this.scroller.target.current.scrollTop = this.scroller.target.current.scrollTop + this.scrollY;
     }
 
@@ -46,7 +51,7 @@ class SocietyContentContainer extends Component {
         return (
             <div
                 className="societyContentContainer"
-                // onWheel={(e) => { e.persist(); this.handleScroll(e) }} 
+                onWheel={(e) => { e.persist(); e.preventDefault(); this.handleScroll(e); this.setBack(e) }}
                 ref={this.societyContainer}>
                 <Link to="/">- Retour à l'acceuil</Link>
                 {
