@@ -5,8 +5,10 @@
   right: 0;
   height: 100%;
   width: 100%;
-  background: black;
-  overflow-y: scroll; }
+  background: black; }
+  .societyContentContainer .scrollContent {
+    position: relative;
+    height: 100%; }
   .societyContentContainer a {
     text-decoration: none;
     color: white; }
