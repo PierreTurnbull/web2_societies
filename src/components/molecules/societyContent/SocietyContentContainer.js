@@ -2,12 +2,8 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router'
 
-import "./societyContentContainer.css";
-import { throttle, debounce } from 'lodash';
-import { TweenMax, Power2, TimelineLite, TweenLite } from "gsap/TweenMax";
 import Scrollbar from 'react-smooth-scrollbar';
-
-// import JarawaIntro from '../intros/JarawaIntro';
+import "./societyContentContainer.css";
 class SocietyContentContainer extends Component {
 
     constructor(props) {
@@ -29,16 +25,11 @@ class SocietyContentContainer extends Component {
             <div
                 className="societyContentContainer"
             >
-
                 <Scrollbar
                     damping={.05}
                     className="scrollContent"
-                    thumbMinSize={40}
+                    thumbMinSize={10}
                 >
-                    {/* <div
-                    // className="societyContentContainer"
-                    // onWheel={(e) => { e.persist(); this.handleScroll(e); this.setBack(e); }}
-                ref={this.societyContainer}> */}
                     <Link to="/">- Retour à l'acceuil</Link>
                     {
                         this.props.societyIntro
@@ -46,7 +37,6 @@ class SocietyContentContainer extends Component {
                     {
                         this.props.societyContent
                     }
-                    {/* </div> */}
                 </Scrollbar>
             </div>
         )
