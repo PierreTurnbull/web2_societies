@@ -13,6 +13,7 @@ class SocietyContentContainer extends Component {
         super(props);
 
         this.handleScroll = this.handleScroll.bind(this)
+        this.setBack = this.setBack.bind(this)
         this.scrollTime = 1.2;
         this.scrollDistance = 170;
 
@@ -28,7 +29,6 @@ class SocietyContentContainer extends Component {
         TweenMax.to(this, Math.abs(event.deltaY / 100), {
             scrollY: event.deltaY,
             ease: Power2.easeOut,
-            autoKill: true
         });
     }, 0);
 
@@ -36,7 +36,6 @@ class SocietyContentContainer extends Component {
         TweenMax.to(this, Math.abs(event.deltaY / 200), {
             scrollY: event.deltaY / 200,
             ease: Power2.easeOut,
-            autoKill: true,
             onUpdate: () => this.updateScroll()
         });
     }, 0);
@@ -51,7 +50,7 @@ class SocietyContentContainer extends Component {
         return (
             <div
                 className="societyContentContainer"
-                onWheel={(e) => { e.persist(); e.preventDefault(); this.handleScroll(e); this.setBack(e) }}
+                onWheel={(e) => { e.persist(); this.handleScroll(e); this.setBack(e); }}
                 ref={this.societyContainer}>
                 <Link to="/">- Retour à l'acceuil</Link>
                 {
