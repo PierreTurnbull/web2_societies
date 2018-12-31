@@ -4,19 +4,19 @@ import Home from 'components/containers/home/Home';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from 'components/molecules/header/Header';
 import './App.css';
-import ThumbnailContainer from './components/molecules/thumbnail/ThumbnailContainer';
 import SocietyContentContainer from './components/molecules/societyContent/SocietyContentContainer';
 import MonksIntro from './components/molecules/intros/MonksIntro';
 import JarawaIntro from './components/molecules/intros/JarawaIntro';
 import JarawaContent from './components/molecules/societyContent/JarawaContent';
 import MonksContent from './components/molecules/societyContent/MonksContent';
+import Loader from './components/molecules/loader/Loader';
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">
         <Header />
+        <Loader />
         <Router>
           <div>
             <Route path="/" component={() => <Home />} />

@@ -53,11 +53,6 @@ export default class Scene extends Component {
         //     this.MyTexture = this.loader.load(this.img);
         //     this.uniforms.texture = { type: "sampler2D", value: this.MyTexture };
         // }, 1000)
-        // setTimeout(() => {
-        //     this.nb = 0;
-        //     this.MyTexture = this.loader.load(this.img);
-        //     this.uniforms.texture = { type: "sampler2D", value: this.MyTexture };
-        // }, 2000)
         console.log(this.w, this.h);
 
         this.uniforms = {

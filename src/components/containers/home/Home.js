@@ -1,32 +1,52 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Header from 'components/molecules/header/Header';
 import ThumbnailContainer from '../../molecules/thumbnail/ThumbnailContainer';
-import SocietyContentContainer from '../../molecules/societyContent/SocietyContentContainer';
-import MonksContent from '../../molecules/societyContent/MonksContent';
-import JarawaContent from '../../molecules/societyContent/JarawaContent';
-import MonksIntro from '../../molecules/intros/MonksIntro';
-import JarawaIntro from '../../molecules/intros/JarawaIntro';
 import { withRouter } from 'react-router'
+import {
+    CSSTransition,
+    TransitionGroup,
+} from 'react-transition-group';
 
 export class Home extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            redirect: false
-        }
-        //Here ya go
-        this.props.history.listen((location, action) => {
-            this.setState({ redirect: true })
-            console.group("on route change");
-            console.log("on route change");
-            console.groupEnd()
-        });
+        // this.props.history.listen((location, action) => {
+        //     // this.onRouteChange();
+        //     this.props.toggleMainLoader();
+        //     // setTimeout(() => {
+        //         // this.setState({pathname: location.pathname})
+        //     // }, 1000);
+        //     // console.log(location, action);
+        // });
     }
+
+
+    state = {
+        pathname: '/'
+    }
+
+    // onRouteChange = () => {
+    //     this.setState({ routeChanged: true });
+    //     setTimeout(() => {
+    //         this.setState({ routeChanged: false });
+    //     }, 1000);
+    // }
+
     render() {
         return (
             <div>
+                {/* <TransitionGroup className="home">
+                    <CSSTransition
+                        key={this.state.pathname}
+                        timeout={500}
+                        classNames="overlay"
+                        // unmountOnExit
+                    >
+                        <div className={`${this.state.routeChanged === true ? 'overlay slideIn' : 'overlay'}`}>
+                        </div>
+                    </CSSTransition>
+                </TransitionGroup> */}
                 <ThumbnailContainer />
             </div>
         )

@@ -39,10 +39,10 @@ export class Thumbnail extends Component {
     this.setState({ isHoldComplete: true })
     this.props.onComplete(this.props.society);
 
-    setTimeout(() => { // reset holdValue value animation
+    // setTimeout(() => { // reset holdValue value animation
       this.setState({ isHoldComplete: false })
       this.animation.reverse();
-    }, 1000);
+    // }, 1000);
     // this.animation.pause();
     // TweenLite.to(this, 1, { holdValue: 100, paused: true, onUpdate: this.incrementHoldValue });
   }
