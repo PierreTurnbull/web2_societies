@@ -20,11 +20,10 @@ const vertexShader = `
     vUv = uv;
     vec2 _uv = uv - 0.5;
     vUv = _uv;
-    vUv *= uvRate1.xy;
 
     vUv += 0.5;
     vec3 newPosition = position;
-    newPosition.z = (sin(position.y / 1. * sin(holdValue/1000.) * 100.) * sin(position.x / 1. * sin(holdValue/1000.) * .02 ));
+    newPosition.z = sin(position.y * sin(time) + holdValue/50.) * sin(position.x * cos(time) + holdValue/50.) * 0.1;
 
     gl_Position =  projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
   }

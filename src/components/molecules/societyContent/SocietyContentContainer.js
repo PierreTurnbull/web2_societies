@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
-import { TweenMax, Power2, TimelineLite, TweenLite } from "gsap/TweenMax";
-import { Link } from "react-router-dom";
 import { withRouter } from 'react-router'
-import { throttle, debounce } from 'lodash';
-import MonksContent from './MonksContent';
-import JarawaContent from './JarawaContent';
 
 import "./societyContentContainer.css";
-import MonksIntro from '../intros/MonksIntro';
-import SocietyContent from './JarawaContent';
 // import JarawaIntro from '../intros/JarawaIntro';
 class SocietyContentContainer extends Component {
 

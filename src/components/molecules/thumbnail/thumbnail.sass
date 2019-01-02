@@ -5,10 +5,14 @@
     overflow: hidden
     position: relative
     padding: 20px
+    width: calc(100%/3 * 2)
     // background: rgba(black, .5)
     // &:not(:last-child)
     //     margin-right: 20px
     cursor: pointer
+    max-height: calc(100%/3 - 16px)
+    &:nth-child(2n + 1)
+        align-self: flex-end
     .thumbnailCanvas
         position: absolute
         top: 0
@@ -45,3 +49,6 @@
         position: absolute
         right: 20px
         bottom: 20px
+@media all and (max-width: 768px)
+    .thumbnail
+        width: 100%

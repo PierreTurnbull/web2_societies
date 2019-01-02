@@ -4,7 +4,11 @@
   overflow: hidden;
   position: relative;
   padding: 20px;
-  cursor: pointer; }
+  width: calc(100%/3 * 2);
+  cursor: pointer;
+  max-height: calc(100%/3 - 16px); }
+  .thumbnail:nth-child(2n + 1) {
+    align-self: flex-end; }
   .thumbnail .thumbnailCanvas {
     position: absolute;
     top: 0;
@@ -41,3 +45,7 @@
     position: absolute;
     right: 20px;
     bottom: 20px; }
+
+@media all and (max-width: 768px) {
+  .thumbnail {
+    width: 100%; } }

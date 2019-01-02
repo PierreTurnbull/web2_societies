@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Scene from 'components/atomes/Scene/Scene';
-import { TweenLite } from "gsap/TweenMax";
 
 import "./thumbnail.css"
 export class Thumbnail extends Component {
@@ -16,35 +15,10 @@ export class Thumbnail extends Component {
     this.background = this.props.background;
     this.background2 = this.props.background2;
     // this.scene3 = React.createRef();
-    this.holdValue = 0.0;
-    this.animation = TweenLite.to(this, 1.5, {
-      holdValue: 100,
-      paused: true,
-      onUpdate: this.incrementHoldValue,
-      onComplete: this.onHoldComplete,
-      ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0.326 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
-    });
-  }
-
-  incrementHoldValue = () => {
-    this.setState({ holdValue: this.holdValue })
   }
 
   reverseAnimation = () => {
-    !this.state.isHoldComplete && this.animation.reverse();
-  }
-
-  onHoldComplete = () => {
-    console.log("colmelpf");
-    this.setState({ isHoldComplete: true })
-    this.props.onComplete(this.props.society);
-
-    setTimeout(() => { // reset holdValue value animation
-      this.setState({ isHoldComplete: false })
-      this.animation.reverse();
-    }, 1000);
-    // this.animation.pause();
-    // TweenLite.to(this, 1, { holdValue: 100, paused: true, onUpdate: this.incrementHoldValue });
+    !this.state.isHoldComplete && this.props.animation.reverse();
   }
 
   render() {
@@ -54,10 +28,10 @@ export class Thumbnail extends Component {
         ref={this.scene}
         style={{ backgroundImage: this.props.gradient }}
         onMouseDown={() => {
-          this.animation.play();
+          this.props.animation.play();
         }}
         onTouchStart={() => {
-          this.animation.play();
+          this.props.animation.play();
         }}
         onMouseUp={() => {
           this.reverseAnimation()
@@ -69,9 +43,9 @@ export class Thumbnail extends Component {
       >
         <img src={this.props.background} alt="bakcground" />
         <h2 className="title">{this.props.title}</h2>
-        <this.props.cta svgUrl={this.props.svgUrl} />
-        <div style={{ background: 'white', height: '1px', width: `${this.holdValue}%` }}></div>
-        {
+        {/* <this.props.cta svgUrl={this.props.svgUrl} /> */}
+        <div style={{ background: 'white', height: '1px', width: `${this.props.holdValue}%` }}></div>
+        {/* {
           this.props.canvas && <Scene
             // img={this.props.ImageMonks}
             img={this.background}
@@ -81,7 +55,7 @@ export class Thumbnail extends Component {
             name={this.props.name}
             holdValue={this.holdValue}
           />
-        }
+        } */}
       </div>
     )
   }

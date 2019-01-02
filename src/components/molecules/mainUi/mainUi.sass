@@ -1,0 +1,74 @@
+.mainUi
+    height: 100%
+    width: 100%
+    .projectName
+        margin: 0 auto
+        display: flex
+        align-items: center
+        justify-content: center
+        position: relative
+        p
+            font-size: 72px
+            text-align: center
+            text-transform: uppercase
+            position: absolute
+            animation: none
+            display: inline-block
+            margin: 0 auto
+            color: white
+            transition: color .3s ease-in-out
+            &::before
+                position: absolute
+                display: block
+                top: 0
+                left: 0
+                width: 0%
+                right: auto
+                bottom: 0
+                height: 100%
+                z-index: 1
+                background: white
+                content: ""
+                transition: all 1s ease
+        .p-enter
+            color: transparent
+            &::before
+                left: 0
+                width: 0%
+                right: auto
+        .p-enter-active
+            color: transparent
+            &::before
+                left: 0
+                width: 100%
+                right: auto
+        .p-enter-done
+            color: white
+            &::before
+                left: auto
+                width: 0%
+                right: 0
+        .p-exit
+            color: white
+            &::before
+                left: 0
+                width: 0%
+                right: auto
+        .p-exit-active
+            color: white
+            &::before
+                left: 0
+                width: 100%
+                right: auto
+        .p-exit-done
+            color: transparent
+            display: none
+            &::before
+                left: auto
+                width: 0%
+                right: 0
+        // .p-appear
+        //     color: transparent
+        // .p-appear-active
+        //     color: transparent
+

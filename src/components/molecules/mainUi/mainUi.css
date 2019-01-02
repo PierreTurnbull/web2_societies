@@ -1,0 +1,69 @@
+.mainUi {
+  height: 100%;
+  width: 100%; }
+  .mainUi .projectName {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; }
+    .mainUi .projectName p {
+      font-size: 72px;
+      text-align: center;
+      text-transform: uppercase;
+      position: absolute;
+      animation: none;
+      display: inline-block;
+      margin: 0 auto;
+      color: white;
+      transition: color .3s ease-in-out; }
+      .mainUi .projectName p::before {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 0%;
+        right: auto;
+        bottom: 0;
+        height: 100%;
+        z-index: 1;
+        background: white;
+        content: "";
+        transition: all 1s ease; }
+    .mainUi .projectName .p-enter {
+      color: transparent; }
+      .mainUi .projectName .p-enter::before {
+        left: 0;
+        width: 0%;
+        right: auto; }
+    .mainUi .projectName .p-enter-active {
+      color: transparent; }
+      .mainUi .projectName .p-enter-active::before {
+        left: 0;
+        width: 100%;
+        right: auto; }
+    .mainUi .projectName .p-enter-done {
+      color: white; }
+      .mainUi .projectName .p-enter-done::before {
+        left: auto;
+        width: 0%;
+        right: 0; }
+    .mainUi .projectName .p-exit {
+      color: white; }
+      .mainUi .projectName .p-exit::before {
+        left: 0;
+        width: 0%;
+        right: auto; }
+    .mainUi .projectName .p-exit-active {
+      color: white; }
+      .mainUi .projectName .p-exit-active::before {
+        left: 0;
+        width: 100%;
+        right: auto; }
+    .mainUi .projectName .p-exit-done {
+      color: transparent;
+      display: none; }
+      .mainUi .projectName .p-exit-done::before {
+        left: auto;
+        width: 0%;
+        right: 0; }
