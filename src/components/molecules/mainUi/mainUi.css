@@ -1,12 +1,15 @@
 .mainUi {
-  height: 100%;
-  width: 100%; }
+  display: flex;
+  justify-content: space-around;
+  max-width: 900px;
+  margin: 0 auto; }
   .mainUi .projectName {
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative; }
+    position: relative;
+    width: 300px;
+    height: 100px; }
     .mainUi .projectName p {
       font-size: 72px;
       text-align: center;
@@ -16,7 +19,8 @@
       display: inline-block;
       margin: 0 auto;
       color: white;
-      transition: color .3s ease-in-out; }
+      transition: color .3s ease-in-out;
+      width: 100%; }
       .mainUi .projectName p::before {
         position: absolute;
         display: block;
@@ -29,7 +33,7 @@
         z-index: 1;
         background: white;
         content: "";
-        transition: all 1s ease; }
+        transition: all .5s ease; }
     .mainUi .projectName .p-enter {
       color: transparent; }
       .mainUi .projectName .p-enter::before {
@@ -61,9 +65,23 @@
         width: 100%;
         right: auto; }
     .mainUi .projectName .p-exit-done {
-      color: transparent;
-      display: none; }
+      color: transparent; }
       .mainUi .projectName .p-exit-done::before {
         left: auto;
         width: 0%;
         right: 0; }
+  .mainUi .cta {
+    background: none;
+    border: none;
+    display: table; }
+  .mainUi .description {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 400px; }
+  .mainUi .p {
+    animation: none;
+    transform: none;
+    opacity: 1; }

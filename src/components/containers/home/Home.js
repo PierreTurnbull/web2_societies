@@ -15,6 +15,7 @@ import JarawaImage from "images/assets/jarawa_fullscreen.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
 import RastaImage from "images/assets/rasta_fullscreen.jpeg"
 import MainUi from '../../molecules/mainUi/MainUi';
+import CursorContainer from '../../atomes/cursor/CursorContainer';
 
 export class Home extends Component {
     constructor(props) {
@@ -54,8 +55,6 @@ export class Home extends Component {
     }
 
     prevImage = () => {
-        console.log("NEXT IMAGE");
-
         if (this.state.imageIndex > 0) {
             this.animation.play();
             this.animation.eventCallback('onComplete', () => {
@@ -125,23 +124,32 @@ export class Home extends Component {
 
     render() {
         return (
-            <div onWheel={(e) => { e.persist(); this.onWheel(e); }}>
-                <p style={{ color: 'white' }} onClick={() => this.prevImage()}>prev</p>
-                <p style={{ color: 'white' }} onClick={() => this.nextImage()}>next</p>
-                <FullScreen
-                    transitionMap={TransitionMap}
-                    images={this.images}
-                    imageIndex={this.state.imageIndex}
-                    progress={this.state.progress}
-                    scrollProgress={this.state.scrollProgress}
-                    currentImage={this.images[this.state.imageIndex]}
-                    nextImage={this.images[this.state.imageIndex + 1]}
-                    className="thumbnailCanvas"
+            <React.Fragment>
+                <div onWheel={(e) => { e.persist(); this.onWheel(e); }}>
+                    <p style={{ color: 'white' }} onClick={() => this.prevImage()}>prev</p>
+                    <p style={{ color: 'white' }} onClick={() => this.nextImage()}>next</p>
+                    <FullScreen
+                        transitionMap={TransitionMap}
+                        images={this.images}
+                        imageIndex={this.state.imageIndex}
+                        progress={this.state.progress}
+                        scrollProgress={this.state.scrollProgress}
+                        currentImage={this.images[this.state.imageIndex]}
+                        nextImage={this.images[this.state.imageIndex + 1]}
+                        className="thumbnailCanvas"
+                    />
+                    <MainUi
+                        projectName={this.projects[this.state.imageIndex]}
+                    />
+                </div>
+                <CursorContainer
+                    cursorPosition={{
+                        x: this.props.position.x,
+                        y: this.props.position.y + this.props.elementDimensions.height / 2
+                    }
+                    }
                 />
-                <MainUi
-                    projectName={this.projects[this.state.imageIndex]}
-                />
-            </div>
+            </React.Fragment>
         )
     }
 }

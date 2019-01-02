@@ -1,12 +1,15 @@
 .mainUi
-    height: 100%
-    width: 100%
+    display: flex
+    justify-content: space-around
+    max-width: 900px
+    margin: 0 auto
     .projectName
-        margin: 0 auto
         display: flex
         align-items: center
         justify-content: center
         position: relative
+        width: 300px
+        height: 100px
         p
             font-size: 72px
             text-align: center
@@ -17,6 +20,7 @@
             margin: 0 auto
             color: white
             transition: color .3s ease-in-out
+            width: 100%
             &::before
                 position: absolute
                 display: block
@@ -29,7 +33,7 @@
                 z-index: 1
                 background: white
                 content: ""
-                transition: all 1s ease
+                transition: all .5s ease
         .p-enter
             color: transparent
             &::before
@@ -62,7 +66,6 @@
                 right: auto
         .p-exit-done
             color: transparent
-            display: none
             &::before
                 left: auto
                 width: 0%
@@ -72,3 +75,18 @@
         // .p-appear-active
         //     color: transparent
 
+    .cta
+        background: none
+        border: none
+        display: table
+    .description
+        color: white
+        display: flex
+        flex-direction: column
+        justify-content: flex-start
+        align-items: flex-start
+        max-width: 400px
+    .p
+        animation: none
+        transform: none
+        opacity: 1
