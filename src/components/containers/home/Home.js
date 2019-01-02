@@ -32,7 +32,7 @@ export class Home extends Component {
         this.setBack = this.setBack.bind(this);
 
         // this.images = [Image1, Image2, Image3, Image4, Image5, JarawaImage, MonksImage, RastaImage];
-        this.images = [JarawaImage, MonksImage, RastaImage];
+        this.images = [MonksImage, JarawaImage, RastaImage];
         this.projects = ["monks", "jarawa", "rasta"];
         this.progress = 0.0;
         this.scrollProgress = 0.0;
