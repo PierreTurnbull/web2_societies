@@ -70,6 +70,35 @@
         left: auto;
         width: 0%;
         right: 0; }
+  .mainUi .projectDescription {
+    position: relative;
+    width: 100%; }
+    .mainUi .projectDescription p {
+      position: absolute;
+      transition: all .5s ease; }
+      .mainUi .projectDescription p::before {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 0%;
+        right: auto;
+        bottom: 0;
+        height: 100%;
+        z-index: 1;
+        background: white;
+        content: "";
+        transition: all .5s ease; }
+    .mainUi .projectDescription .p-enter {
+      color: transparent; }
+    .mainUi .projectDescription .p-enter-active {
+      color: transparent; }
+    .mainUi .projectDescription .p-enter-done {
+      color: white; }
+    .mainUi .projectDescription .p-exit {
+      color: white; }
+    .mainUi .projectDescription .p-exit-active, .mainUi .projectDescription .p-exit-done {
+      color: transparent; }
   .mainUi .cta {
     background: none;
     border: none;

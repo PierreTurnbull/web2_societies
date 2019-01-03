@@ -74,7 +74,35 @@
         //     color: transparent
         // .p-appear-active
         //     color: transparent
-
+    .projectDescription
+        position: relative
+        width: 100%
+        p
+            position: absolute
+            transition: all .5s ease
+            &::before
+                position: absolute
+                display: block
+                top: 0
+                left: 0
+                width: 0%
+                right: auto
+                bottom: 0
+                height: 100%
+                z-index: 1
+                background: white
+                content: ""
+                transition: all .5s ease
+        .p-enter
+            color: transparent
+        .p-enter-active
+            color: transparent
+        .p-enter-done
+            color: white
+        .p-exit
+            color: white
+        .p-exit-active, .p-exit-done
+            color: transparent
     .cta
         background: none
         border: none

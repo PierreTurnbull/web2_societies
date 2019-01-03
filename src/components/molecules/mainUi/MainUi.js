@@ -31,7 +31,16 @@ export default class MainUi extends Component {
                             {/* </Link> */}
                         </CSSTransition>
                     </TransitionGroup>
-                    <p className="p">Can't you use onChange or onEnter property? Just add that you your top level route(s) and it will call a function and pass you the information about the previous and the next route.</p>
+                    <TransitionGroup className="projectDescription">
+                        <CSSTransition
+                            key={projectName}
+                            // in={projectName ? true : false}
+                            timeout={1000}
+                            classNames="p"
+                        >
+                            <p className="p">Can't you use onChange or onEnter property? Just add that you your top level route(s) and it will call a function and pass you the information about the previous and the next route.</p>
+                        </CSSTransition>
+                    </TransitionGroup>
                 </div>
                 <div className="cta">
                     <CircleCtaContainer holdComplete={(path) => this.goTo(path)} />
