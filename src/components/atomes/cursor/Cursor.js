@@ -7,7 +7,7 @@ function Cursor(props) {
     return (
         <div
             className="cursor"
-            style={{ top: `${props.cursorPosition.y || 0}px`, left: `${props.cursorPosition.x || 0}px` }}
+            // style={{ top: `${props.cursorPosition.y || 0}px`, left: `${props.cursorPosition.x || 0}px` }}
         >
         </div>
     )

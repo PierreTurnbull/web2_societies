@@ -3,6 +3,7 @@ import Cursor from './Cursor';
 import { TweenLite } from "gsap/TweenMax";
 import { throttle, debounce } from 'lodash';
 
+import "./cursorContainer.css"
 export default class CursorContainer extends Component {
     constructor(props) {
         super(props);
@@ -21,19 +22,13 @@ export default class CursorContainer extends Component {
         TweenLite.to(this, .4,
             {
                 x: this.props.cursorPosition.x,
-            }
-        );
-        TweenLite.to(this, .4,
-            {
                 y: this.props.cursorPosition.y,
             }
         );
-        console.log("move");
-
     }, 10);
 
     setBack = debounce(() => {
-        this.animPost()
+        this.animPost();
     }, 500);
 
     // mousePositionHanlder = (e) => {
@@ -45,23 +40,31 @@ export default class CursorContainer extends Component {
     //         }
     //     })
     // }
-
-    // componentDidMount() {
-
-    // }
-
-    render() {
+    componentDidMount() {
         this.animPost();
         this.setBack();
+    }
+
+    componentDidUpdate() {
+        this.animPost();
+        this.setBack();
+    }
+
+    render() {
         // console.log({ ...this.props });
 
         this.lastX = this.props.cursorPosition.x;
         this.lastY = this.props.cursorPosition.y;
 
         return (
-            <Cursor cursorPosition={{
-                x: this.x, y: this.y
-            }} />
+            <div className="cursorContainer"
+                style={{ top: `${this.y || 0}px`, left: `${this.x || 0}px` }}
+            >
+
+                <Cursor cursorPosition={{
+                    x: this.x, y: this.y
+                }} />
+            </div>
         )
     }
 }

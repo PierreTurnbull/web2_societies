@@ -1,9 +1,6 @@
 body {
   overflow: hidden; }
 
-.App {
-  cursor: none; }
-
 @font-face {
   font-family: 'AktivGrotesk';
   font-weight: 900;
