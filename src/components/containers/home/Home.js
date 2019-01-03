@@ -13,7 +13,7 @@ import Image5 from "images/5.jpeg"
 import TransitionMap from "images/transtionMap.jpeg"
 import JarawaImage from "images/assets/jarawa_fullscreen.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
-import RastaImage from "images/assets/rasta_fullscreen.jpeg"
+import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
 import MainUi from '../../molecules/mainUi/MainUi';
 import CursorContainer from '../../atomes/cursor/CursorContainer';
 
