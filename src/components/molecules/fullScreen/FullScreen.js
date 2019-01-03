@@ -235,7 +235,7 @@ export default class FullScreen extends Component {
                     // this.mesh.scale.x = this.mesh.scale.y * canvasRatio;
                     console.log('<');
                     this.mesh.scale.x = w / h;
-                    this.mesh.scale.y = this.mesh.scale.x * (h / w);
+                    this.mesh.scale.y = this.mesh.scale.x / imageRatio;
 
                 } else {
                     console.log('>');
