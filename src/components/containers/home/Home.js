@@ -101,7 +101,7 @@ export class Home extends Component {
     onWheel = throttle((e) => {
         this.scrollValue = Math.abs(e.deltaY);
 
-        const x = () => { if (this.scrollValue > 130) { this.setState({ isTicking: true }); this.nextImage() } };
+        const x = () => { if (this.scrollValue > 200) { this.setState({ isTicking: true }); this.nextImage() } };
         x()
 
 
@@ -111,7 +111,7 @@ export class Home extends Component {
             onComplete: () => { this.setBack(); },
             ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
         });
-    }, 100)
+    }, 0)
 
     setBack = debounce(() => {
         console.log("set BACK", this.state.isTicking);
@@ -120,7 +120,7 @@ export class Home extends Component {
             onUpdate: (e) => { this.setState({ scrollProgress: this.scrollProgress }) },
             ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
         });
-    }, 100);
+    }, 0);
 
     render() {
         return (
