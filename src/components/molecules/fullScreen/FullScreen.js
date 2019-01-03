@@ -251,8 +251,8 @@ export default class FullScreen extends Component {
             // console.log('< container portrait');
             if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
                 // console.log("image portrait");
-                // this.mesh.scale.x = 1;
-                // this.mesh.scale.y = 1;
+                this.mesh.scale.x = 1;
+                this.mesh.scale.y = 1;
             } else { // image paysage ?
                 // console.log("image paysage");
                 // this.mesh.scale.y = h / w;
