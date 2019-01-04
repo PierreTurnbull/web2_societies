@@ -16,6 +16,8 @@ import MonksImage from "images/assets/monks_fullscreen.jpg"
 import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
 import MainUi from '../../molecules/mainUi/MainUi';
 import CursorContainer from '../../atomes/cursor/CursorContainer';
+import { withCursorContext } from '../../../contexts/cursor/cursor.context';
+import { compose } from 'recompose';
 
 export class Home extends Component {
     constructor(props) {
@@ -121,7 +123,16 @@ export class Home extends Component {
         });
     }, 0);
 
+    componentWillReceiveProps() {
+        // console.log(this.props);
+    }
+
+    componentDidUpdate() {
+        // this.props.cursor_context.updateCursorParams(this.props.position);
+    }
+
     render() {
+        // console.log(this.props);
         return (
             <React.Fragment>
                 <div onWheel={(e) => { e.persist(); this.onWheel(e); }}>
@@ -153,4 +164,4 @@ export class Home extends Component {
     }
 }
 
-export default withRouter(Home)
+export default compose(withRouter, withCursorContext)(Home)

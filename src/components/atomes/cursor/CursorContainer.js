@@ -4,7 +4,7 @@ import { TweenLite } from "gsap/TweenMax";
 import { throttle, debounce } from 'lodash';
 
 import "./cursorContainer.css"
-export default class CursorContainer extends Component {
+class CursorContainer extends Component {
     constructor(props) {
         super(props);
 
@@ -119,3 +119,5 @@ export default class CursorContainer extends Component {
         )
     }
 }
+
+export default CursorContainer
