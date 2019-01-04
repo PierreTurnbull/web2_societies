@@ -19,7 +19,7 @@ import CursorContainer from '../../atomes/cursor/CursorContainer';
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
 import { compose } from 'recompose';
 
-export class Home extends Component {
+export class Home extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -124,15 +124,10 @@ export class Home extends Component {
     }, 0);
 
     componentWillReceiveProps() {
-        // console.log(this.props);
-    }
-
-    componentDidUpdate() {
-        // this.props.cursor_context.updateCursorParams(this.props.position);
+        this.props.cursor_context.updateCursorParams(this.props.position);
     }
 
     render() {
-        // console.log(this.props);
         return (
             <React.Fragment>
                 <div onWheel={(e) => { e.persist(); this.onWheel(e); }}>
@@ -152,13 +147,13 @@ export class Home extends Component {
                         projectName={this.projects[this.state.imageIndex]}
                     />
                 </div>
-                <CursorContainer
+                {/* <CursorContainer
                     cursorParams={{
                         x: this.props.position.x,
                         y: this.props.position.y - this.props.elementDimensions.height
                     }
                     }
-                />
+                /> */}
             </React.Fragment>
         )
     }

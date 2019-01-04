@@ -3,7 +3,7 @@ import ReactCursorPosition from 'react-cursor-position';
 
 export const CursorContext = React.createContext('cursor');
 
-class CursorProvider extends Component {
+class CursorProvider extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -28,12 +28,10 @@ class CursorProvider extends Component {
     }
 
     updateCursorParams = (_params) => {
-        // this.setState({
-        //     ...this.state,
-        //     cursorParams: _params
-        // })
-        this.x = _params
-        return _params
+        this.setState({
+            ...this.state,
+            cursorParams: _params
+        });
     }
 
     render() {
@@ -43,8 +41,7 @@ class CursorProvider extends Component {
             <CursorContext.Provider
                 value={{
                     state: this.state,
-                    updateCursorParams: this.updateCursorParams,
-                    x: this.updateCursorParams
+                    updateCursorParams: this.updateCursorParams
                 }}
             >
                 {this.props.children}
