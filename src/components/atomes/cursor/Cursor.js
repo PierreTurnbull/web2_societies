@@ -2,12 +2,15 @@ import React from 'react'
 
 import './cursor.css'
 function Cursor(props) {
-    // console.log(props.position);
-
     return (
         <div
             className="cursor"
-            // style={{ top: `${props.cursorPosition.y || 0}px`, left: `${props.cursorPosition.x || 0}px` }}
+            style={{
+                top: `${props.cursorParams.y || 0}px`,
+                left: `${props.cursorParams.x || 0}px`,
+                width: `${props.cursorParams.width || 50}px`,
+                height: `${props.cursorParams.height || 50}px`,
+            }}
         >
         </div>
     )

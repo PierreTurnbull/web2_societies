@@ -114,7 +114,6 @@ export class Home extends Component {
     }, 0)
 
     setBack = debounce(() => {
-        console.log("set BACK", this.state.isTicking);
         TweenLite.to(this, .5, {
             scrollProgress: 0,
             onUpdate: (e) => { this.setState({ scrollProgress: this.scrollProgress }) },
@@ -143,9 +142,9 @@ export class Home extends Component {
                     />
                 </div>
                 <CursorContainer
-                    cursorPosition={{
+                    cursorParams={{
                         x: this.props.position.x,
-                        y: this.props.position.y + this.props.elementDimensions.height / 2
+                        y: this.props.position.y - this.props.elementDimensions.height
                     }
                     }
                 />

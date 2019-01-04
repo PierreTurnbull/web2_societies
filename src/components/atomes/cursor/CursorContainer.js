@@ -8,62 +8,113 @@ export default class CursorContainer extends Component {
     constructor(props) {
         super(props);
 
-        this.x = this.props.cursorPosition.x;
-        this.y = this.props.cursorPosition.y;
+        this.x = this.props.cursorParams.x;
+        this.y = this.props.cursorParams.y;
+        this.width = 50;
+        this.height = 50;
 
-        this.animPost = this.animPost.bind(this);
+        this.animPos = this.animPos.bind(this);
         this.setBack = this.setBack.bind(this);
+
+        this.state = {
+            cursorParams: {
+                x: this.x,
+                y: this.y,
+                width: this.width,
+                height: this.height
+            }
+        }
     }
 
-    cursorPosition = {
-        ...this.props.cursorPosition
+    cursorParams = {
+        ...this.props.cursorParams
     }
-    animPost = throttle(() => {
+
+    animPos = throttle(() => {
         TweenLite.to(this, .4,
             {
-                x: this.props.cursorPosition.x,
-                y: this.props.cursorPosition.y,
-            }
+                x: this.props.cursorParams.x,
+                y: this.props.cursorParams.y,
+                onUpdate: () => {
+                    this.setState({
+                        cursorParams: {
+                            ...this.state.cursorParams,
+                            x: this.x,
+                            y: this.y,
+                            width: this.width,
+                            height: this.height
+                        }
+                    });
+                },
+            },
+        );
+        TweenLite.to(this, .4,
+            {
+                width: 20,
+                height: 20,
+                onUpdate: () => {
+                    this.setState({
+                        cursorParams: {
+                            ...this.state.cursorParams,
+                            width: this.width,
+                            height: this.height
+                        }
+                    });
+                },
+            },
         );
     }, 10);
 
     setBack = debounce(() => {
-        this.animPost();
-    }, 500);
+        TweenLite.to(this, .4,
+            {
+                x: this.props.cursorParams.x,
+                y: this.props.cursorParams.y,
+                onUpdate: () => {
+                    this.setState({
+                        cursorParams: {
+                            ...this.state.cursorParams,
+                            x: this.x,
+                            y: this.y,
+                        }
+                    })
+                },
+            }
+        );
 
-    // mousePositionHanlder = (e) => {
-    //     console.log(e.pageX);
-    //     this.setState({
-    //         cursorPosition: {
-    //             x: e.pageX,
-    //             y: e.pageY
-    //         }
-    //     })
-    // }
+        TweenLite.to(this, .4,
+            {
+                width: 50,
+                height: 50,
+                onUpdate: () => {
+                    this.setState({
+                        cursorParams: {
+                            ...this.state.cursorParams,
+                            width: this.width,
+                            height: this.height
+                        }
+                    });
+                },
+            },
+        );
+    }, 0);
+
     componentDidMount() {
-        this.animPost();
+        this.animPos();
         this.setBack();
     }
 
-    componentDidUpdate() {
-        this.animPost();
+    componentWillReceiveProps() {
+        this.animPos();
         this.setBack();
     }
 
     render() {
-        // console.log({ ...this.props });
-
-        this.lastX = this.props.cursorPosition.x;
-        this.lastY = this.props.cursorPosition.y;
-
         return (
-            <div className="cursorContainer"
-                style={{ top: `${this.y || 0}px`, left: `${this.x || 0}px` }}
-            >
-
-                <Cursor cursorPosition={{
-                    x: this.x, y: this.y
-                }} />
+            <div className="cursorContainer">
+                <Cursor
+                    cursorParams={this.state.cursorParams}
+                />
             </div>
         )
     }
