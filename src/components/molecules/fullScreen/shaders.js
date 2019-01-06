@@ -34,6 +34,7 @@ const fragmentShader = `
   varying vec2 vUv;
   varying vec2 vUv1;
   uniform float time;
+  uniform vec3 gradientRGB;
   uniform float progress;
   uniform float scrollProgress;
   uniform float opacityProgress;
@@ -56,6 +57,7 @@ const fragmentShader = `
   
     vec4 color = texture2D(texture, vec2(vUv.x + (distort*map) + (scrollDistort/2. * transitionMap) + (distort * transitionMap*2.) * distort2, vUv.y + distort* map + (distort* transitionMap)));
     vec4 rgba = mix(rgba1, rgba2, progress/200.);
+    vec4 rgba3 = mix(color, vec4(gradientRGB, 1), progress/1000.);
 
     gl_FragColor = vec4(vec3(color)  - (vec3(color) * (progress/100.)), 1.0);
   }

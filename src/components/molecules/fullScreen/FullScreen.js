@@ -5,7 +5,8 @@ import { throttle, debounce } from 'lodash';
 import scrollSpeed from 'utils/scrollSpeed';
 import { TweenLite } from "gsap/TweenMax";
 import { SpriteText2D, MeshText2D, textAlign } from 'three-text2d'
-import scrollImage from "images/scroll.jpg"
+import scrollImage from "images/scroll.png"
+import Gradient from '../../atomes/gradient/Gradient';
 
 THREE.ImageUtils.crossOrigin = '';
 let camera;
@@ -47,6 +48,14 @@ export default class FullScreen extends Component {
 
         this.uniforms = {
             time: { type: "f", value: 1.0 },
+            gradientRGB: {
+                type: "v3", value: new THREE.Vector3
+                    (
+                        this.props.gradientRGB.r,
+                        this.props.gradientRGB.g,
+                        this.props.gradientRGB.b,
+                    )
+            },
             random: { type: "f", value: this.random },
             resolution: { type: "v2", value: new THREE.Vector2(this.imageWidth, this.imageHeight) },
             uvRate1: { type: "f", value: new THREE.Vector2(1, 1) },
@@ -98,6 +107,14 @@ export default class FullScreen extends Component {
         this.uniforms.map = { type: "sampler2D", value: this.MyMap };
         this.uniforms.texture = { type: "sampler2D", value: this.MyTexture, wrapS: THREE.RepeatWrapping, wrapT: THREE.RepeatWrapping, minFilter: THREE.LinearFilter };
         this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
+
+        // this.uniforms.gradientRGB = {
+        //     type: 'v3', value: new THREE.Vector3(
+        //         this.props.gradientRGB.r,
+        //         this.props.gradientRGB.g,
+        //         this.props.gradientRGB.b,
+        //     )
+        // }
 
         // this.uniforms2.texture = { type: "sampler2D", value: this.loader.load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNJFxWUrjTsaM7yXmwYT8PSa9hNyRyMiR7NhJgu6ismDykbpbH") };
         // this.MyTexture = this.images[this.props.imageIndex];
@@ -271,8 +288,15 @@ export default class FullScreen extends Component {
     }
 
     render() {
+        const gradientRGB = this.props.gradientRGB;
         return (
             <div className={this.props.className} ref={(ref) => this.canvas = ref}>
+                <Gradient
+                    background={
+                        `linear-gradient(0deg, rgba(${gradientRGB.r + ',' + gradientRGB.g + ',' + gradientRGB.b}, .8) 0%,
+                        rgba(${gradientRGB.r + ',' + gradientRGB.g + ',' + gradientRGB.b}, 0))`
+                    } />
+                0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.71) 100%);
             </div>
         )
     }

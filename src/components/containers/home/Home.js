@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import { TweenLite, Expo } from "gsap/TweenMax";
+import { TweenMax, TweenLite, Expo } from "gsap/TweenMax";
 import { throttle, debounce } from 'lodash';
 
 import FullScreen from '../../molecules/fullScreen/FullScreen';
@@ -10,7 +10,7 @@ import Image2 from "images/2.jpeg"
 import Image3 from "images/3.jpeg"
 import Image4 from "images/4.png"
 import Image5 from "images/5.jpeg"
-import TransitionMap from "images/transtionMap.jpeg"
+import TransitionMap from "images/transtionMap.jpg"
 import JarawaImage from "images/assets/jarawa_fullscreen.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
 import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
@@ -23,11 +23,28 @@ export class Home extends React.PureComponent {
     constructor(props) {
         super(props);
 
+        this.societiesGradient = [
+            {
+                r: 87, g: 18, b: 0
+            },
+            {
+                r: 146, g: 154, b: 63
+            },
+            {
+                r: 63, g: 154, b: 146
+            },
+        ]
+
         this.state = {
             redirect: false,
             imageIndex: 0,
             isTicking: false,
-            scrollProgress: 0.0
+            scrollProgress: 0.0,
+            gradientRGB: {
+                r: this.societiesGradient[0].r,
+                g: this.societiesGradient[0].g,
+                b: this.societiesGradient[0].b,
+            }
         }
 
         this.onWheel = this.onWheel.bind(this);
@@ -38,6 +55,30 @@ export class Home extends React.PureComponent {
         this.projects = ["monks", "jarawa", "rasta"];
         this.progress = 0.0;
         this.scrollProgress = 0.0;
+
+        this.gradientRGB = {
+            r: this.state.gradientRGB.r,
+            g: this.state.gradientRGB.g,
+            b: this.state.gradientRGB.b
+        }
+
+        this.gradientAnimation = TweenLite.to(
+            this.gradientRGB, 1, {
+                r: this.societiesGradient[this.state.imageIndex + 1].r,
+                g: this.societiesGradient[this.state.imageIndex + 1].g,
+                b: this.societiesGradient[this.state.imageIndex + 1].b,
+                paused: true,
+                onUpdate: () => { console.log(this.gradientRGB) },
+                onComplete: () => {
+                    console.log("COMPLETE", this.gradientRGB);
+                    this.gradientRGB = {
+                        r: this.gradientRGB.r,
+                        g: this.gradientRGB.g,
+                        b: this.gradientRGB.b
+                    };
+                }
+            }
+        );
 
         this.props.history.listen((location, action) => {
             this.setState({ redirect: true })
@@ -73,6 +114,7 @@ export class Home extends React.PureComponent {
     }
 
     nextImage = () => {
+        this.gradientAnimation.play();
         if (this.images.length - 1 > this.state.imageIndex) {
             this.animation.play();
             // this.animation.onComplete = () => this.handleIndex("next");
@@ -106,7 +148,6 @@ export class Home extends React.PureComponent {
         const x = () => { if (this.scrollValue > 200) { this.setState({ isTicking: true }); this.nextImage() } };
         x()
 
-
         TweenLite.to(this, .5, {
             scrollProgress: this.scrollValue,
             onUpdate: () => { this.setState({ scrollProgress: this.scrollProgress }); },
@@ -128,9 +169,22 @@ export class Home extends React.PureComponent {
     }
 
     render() {
+        const monks = "linear-gradient(to right, rgba(87, 18, 0, 0.2), rgba(87, 18, 0, 0.4))";
+        const jarawa = "linear-gradient(to right, rgba(146, 154, 63, 0.2), rgba(146, 154, 63, 0.4))";
+        const rasta = "linear-gradient(to right, rgba(63, 154, 146, 0.2), rgba(63, 154, 146, 0.4))";
+        const gradients = {
+            monks,
+            jarawa,
+            rasta
+        }
+        const dynBackground = gradients[this.projects[this.state.imageIndex]]
+        // console.log(this.gradientRGB);
         return (
             <React.Fragment>
-                <div onWheel={(e) => { e.persist(); this.onWheel(e); }}>
+                <div
+                    onWheel={(e) => { e.persist(); this.onWheel(e); }}
+                    style={{ height: "100%", margin: 'auto' }}
+                >
                     <p style={{ color: 'white' }} onClick={() => this.prevImage()}>prev</p>
                     <p style={{ color: 'white' }} onClick={() => this.nextImage()}>next</p>
                     <FullScreen
@@ -142,6 +196,8 @@ export class Home extends React.PureComponent {
                         currentImage={this.images[this.state.imageIndex]}
                         nextImage={this.images[this.state.imageIndex + 1]}
                         className="thumbnailCanvas"
+                        gradient={dynBackground}
+                        gradientRGB={this.gradientRGB}
                     />
                     <MainUi
                         projectName={this.projects[this.state.imageIndex]}

@@ -35,8 +35,7 @@ class CursorProvider extends React.PureComponent {
     }
 
     render() {
-        console.log(this.props);
-
+        console.log("PROVIDER", this.props);
         return (
             <CursorContext.Provider
                 value={{
@@ -44,7 +43,9 @@ class CursorProvider extends React.PureComponent {
                     updateCursorParams: this.updateCursorParams
                 }}
             >
-                {this.props.children}
+                <ReactCursorPosition className="curIn">
+                    {this.props.children}
+                </ReactCursorPosition>
             </CursorContext.Provider>
         );
     }

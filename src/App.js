@@ -17,15 +17,14 @@ import CursorProvider from './contexts/cursor/cursor.provider';
 
 class App extends React.PureComponent {
   render() {
+    console.log('HOME', this.props);
     return (
       <CursorProvider>
-
-      <div className="App">
-        <div>
+        <div className="App">
           <Header />
           <Router>
             <div>
-              <Route path="/" component={() => <ReactCursorPosition className="curIn"><Home /></ReactCursorPosition>} />
+              <Route path="/" component={() => <Home />} />
               <Route path="/monks" component={() => <SocietyContentContainer societyIntro={<MonksIntro />} societyContent={<MonksContent />} />} />
               <Route path="/jarawa" component={() => <SocietyContentContainer societyIntro={<JarawaIntro />} societyContent={<JarawaContent />} />} />
               {/* <Route path="/rasta" component={() => <SocietyContentContainer societyContent={<RastaContent />} />} /> */}
@@ -41,17 +40,16 @@ class App extends React.PureComponent {
             // }
             />
             </CursorProvider> */}
-          {/* <p style={{ padding: "50px 50px 30px 50px", maxWidth: "1150px", margin: "0 auto" }}>© FSOCIETY a été pensé et réalisé par Salah, Alexandre, Pierre et Romain dans le cadre d’un projet à Hétic.</p> */}
+          <p style={{ padding: "50px 50px 30px 50px", maxWidth: "1150px", margin: "0 auto" }}>© FSOCIETY a été pensé et réalisé par Salah, Alexandre, Pierre et Romain dans le cadre d’un projet à Hétic.</p>
+          <CursorContainer
+          // cursorParams={{
+          //   x: this.props.position.x,
+          //   y: this.props.position.y - this.props.elementDimensions.height
+          // }
+          // }
+          />
         </div>
-        <CursorContainer
-        // cursorParams={{
-        //   x: this.props.position.x,
-        //   y: this.props.position.y - this.props.elementDimensions.height
-        // }
-        // }
-        />
-      </div>
-      // </CursorProvider>
+      </CursorProvider>
     );
   }
 }

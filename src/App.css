@@ -2,7 +2,10 @@ body {
   overflow: hidden; }
 
 .App {
-  cursor: none; }
+  cursor: none;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh; }
 
 @font-face {
   font-family: 'AktivGrotesk';

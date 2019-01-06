@@ -6,10 +6,10 @@ function Cursor(props) {
         <div
             className="cursor"
             style={{
-                // top: `${props.cursorParams.y || 0}px`,
-                // left: `${props.cursorParams.x || 0}px`,
-                // width: `${props.cursorParams.width || 50}px`,
-                // height: `${props.cursorParams.height || 50}px`,
+                top: `${props.cursorParams.y || 0}px`,
+                left: `${props.cursorParams.x || 0}px`,
+                width: `${props.cursorParams.width || 50}px`,
+                height: `${props.cursorParams.height || 50}px`,
             }}
         >
         </div>
