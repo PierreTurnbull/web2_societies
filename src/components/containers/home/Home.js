@@ -13,11 +13,12 @@ import Image5 from "images/5.jpeg"
 import TransitionMap from "images/transtionMap.jpg"
 import JarawaImage from "images/assets/jarawa_fullscreen.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
-import RastaImage from "images/assets/rastaa_fullscreen.jpg"
+import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
 import MainUi from '../../molecules/mainUi/MainUi';
 import CursorContainer from '../../atomes/cursor/CursorContainer';
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
 import { compose } from 'recompose';
+import TimerBarContainer from '../../atomes/timerBar/TimerBarContainer';
 
 export class Home extends React.PureComponent {
     constructor(props) {
@@ -199,6 +200,9 @@ export class Home extends React.PureComponent {
                 onWheel={(e) => { e.persist(); this.onWheel(e); }}
                 style={{ display: 'flex', alignItems: "center" }}
             >
+                {
+                    window.innerWidth >= 768 && <TimerBarContainer />
+                }
                 <FullScreen
                     transitionMap={TransitionMap}
                     images={this.images}
