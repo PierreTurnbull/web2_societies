@@ -223,19 +223,6 @@ export default class FullScreen extends Component {
         this.renderer.setSize(w, h);
         this.material.uniforms.uvRate1.value.y = canvasRatio;
 
-        // this.mesh.scale.x = sceneW / sceneH;
-
-        // if (canvasRatio < 1) {
-        //     this.mesh.scale.x = 1;
-        //     this.mesh.scale.y = this.mesh.scale.x * (sceneH / sceneW);
-        // } else {
-        //     this.mesh.scale.x = (sceneW / sceneH);
-        //     this.mesh.scale.y = this.mesh.scale.x * sceneH / sceneW;
-        // }
-
-        // this.mesh.scale.y = sceneH / sceneW;
-        // this.mesh.scale.x = this.mesh.scale.y * (sceneW / sceneH);
-
         this.textMesh.scale.x = .5;
         this.textMesh.scale.y = .5 / 2;
 
@@ -243,45 +230,28 @@ export default class FullScreen extends Component {
             // console.log('> container paysage');
             if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
                 // console.log("image portrait");
-                // this.mesh.scale.x = 1;
-                // this.mesh.scale.y = 1;
             } else { // image paysage ?
                 // console.log("image paysage", this.imageWidth, this.imageHeight);
                 if (canvasRatio > imageRatio) {
-                    // this.mesh.scale.y = h / w;
-                    // this.mesh.scale.x = this.mesh.scale.y * canvasRatio;
                     console.log('<');
                     this.mesh.scale.x = w / h;
                     this.mesh.scale.y = this.mesh.scale.x / imageRatio;
 
                 } else {
-                    console.log('>');
-                    this.mesh.scale.x = w / h;
-                    this.mesh.scale.y = this.mesh.scale.x;
+                    this.mesh.scale.y = 1;
+                    this.mesh.scale.x = this.mesh.scale.y * imageRatio;
                 }
-                // this.mesh.scale.x = w / h;
-                // this.mesh.scale.y = this.mesh.scale.x * h/w;
-                // this.mesh.scale.x = w / h * this.imageWidth / this.imageHeight;
-                // this.mesh.scale.y = 1;
             }
         } else { // container portrait ?
             // console.log('< container portrait');
             if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
                 // console.log("image portrait");
-                this.mesh.scale.x = 1;
-                this.mesh.scale.y = 1;
             } else { // image paysage ?
                 // console.log("image paysage");
-                // this.mesh.scale.y = h / w;
-                // this.mesh.scale.x = this.mesh.scale.y + (this.imageWidth / this.imageHeight);
+                this.mesh.scale.y = 1;
+                this.mesh.scale.x = this.mesh.scale.y * imageRatio;
             }
-            // this.mesh.scale.y = h/w;
-            // this.mesh.scale.x = 1;
-            // this.mesh.scale.y = 1;
         }
-
-        // this.sprite.scale.y = .5 / 2;
-        // this.sprite.scale.x = .5;
 
         camera.updateProjectionMatrix();
 
@@ -293,10 +263,13 @@ export default class FullScreen extends Component {
             <div className={this.props.className} ref={(ref) => this.canvas = ref}>
                 <Gradient
                     background={
-                        `linear-gradient(0deg, rgba(${gradientRGB.r + ',' + gradientRGB.g + ',' + gradientRGB.b}, .8) 0%,
-                        rgba(${gradientRGB.r + ',' + gradientRGB.g + ',' + gradientRGB.b}, 0))`
+                        `linear-gradient(53deg, rgba(${gradientRGB.r + ',' + gradientRGB.g + ',' + gradientRGB.b}, .3),
+                        rgba(${gradientRGB.r + ',' + gradientRGB.g + ',' + gradientRGB.b}, .5))`
                     } />
-                0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.71) 100%);
+                <Gradient
+                    background={
+                        `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3))`
+                    } />
             </div>
         )
     }

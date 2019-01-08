@@ -12,35 +12,17 @@ export default class MainUi extends Component {
     }
 
     render() {
-        const { projectName } = this.props;
+        const { projectName, projectDescription } = this.props;
 
         return (
             <div className="mainUi">
                 <div className="description">
-                    <TransitionGroup className="projectName">
-                        <CSSTransition
-                            key={projectName}
-                            // in={projectName ? true : false}
-                            timeout={1000}
-                            classNames="p"
-                        >
-                            {/* <Link to={projectName}> */}
-                            <p>
-                                {projectName}
-                            </p>
-                            {/* </Link> */}
-                        </CSSTransition>
-                    </TransitionGroup>
-                    <TransitionGroup className="projectDescription">
-                        <CSSTransition
-                            key={projectName}
-                            // in={projectName ? true : false}
-                            timeout={1000}
-                            classNames="p"
-                        >
-                            <p className="p">Can't you use onChange or onEnter property? Just add that you your top level route(s) and it will call a function and pass you the information about the previous and the next route.</p>
-                        </CSSTransition>
-                    </TransitionGroup>
+                    <p className="project_title">
+                        {projectName}
+                    </p>
+                    <p className="p project_description">
+                        {projectDescription}
+                    </p>
                 </div>
                 <div className="cta">
                     <CircleCtaContainer holdComplete={(path) => this.goTo(path)} />

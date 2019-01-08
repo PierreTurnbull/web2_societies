@@ -1,120 +1,47 @@
 .mainUi
     display: flex
-    justify-content: space-around
-    max-width: 900px
+    justify-content: space-between
+    width: 100%
+    max-width: 1250px
+    padding: 0 50px
     margin: 0 auto
-    .projectName
-        display: flex
-        align-items: center
-        justify-content: center
-        position: relative
-        width: 300px
-        height: 100px
-        p
-            font-size: 72px
-            text-align: center
-            text-transform: uppercase
-            position: absolute
-            animation: none
-            display: inline-block
-            margin: 0 auto
-            color: white
-            transition: color .3s ease-in-out
-            width: 100%
-            &::before
-                position: absolute
-                display: block
-                top: 0
-                left: 0
-                width: 0%
-                right: auto
-                bottom: 0
-                height: 100%
-                z-index: 1
-                background: white
-                content: ""
-                transition: all .5s ease
-        .p-enter
-            color: transparent
-            &::before
-                left: 0
-                width: 0%
-                right: auto
-        .p-enter-active
-            color: transparent
-            &::before
-                left: 0
-                width: 100%
-                right: auto
-        .p-enter-done
-            color: white
-            &::before
-                left: auto
-                width: 0%
-                right: 0
-        .p-exit
-            color: white
-            &::before
-                left: 0
-                width: 0%
-                right: auto
-        .p-exit-active
-            color: white
-            &::before
-                left: 0
-                width: 100%
-                right: auto
-        .p-exit-done
-            color: transparent
-            &::before
-                left: auto
-                width: 0%
-                right: 0
-        // .p-appear
-        //     color: transparent
-        // .p-appear-active
-        //     color: transparent
-    .projectDescription
+    display: grid
+    grid-template-columns: 2fr 1fr
+    grid-column-gap: 200px
+    transform: translateY(-50%)
+    .p
+        animation: none
+        transform: none
+        opacity: 1
+    .project_title
+        font-size: 34px
+        text-align: left
+        text-transform: capitalize
+        // position: absolute
+        animation: none
+        display: inline-block
+        margin: 0 auto
+        color: white
+        transition: color .3s ease-in-out
+        width: 100%
+        font-family: AktivGrotesk
+        font-weight: 600
+    .project_description
         position: relative
         width: 100%
-        p
-            position: absolute
-            transition: all .5s ease
-            &::before
-                position: absolute
-                display: block
-                top: 0
-                left: 0
-                width: 0%
-                right: auto
-                bottom: 0
-                height: 100%
-                z-index: 1
-                background: white
-                content: ""
-                transition: all .5s ease
-        .p-enter
-            color: transparent
-        .p-enter-active
-            color: transparent
-        .p-enter-done
-            color: white
-        .p-exit
-            color: white
-        .p-exit-active, .p-exit-done
-            color: transparent
+        font-weight: 100
+        color: white
+        line-height: 1.33
+        opacity: .6
     .cta
         background: none
         border: none
         display: table
+        align-self: center
     .description
         color: white
         display: flex
         flex-direction: column
         justify-content: flex-start
         align-items: flex-start
-        max-width: 400px
-    .p
-        animation: none
-        transform: none
-        opacity: 1
+        align-self: center

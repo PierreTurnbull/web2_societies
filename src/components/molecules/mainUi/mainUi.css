@@ -1,116 +1,46 @@
 .mainUi {
   display: flex;
-  justify-content: space-around;
-  max-width: 900px;
-  margin: 0 auto; }
-  .mainUi .projectName {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1250px;
+  padding: 0 50px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 200px;
+  transform: translateY(-50%); }
+  .mainUi .p {
+    animation: none;
+    transform: none;
+    opacity: 1; }
+  .mainUi .project_title {
+    font-size: 34px;
+    text-align: left;
+    text-transform: capitalize;
+    animation: none;
+    display: inline-block;
+    margin: 0 auto;
+    color: white;
+    transition: color .3s ease-in-out;
+    width: 100%;
+    font-family: AktivGrotesk;
+    font-weight: 600; }
+  .mainUi .project_description {
     position: relative;
-    width: 300px;
-    height: 100px; }
-    .mainUi .projectName p {
-      font-size: 72px;
-      text-align: center;
-      text-transform: uppercase;
-      position: absolute;
-      animation: none;
-      display: inline-block;
-      margin: 0 auto;
-      color: white;
-      transition: color .3s ease-in-out;
-      width: 100%; }
-      .mainUi .projectName p::before {
-        position: absolute;
-        display: block;
-        top: 0;
-        left: 0;
-        width: 0%;
-        right: auto;
-        bottom: 0;
-        height: 100%;
-        z-index: 1;
-        background: white;
-        content: "";
-        transition: all .5s ease; }
-    .mainUi .projectName .p-enter {
-      color: transparent; }
-      .mainUi .projectName .p-enter::before {
-        left: 0;
-        width: 0%;
-        right: auto; }
-    .mainUi .projectName .p-enter-active {
-      color: transparent; }
-      .mainUi .projectName .p-enter-active::before {
-        left: 0;
-        width: 100%;
-        right: auto; }
-    .mainUi .projectName .p-enter-done {
-      color: white; }
-      .mainUi .projectName .p-enter-done::before {
-        left: auto;
-        width: 0%;
-        right: 0; }
-    .mainUi .projectName .p-exit {
-      color: white; }
-      .mainUi .projectName .p-exit::before {
-        left: 0;
-        width: 0%;
-        right: auto; }
-    .mainUi .projectName .p-exit-active {
-      color: white; }
-      .mainUi .projectName .p-exit-active::before {
-        left: 0;
-        width: 100%;
-        right: auto; }
-    .mainUi .projectName .p-exit-done {
-      color: transparent; }
-      .mainUi .projectName .p-exit-done::before {
-        left: auto;
-        width: 0%;
-        right: 0; }
-  .mainUi .projectDescription {
-    position: relative;
-    width: 100%; }
-    .mainUi .projectDescription p {
-      position: absolute;
-      transition: all .5s ease; }
-      .mainUi .projectDescription p::before {
-        position: absolute;
-        display: block;
-        top: 0;
-        left: 0;
-        width: 0%;
-        right: auto;
-        bottom: 0;
-        height: 100%;
-        z-index: 1;
-        background: white;
-        content: "";
-        transition: all .5s ease; }
-    .mainUi .projectDescription .p-enter {
-      color: transparent; }
-    .mainUi .projectDescription .p-enter-active {
-      color: transparent; }
-    .mainUi .projectDescription .p-enter-done {
-      color: white; }
-    .mainUi .projectDescription .p-exit {
-      color: white; }
-    .mainUi .projectDescription .p-exit-active, .mainUi .projectDescription .p-exit-done {
-      color: transparent; }
+    width: 100%;
+    font-weight: 100;
+    color: white;
+    line-height: 1.33;
+    opacity: .6; }
   .mainUi .cta {
     background: none;
     border: none;
-    display: table; }
+    display: table;
+    align-self: center; }
   .mainUi .description {
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    max-width: 400px; }
-  .mainUi .p {
-    animation: none;
-    transform: none;
-    opacity: 1; }
+    align-self: center; }

@@ -13,7 +13,7 @@ import Image5 from "images/5.jpeg"
 import TransitionMap from "images/transtionMap.jpg"
 import JarawaImage from "images/assets/jarawa_fullscreen.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
-import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
+import RastaImage from "images/assets/rastaa_fullscreen.jpg"
 import MainUi from '../../molecules/mainUi/MainUi';
 import CursorContainer from '../../atomes/cursor/CursorContainer';
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
@@ -52,7 +52,23 @@ export class Home extends React.PureComponent {
 
         // this.images = [Image1, Image2, Image3, Image4, Image5, JarawaImage, MonksImage, RastaImage];
         this.images = [MonksImage, JarawaImage, RastaImage];
-        this.projects = ["monks", "jarawa", "rasta"];
+        this.projects = [
+            {
+                name: "monks",
+                intro: "Les moines du Mont Athos",
+                description: "Découvrez cette communauté de chrétiens orthodoxes vivant en autarcie afin de pouvoir dédier leur vie à la religion, loin de tout péchés.",
+            },
+            {
+                name: "jarawa",
+                intro: "Les Jarawas des Andaman",
+                description: "Découvrez ce peuple autochtone vivant depuis des années coupé du monde moderne et du progrès technologique.",
+            },
+            {
+                name: "rasta",
+                intro: "Les rastas de Jamaïque",
+                description: "Découvrez cette communauté de jamaïcains vivant en autarcie selon des principes et une religion qui leurs sont propres.",
+            }
+        ];
         this.progress = 0.0;
         this.scrollProgress = 0.0;
 
@@ -62,77 +78,77 @@ export class Home extends React.PureComponent {
             b: this.state.gradientRGB.b
         }
 
-        this.gradientAnimation = TweenLite.to(
-            this.gradientRGB, 1, {
-                r: this.societiesGradient[this.state.imageIndex + 1].r,
-                g: this.societiesGradient[this.state.imageIndex + 1].g,
-                b: this.societiesGradient[this.state.imageIndex + 1].b,
-                paused: true,
-                onUpdate: () => { console.log(this.gradientRGB) },
-                onComplete: () => {
-                    console.log("COMPLETE", this.gradientRGB);
-                    this.gradientRGB = {
-                        r: this.gradientRGB.r,
-                        g: this.gradientRGB.g,
-                        b: this.gradientRGB.b
-                    };
-                }
-            }
-        );
-
         this.props.history.listen((location, action) => {
             this.setState({ redirect: true })
             console.group("on route change");
-            console.log("on route change");
             console.groupEnd()
         });
 
-        this.animation = TweenLite.to(this, 1.5, {
+        this.progressAnimation = TweenLite.to(this, 1.5, {
             progress: 100,
             paused: true,
             onUpdate: () => { this.setState({ progress: this.progress }) },
             // ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0.326 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
             ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-            // ease: Expo.easeOut
         });
     }
 
     prevImage = () => {
         if (this.state.imageIndex > 0) {
-            this.animation.play();
-            this.animation.eventCallback('onComplete', () => {
+            this.progressAnimation.play();
+            this.progressAnimation.eventCallback('onComplete', () => {
                 this.handleIndex("prev");
                 this.progressComplete();
             });
         } else {
-            this.animation.play();
-            this.animation.eventCallback('onComplete', () => {
+            this.progressAnimation.play();
+            this.progressAnimation.eventCallback('onComplete', () => {
                 this.setState({ imageIndex: Number(this.images.length - 1) });
                 this.progressComplete();
             });
         }
     }
 
+    getGradient = () => {
+        let index = this.state.imageIndex;
+        const nextGradient = {
+            r: this.societiesGradient[index].r,
+            g: this.societiesGradient[index].g,
+            b: this.societiesGradient[index].b,
+        }
+        return nextGradient
+    }
+
+    gradientAnimation = () => {
+        TweenLite.to(
+            this.gradientRGB, 2, {
+                r: { ...this.getGradient() }.r,
+                g: { ...this.getGradient() }.g,
+                b: { ...this.getGradient() }.b,
+            }
+        );
+    }
+
     nextImage = () => {
-        this.gradientAnimation.play();
         if (this.images.length - 1 > this.state.imageIndex) {
-            this.animation.play();
-            // this.animation.onComplete = () => this.handleIndex("next");
-            this.animation.eventCallback('onComplete', () => {
+            this.progressAnimation.play();
+            this.progressAnimation.eventCallback('onComplete', () => {
                 this.handleIndex("next");
+                this.gradientAnimation();
                 this.progressComplete();
-            })
+            });
         } else {
-            this.animation.play();
-            this.animation.eventCallback('onComplete', () => {
+            this.progressAnimation.play();
+            this.progressAnimation.eventCallback('onComplete', () => {
                 this.progressComplete();
                 this.setState({ imageIndex: Number(0) })
-            })
+                this.gradientAnimation();
+            });
         }
     }
 
     progressComplete = () => {
-        this.animation.reverse();
+        this.progressAnimation.reverse();
         this.setState({ isTicking: false });
     }
 
@@ -177,40 +193,29 @@ export class Home extends React.PureComponent {
             jarawa,
             rasta
         }
-        const dynBackground = gradients[this.projects[this.state.imageIndex]]
-        // console.log(this.gradientRGB);
+        const dynBackground = gradients[this.projects[this.state.imageIndex].name]
         return (
-            <React.Fragment>
-                <div
-                    onWheel={(e) => { e.persist(); this.onWheel(e); }}
-                    style={{ height: "100%", margin: 'auto' }}
-                >
-                    <p style={{ color: 'white' }} onClick={() => this.prevImage()}>prev</p>
-                    <p style={{ color: 'white' }} onClick={() => this.nextImage()}>next</p>
-                    <FullScreen
-                        transitionMap={TransitionMap}
-                        images={this.images}
-                        imageIndex={this.state.imageIndex}
-                        progress={this.state.progress}
-                        scrollProgress={this.state.scrollProgress}
-                        currentImage={this.images[this.state.imageIndex]}
-                        nextImage={this.images[this.state.imageIndex + 1]}
-                        className="thumbnailCanvas"
-                        gradient={dynBackground}
-                        gradientRGB={this.gradientRGB}
-                    />
-                    <MainUi
-                        projectName={this.projects[this.state.imageIndex]}
-                    />
-                </div>
-                {/* <CursorContainer
-                    cursorParams={{
-                        x: this.props.position.x,
-                        y: this.props.position.y - this.props.elementDimensions.height
-                    }
-                    }
-                /> */}
-            </React.Fragment>
+            <div
+                onWheel={(e) => { e.persist(); this.onWheel(e); }}
+                style={{ display: 'flex', alignItems: "center" }}
+            >
+                <FullScreen
+                    transitionMap={TransitionMap}
+                    images={this.images}
+                    imageIndex={this.state.imageIndex}
+                    progress={this.state.progress}
+                    scrollProgress={this.state.scrollProgress}
+                    currentImage={this.images[this.state.imageIndex]}
+                    nextImage={this.images[this.state.imageIndex + 1]}
+                    className="thumbnailCanvas"
+                    gradient={dynBackground}
+                    gradientRGB={this.gradientRGB}
+                />
+                <MainUi
+                    projectName={this.projects[this.state.imageIndex].intro}
+                    projectDescription={this.projects[this.state.imageIndex].description}
+                />
+            </div>
         )
     }
 }
