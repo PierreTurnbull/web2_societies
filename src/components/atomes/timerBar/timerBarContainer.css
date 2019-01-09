@@ -5,4 +5,5 @@
   grid-template-columns: repeat(3, 1fr);
   position: absolute;
   top: 10px;
-  left: 0; }
+  left: 0;
+  padding: 0 10px; }
