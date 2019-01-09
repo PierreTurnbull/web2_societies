@@ -216,7 +216,8 @@ export class Home extends React.PureComponent {
                     gradientRGB={this.gradientRGB}
                 />
                 <MainUi
-                    projectName={this.projects[this.state.imageIndex].intro}
+                    projectIntro={this.projects[this.state.imageIndex].intro}
+                    projectName={this.projects[this.state.imageIndex].name}
                     projectDescription={this.projects[this.state.imageIndex].description}
                 />
             </div>

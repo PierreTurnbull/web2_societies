@@ -12,20 +12,20 @@ export default class MainUi extends Component {
     }
 
     render() {
-        const { projectName, projectDescription } = this.props;
+        const { projectName, projectDescription, projectIntro } = this.props;
 
         return (
             <div className="mainUi">
                 <div className="description">
                     <p className="project_title">
-                        {projectName}
+                        {projectIntro}
                     </p>
                     <p className="p project_description">
                         {projectDescription}
                     </p>
                 </div>
                 <div className="cta">
-                    <CircleCtaContainer holdComplete={(path) => this.goTo(path)} />
+                    <CircleCtaContainer path={projectName} holdComplete={(path) => this.goTo(path)} />
                 </div>
             </div>
         )

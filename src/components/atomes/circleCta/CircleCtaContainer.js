@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import CircleCta from './CircleCta';
 import { TweenLite, Expo } from "gsap/TweenMax";
 import CursorContainer from '../cursor/CursorContainer';
+import { withRouter } from "react-router-dom";
 
-export default class CircleCtaContainer extends Component {
+class CircleCtaContainer extends Component {
 
     state = {
         holdValue: 0
@@ -17,6 +18,7 @@ export default class CircleCtaContainer extends Component {
             holdProgess: 100,
             paused: true,
             onUpdate: () => { this.setState({ holdProgess: this.holdProgess }) },
+            onComplete: () => { this.props.history.push(this.props.path) },
             ease: Expo.easeOut
         });
     }
@@ -36,7 +38,6 @@ export default class CircleCtaContainer extends Component {
             >
                 <CircleCta
                     onMouseDown={() => {
-                        console.log("ge");
                         this.holdAnimation.play();
                     }}
                     onTouchStart={() => {
@@ -60,3 +61,5 @@ export default class CircleCtaContainer extends Component {
         )
     }
 }
+
+export default withRouter(CircleCtaContainer)
