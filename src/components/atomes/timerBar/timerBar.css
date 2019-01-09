@@ -1,7 +1,18 @@
 .timerBar {
   height: 2px;
   flex: 1;
-  background: white;
-  opacity: .4; }
+  position: relative; }
+  .timerBar .timerBarInactive {
+    height: 2px;
+    background: white;
+    opacity: .4; }
   .timerBar:not(:last-child) {
     margin-right: 8px; }
+
+.timerBarProgress {
+  height: 2px;
+  width: 10%;
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0; }

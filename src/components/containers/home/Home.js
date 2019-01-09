@@ -201,7 +201,7 @@ export class Home extends React.PureComponent {
                 style={{ display: 'flex', alignItems: "center" }}
             >
                 {
-                    window.innerWidth >= 768 && <TimerBarContainer />
+                    window.innerWidth >= 768 && <TimerBarContainer onComplete={this.nextImage} />
                 }
                 <FullScreen
                     transitionMap={TransitionMap}
