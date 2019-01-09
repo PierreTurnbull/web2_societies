@@ -11,8 +11,8 @@ class CursorContainer extends React.PureComponent {
 
         // this.x = this.props.cursorParams.x;
         // this.y = this.props.cursorParams.y;
-        this.x = 100;
-        this.y = 100;
+        this.x = this.props.cursor_context.state.cursorParams.x;
+        this.y = this.props.cursor_context.state.cursorParams.y;
         this.width = 50;
         this.height = 50;
 
@@ -29,28 +29,28 @@ class CursorContainer extends React.PureComponent {
         }
     }
 
-    cursorParams = {
-        ...this.props.cursorParams
-    }
-
     animPos = throttle(() => {
-        // TweenLite.to(this, .4,
-        //     {
-        //         x: this.props.cursorParams.x,
-        //         y: this.props.cursorParams.y,
-        //         onUpdate: () => {
-        //             this.setState({
-        //                 cursorParams: {
-        //                     ...this.state.cursorParams,
-        //                     x: this.x,
-        //                     y: this.y,
-        //                     width: this.width,
-        //                     height: this.height
-        //                 }
-        //             });
-        //         },
-        //     },
-        // );
+        console.log(this.props.cursor_context.state.cursorParams);
+        
+        this.props.cursor_context.state.cursorParams && TweenLite.to(this, .4,
+            {
+                x: this.props.cursor_context.state.cursorParams.x,
+                y: this.props.cursor_context.state.cursorParams.y,
+                onUpdate: () => {
+                    console.log("fefe", this.x, this.y);
+                    this.setState({
+                        cursorParams: {
+                            ...this.state.cursorParams,
+                            x: this.x,
+                            y: this.y,
+                            width: this.width,
+                            height: this.height
+                        }
+                    });
+
+                },
+            },
+        );
 
         // TweenLite.to(this, .4,
         //     {
@@ -109,6 +109,15 @@ class CursorContainer extends React.PureComponent {
     }
 
     componentWillReceiveProps() {
+        // this.setState({
+        //     ...this.state,
+        //     cursorParams: {
+        //         ...this.state.cursorParams,
+        //         x: this.x,
+        //         y: this.y
+        //     }
+
+        // })
         this.animPos();
         this.setBack();
     }
@@ -123,6 +132,8 @@ class CursorContainer extends React.PureComponent {
     // }
 
     render() {
+        console.log(this.props.cursor_context.state);
+
         return (
             <div className="cursorContainer">
                 <Cursor

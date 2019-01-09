@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactCursorPosition from 'react-cursor-position';
+import { throttle, debounce } from 'lodash';
 
 export const CursorContext = React.createContext('cursor');
 
@@ -27,15 +28,15 @@ class CursorProvider extends React.PureComponent {
         }
     }
 
-    updateCursorParams = (_params) => {
+    updateCursorParams = throttle((_params) => {
+        // console.log(_params);
         this.setState({
             ...this.state,
             cursorParams: _params
         });
-    }
+    }, 10)
 
     render() {
-        console.log("PROVIDER", this.props);
         return (
             <CursorContext.Provider
                 value={{
@@ -43,7 +44,7 @@ class CursorProvider extends React.PureComponent {
                     updateCursorParams: this.updateCursorParams
                 }}
             >
-                <ReactCursorPosition className="curIn">
+                <ReactCursorPosition className="curIn" onPositionChanged={(e) => this.updateCursorParams(e.position)}>
                     {this.props.children}
                 </ReactCursorPosition>
             </CursorContext.Provider>
