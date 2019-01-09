@@ -1,3 +1,12 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  max-width: 1250px;
+  margin: 0 auto;
+  width: 100%; }
+
 .logo {
   text-transform: uppercase;
   font-family: AktivGrotesk;
@@ -16,11 +25,3 @@
 .t-main-color {
   font-weight: 900;
   color: #00c6c8; }
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 50px;
-  max-width: 1250px;
-  margin: 0 auto; }

@@ -99,12 +99,14 @@ export class Home extends React.PureComponent {
             this.progressAnimation.play();
             this.progressAnimation.eventCallback('onComplete', () => {
                 this.handleIndex("prev");
+                this.gradientAnimation();
                 this.progressComplete();
             });
         } else {
             this.progressAnimation.play();
             this.progressAnimation.eventCallback('onComplete', () => {
                 this.setState({ imageIndex: Number(this.images.length - 1) });
+                this.gradientAnimation();
                 this.progressComplete();
             });
         }
@@ -112,6 +114,8 @@ export class Home extends React.PureComponent {
 
     getGradient = () => {
         let index = this.state.imageIndex;
+        console.log(index);
+        
         const nextGradient = {
             r: this.societiesGradient[index].r,
             g: this.societiesGradient[index].g,
@@ -160,9 +164,17 @@ export class Home extends React.PureComponent {
     }
 
     onWheel = throttle((e) => {
-        this.scrollValue = Math.abs(e.deltaY);
+        // this.scrollValue = Math.abs(e.deltaY);
+        this.scrollValue = e.deltaY;
 
-        const x = () => { if (this.scrollValue > 200) { this.setState({ isTicking: true }); this.nextImage() } };
+        const x = () => {
+            if (this.scrollValue > 200) {
+                this.setState({ isTicking: true });
+                this.nextImage();
+            } else if (this.scrollValue < -200) {
+                this.prevImage();
+            }
+        };
         x()
 
         TweenLite.to(this, .5, {
@@ -195,13 +207,14 @@ export class Home extends React.PureComponent {
             rasta
         }
         const dynBackground = gradients[this.projects[this.state.imageIndex].name]
+        const isMobile = window.innerWidth <= 768;
         return (
             <div
                 onWheel={(e) => { e.persist(); this.onWheel(e); }}
                 style={{ display: 'flex', alignItems: "center" }}
             >
                 {
-                    window.innerWidth >= 768 && <TimerBarContainer onComplete={this.nextImage} />
+                    isMobile && <TimerBarContainer onComplete={this.nextImage} />
                 }
                 <FullScreen
                     transitionMap={TransitionMap}

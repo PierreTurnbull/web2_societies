@@ -1,20 +1,23 @@
 .cta {
   padding: 8px 16px;
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: transparent;
   font-family: AktivGrotesk;
   font-size: 18px;
-  font-weight: 100;
+  font-weight: 300;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #5c5c5c;
-  border: 1px solid; }
+  color: white;
+  border: none;
+  opacity: .7;
+  transition: all .3s ease; }
   .cta:not(:last-child) {
     margin-right: 20px; }
   .cta:hover {
-    cursor: pointer; }
+    cursor: pointer;
+    opacity: 1; }
 
 .cta-white {
   padding: 8px 16px;
