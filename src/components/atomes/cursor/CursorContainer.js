@@ -19,6 +19,8 @@ class CursorContainer extends React.PureComponent {
         this.animPos = this.animPos.bind(this);
         this.setBack = this.setBack.bind(this);
 
+        this.node = this.props.cursor_context.state.cursorParams.node;
+
         this.state = {
             cursorParams: {
                 x: this.x,
@@ -32,8 +34,10 @@ class CursorContainer extends React.PureComponent {
     animPos = throttle(() => {
         this.props.cursor_context.state.cursorParams && TweenLite.to(this, .5,
             {
-                x: this.props.cursor_context.state.cursorParams.x,
-                y: this.props.cursor_context.state.cursorParams.y,
+                x: this.node === null ? this.props.cursor_context.state.cursorParams.x : this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2),
+                y: this.node === null ? this.props.cursor_context.state.cursorParams.y : this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2),
+                height: this.node === null ? 50 : this.node.getBoundingClientRect().height,
+                width: this.node === null ? 50 : this.node.getBoundingClientRect().height,
                 onUpdate: () => {
                     this.setState({
                         cursorParams: {
@@ -115,6 +119,7 @@ class CursorContainer extends React.PureComponent {
         //     }
 
         // })
+
         this.animPos();
         this.setBack();
     }
@@ -129,8 +134,11 @@ class CursorContainer extends React.PureComponent {
     // }
 
     render() {
+        this.node = this.props.cursor_context.state.cursorParams.node;
+        this.node && console.log(this.node.getBoundingClientRect());
+
         return (
-            <div className="cursorContainer">
+            <div className={`cursorContainer`}>
                 <Cursor
                     cursorParams={this.state.cursorParams}
                 />

@@ -10,4 +10,5 @@
   font-size: 18px;
   color: white;
   font-family: AktivGrotesk;
-  border: 3px dashed white; }
+  border: 3px dashed white;
+  transition: all .3s ease; }

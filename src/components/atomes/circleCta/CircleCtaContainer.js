@@ -3,7 +3,10 @@ import CircleCta from './CircleCta';
 import { TweenLite, Expo } from "gsap/TweenMax";
 import CursorContainer from '../cursor/CursorContainer';
 import { withRouter } from "react-router-dom";
+import { compose } from 'recompose';
+import { withCursorContext } from '../../../contexts/cursor/cursor.context';
 
+import "./circleCtaContainer.css";
 class CircleCtaContainer extends Component {
 
     state = {
@@ -12,6 +15,8 @@ class CircleCtaContainer extends Component {
 
     constructor(props) {
         super(props);
+
+        this.circleRef = React.createRef();
 
         this.holdProgess = 0;
         this.holdAnimation = TweenLite.to(this, 1.5, {
@@ -30,11 +35,15 @@ class CircleCtaContainer extends Component {
     render() {
         return (
             <div onMouseEnter={() => {
-                document.getElementsByClassName('cursor')[0].classList.toggle('bigCursor')
+                this.props.cursor_context.hoverHandler(this.circleRef.current, "HOLD");
+                this.setState({ isHover: true });
             }}
                 onMouseLeave={() => {
-                    document.getElementsByClassName('cursor')[0].classList.toggle('bigCursor')
+                    this.props.cursor_context.hoverHandler();
+                    this.setState({ isHover: false });
                 }}
+                ref={this.circleRef}
+                className={this.state.isHover && 'hide'}
             >
                 <CircleCta
                     onMouseDown={() => {
@@ -62,4 +71,4 @@ class CircleCtaContainer extends Component {
     }
 }
 
-export default withRouter(CircleCtaContainer)
+export default compose(withRouter, withCursorContext)(CircleCtaContainer)

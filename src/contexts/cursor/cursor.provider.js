@@ -23,16 +23,31 @@ class CursorProvider extends React.PureComponent {
                 x: this.x,
                 y: this.y,
                 width: this.width,
-                height: this.height
+                height: this.height,
+                node: null,
+                _text: null
             }
         }
     }
 
     updateCursorParams = (_params) => {
         this.setState({
+            ...this.state,
             cursorParams: {
+                ...this.state.cursorParams,
                 x: _params.x,
                 y: _params.y
+            }
+        });
+    }
+
+    hoverHandler = (_node, _text) => {
+        this.setState({
+            ...this.state,
+            cursorParams: {
+                ...this.state.cursorParams,
+                node: _node ? _node : null,
+                text: _node ? _text : null
             }
         });
     }
@@ -42,7 +57,8 @@ class CursorProvider extends React.PureComponent {
             <CursorContext.Provider
                 value={{
                     state: this.state,
-                    updateCursorParams: this.updateCursorParams
+                    updateCursorParams: this.updateCursorParams,
+                    hoverHandler: this.hoverHandler
                 }}
             >
                 <ReactCursorPosition
