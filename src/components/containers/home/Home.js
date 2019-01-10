@@ -194,7 +194,7 @@ export class Home extends React.PureComponent {
     }, 0);
 
     componentWillReceiveProps() {
-        this.props.cursor_context.updateCursorParams(this.props.position);
+        // this.props.cursor_context.updateCursorParams(this.props.position);
     }
 
     render() {

@@ -28,13 +28,14 @@ class CursorProvider extends React.PureComponent {
         }
     }
 
-    updateCursorParams = throttle((_params) => {
-        // console.log(_params);
+    updateCursorParams = (_params) => {
         this.setState({
-            ...this.state,
-            cursorParams: _params
+            cursorParams: {
+                x: _params.x,
+                y: _params.y
+            }
         });
-    }, 10)
+    }
 
     render() {
         return (
@@ -44,7 +45,11 @@ class CursorProvider extends React.PureComponent {
                     updateCursorParams: this.updateCursorParams
                 }}
             >
-                <ReactCursorPosition className="curIn" onPositionChanged={(e) => this.updateCursorParams(e.position)}>
+                <ReactCursorPosition
+                    className="curIn"
+                    onPositionChanged={(props) => this.updateCursorParams(props.position)}
+                    shouldDecorateChildren={false}
+                >
                     {this.props.children}
                 </ReactCursorPosition>
             </CursorContext.Provider>
