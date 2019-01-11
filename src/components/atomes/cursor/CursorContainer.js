@@ -13,9 +13,9 @@ class CursorContainer extends React.PureComponent {
         // this.y = this.props.cursorParams.y;
         this.x = this.props.cursor_context.state.cursorParams.x;
         this.y = this.props.cursor_context.state.cursorParams.y;
-        this.width = 50;
-        this.height = 50;
-        this.defaultCursorSize = 30;
+        this.defaultCursorSize = 3;
+        this.width = this.defaultCursorSize;
+        this.height = this.defaultCursorSize;
 
         this.animPos = this.animPos.bind(this);
         this.setBack = this.setBack.bind(this);
@@ -33,11 +33,21 @@ class CursorContainer extends React.PureComponent {
     }
 
     animPos = throttle(() => {
+        this.targetPosition = this.node && {
+            left: this.node.getBoundingClientRect().left + this.node.getBoundingClientRect().width / 2,
+            top: this.node.getBoundingClientRect().top + this.node.getBoundingClientRect().height / 2,
+        }
+        this.distance = this.node && {
+            x: this.targetPosition.left - this.props.cursor_context.state.cursorParams.x,
+            y: this.targetPosition.top - this.props.cursor_context.state.cursorParams.y
+        }
+        this.angle = this.node && Math.atan2(this.distance.x, this.distance.y)
+        this.hypotenuse = this.node && Math.sqrt(this.distance.x * this.distance.x + this.distance.y * this.distance.y)
         !this.node
             ? TweenLite.to(this, .5,
                 {
-                    x: this.node === null ? this.props.cursor_context.state.cursorParams.x : this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2),
-                    y: this.node === null ? this.props.cursor_context.state.cursorParams.y : this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2),
+                    x: this.props.cursor_context.state.cursorParams.x,
+                    y: this.props.cursor_context.state.cursorParams.y,
                     height: this.defaultCursorSize,
                     width: this.defaultCursorSize,
                     onUpdate: () => {
@@ -52,14 +62,15 @@ class CursorContainer extends React.PureComponent {
                         });
 
                     },
+                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
                 },
             )
             : TweenLite.to(this, .3,
                 {
                     height: this.node.getBoundingClientRect().height,
                     width: this.node.getBoundingClientRect().height,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2),
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2),
+                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 10,
+                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
                     onUpdate: () => {
                         this.setState({
                             cursorParams: {
@@ -72,6 +83,7 @@ class CursorContainer extends React.PureComponent {
                         });
 
                     },
+                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
                 },
             );
 
@@ -90,7 +102,7 @@ class CursorContainer extends React.PureComponent {
         //         },
         //     },
         // );
-    }, 1000);
+    }, 0);
 
     setBack = debounce(() => {
         !this.node
@@ -117,8 +129,8 @@ class CursorContainer extends React.PureComponent {
                 {
                     height: this.node.getBoundingClientRect().height,
                     width: this.node.getBoundingClientRect().height,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height)/2,
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height)/2,
+                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 10,
+                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
                     onUpdate: () => {
                         this.setState({
                             cursorParams: {
@@ -131,7 +143,7 @@ class CursorContainer extends React.PureComponent {
                         });
 
                     },
-                },
+                }, 0,
             );
 
         // TweenLite.to(this, .4,
@@ -182,10 +194,10 @@ class CursorContainer extends React.PureComponent {
 
     render() {
         this.node = this.props.cursor_context.state.cursorParams.node;
-        this.node && console.log(this.node.getBoundingClientRect());
+        // console.log(this.props.cursor_context.state.cursorParams.x, this.props.cursor_context.state.cursorParams.y);
 
         return (
-            <div className={`cursorContainer`}>
+            <div className={"cursorContainer"}>
                 <Cursor
                     cursorParams={this.state.cursorParams}
                 />

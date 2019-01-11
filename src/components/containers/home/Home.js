@@ -211,7 +211,7 @@ export class Home extends React.PureComponent {
         return (
             <div
                 onWheel={(e) => { e.persist(); this.onWheel(e); }}
-                style={{ display: 'flex', alignItems: "center" }}
+                style={{ display: 'flex', alignItems: "center", height: "100%" }}
             >
                 {
                     isMobile && <TimerBarContainer onComplete={this.nextImage} />

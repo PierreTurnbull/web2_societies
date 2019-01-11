@@ -27,10 +27,10 @@ export default class FullScreen extends Component {
             arr.push(...this.images.map((image) => {
                 return this.loader.load(image,
                     (texture) => {
-                        this.setImageSize();
                         this.uniforms.size = {
                             type: "v2", value: new THREE.Vector2(this.w, this.h)
                         }
+                        this.setImageSize();
                         this.onWindowResize();
                     })
             }));
@@ -107,7 +107,8 @@ export default class FullScreen extends Component {
         this.uniforms.map = { type: "sampler2D", value: this.MyMap };
         this.uniforms.texture = { type: "sampler2D", value: this.MyTexture, wrapS: THREE.RepeatWrapping, wrapT: THREE.RepeatWrapping, minFilter: THREE.LinearFilter };
         this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
-
+        this.setImageSize();
+        
         // this.uniforms.gradientRGB = {
         //     type: 'v3', value: new THREE.Vector3(
         //         this.props.gradientRGB.r,
@@ -202,15 +203,14 @@ export default class FullScreen extends Component {
             (texture) => {
                 this.imageWidth = texture.image.width;
                 this.imageHeight = texture.image.height;
-                this.uniforms.size = {
-                    type: "v2", value: new THREE.Vector2(this.w, this.h)
-                }
-                this.onWindowResize();
+                // this.uniforms.size = {
+                //     type: "v2", value: new THREE.Vector2(this.w, this.h)
+                // }
             });
+            this.onWindowResize();
     }
 
     onWindowResize(event) {
-        this.setImageSize();
         let w = this.canvas.clientWidth;
         let h = this.canvas.clientHeight;
         const canvasRatio = this.canvas.clientWidth / this.canvas.clientHeight;

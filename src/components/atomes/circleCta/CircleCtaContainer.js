@@ -43,7 +43,7 @@ class CircleCtaContainer extends Component {
                     this.setState({ isHover: false });
                 }}
                 ref={this.circleRef}
-                className={this.state.isHover && 'hide'}
+                className={this.state.isHover ? 'hide' : ''}
             >
                 <CircleCta
                     onMouseDown={() => {
