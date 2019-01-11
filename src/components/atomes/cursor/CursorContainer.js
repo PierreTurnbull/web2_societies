@@ -15,6 +15,7 @@ class CursorContainer extends React.PureComponent {
         this.y = this.props.cursor_context.state.cursorParams.y;
         this.width = 50;
         this.height = 50;
+        this.defaultCursorSize = 30;
 
         this.animPos = this.animPos.bind(this);
         this.setBack = this.setBack.bind(this);
@@ -32,26 +33,47 @@ class CursorContainer extends React.PureComponent {
     }
 
     animPos = throttle(() => {
-        this.props.cursor_context.state.cursorParams && TweenLite.to(this, .5,
-            {
-                x: this.node === null ? this.props.cursor_context.state.cursorParams.x : this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2),
-                y: this.node === null ? this.props.cursor_context.state.cursorParams.y : this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2),
-                height: this.node === null ? 50 : this.node.getBoundingClientRect().height,
-                width: this.node === null ? 50 : this.node.getBoundingClientRect().height,
-                onUpdate: () => {
-                    this.setState({
-                        cursorParams: {
-                            ...this.state.cursorParams,
-                            x: this.x,
-                            y: this.y,
-                            width: this.width,
-                            height: this.height
-                        }
-                    });
+        !this.node
+            ? TweenLite.to(this, .5,
+                {
+                    x: this.node === null ? this.props.cursor_context.state.cursorParams.x : this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2),
+                    y: this.node === null ? this.props.cursor_context.state.cursorParams.y : this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2),
+                    height: this.defaultCursorSize,
+                    width: this.defaultCursorSize,
+                    onUpdate: () => {
+                        this.setState({
+                            cursorParams: {
+                                ...this.state.cursorParams,
+                                x: this.x,
+                                y: this.y,
+                                width: this.width,
+                                height: this.height
+                            }
+                        });
 
+                    },
                 },
-            },
-        );
+            )
+            : TweenLite.to(this, .3,
+                {
+                    height: this.node.getBoundingClientRect().height,
+                    width: this.node.getBoundingClientRect().height,
+                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2),
+                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2),
+                    onUpdate: () => {
+                        this.setState({
+                            cursorParams: {
+                                ...this.state.cursorParams,
+                                width: this.width,
+                                height: this.height,
+                                x: this.x,
+                                y: this.y,
+                            }
+                        });
+
+                    },
+                },
+            );
 
         // TweenLite.to(this, .5,
         //     {
@@ -71,21 +93,46 @@ class CursorContainer extends React.PureComponent {
     }, 1000);
 
     setBack = debounce(() => {
-        TweenLite.to(this, .5,
-            {
-                x: this.props.cursor_context.state.cursorParams.x,
-                y: this.props.cursor_context.state.cursorParams.y,
-                onUpdate: () => {
-                    this.setState({
-                        cursorParams: {
-                            ...this.state.cursorParams,
-                            x: this.x,
-                            y: this.y,
-                        }
-                    })
+        !this.node
+            ? TweenLite.to(this, .5,
+                {
+                    x: this.props.cursor_context.state.cursorParams.x,
+                    y: this.props.cursor_context.state.cursorParams.y,
+                    height: this.defaultCursorSize,
+                    width: this.defaultCursorSize,
+                    onUpdate: () => {
+                        this.setState({
+                            cursorParams: {
+                                ...this.state.cursorParams,
+                                x: this.x,
+                                y: this.y,
+                                width: this.width,
+                                height: this.height,
+                            }
+                        })
+                    },
+                }
+            )
+            : TweenLite.to(this, .3,
+                {
+                    height: this.node.getBoundingClientRect().height,
+                    width: this.node.getBoundingClientRect().height,
+                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height)/2,
+                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height)/2,
+                    onUpdate: () => {
+                        this.setState({
+                            cursorParams: {
+                                ...this.state.cursorParams,
+                                width: this.width,
+                                height: this.height,
+                                x: this.x,
+                                y: this.y,
+                            }
+                        });
+
+                    },
                 },
-            }
-        );
+            );
 
         // TweenLite.to(this, .4,
         //     {

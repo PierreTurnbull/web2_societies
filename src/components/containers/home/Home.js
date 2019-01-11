@@ -3,6 +3,7 @@ import { withRouter } from 'react-router'
 import { TweenMax, TweenLite, Expo } from "gsap/TweenMax";
 import { throttle, debounce } from 'lodash';
 
+import { compose } from 'recompose';
 import FullScreen from '../../molecules/fullScreen/FullScreen';
 
 import Image1 from "images/1.jpg"
@@ -13,11 +14,10 @@ import Image5 from "images/5.jpeg"
 import TransitionMap from "images/transtionMap.jpg"
 import JarawaImage from "images/assets/jarawa_fullscreen.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
-import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
+import RastaImage from "images/assets/rasta_fullscreen.jpeg"
 import MainUi from '../../molecules/mainUi/MainUi';
 import CursorContainer from '../../atomes/cursor/CursorContainer';
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
-import { compose } from 'recompose';
 import TimerBarContainer from '../../atomes/timerBar/TimerBarContainer';
 
 export class Home extends React.PureComponent {

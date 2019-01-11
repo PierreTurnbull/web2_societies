@@ -28,10 +28,10 @@ export default class FullScreen extends Component {
                 return this.loader.load(image,
                     (texture) => {
                         this.setImageSize();
-                        this.onWindowResize();
                         this.uniforms.size = {
                             type: "v2", value: new THREE.Vector2(this.w, this.h)
                         }
+                        this.onWindowResize();
                     })
             }));
             this.images = arr;
@@ -205,6 +205,7 @@ export default class FullScreen extends Component {
                 this.uniforms.size = {
                     type: "v2", value: new THREE.Vector2(this.w, this.h)
                 }
+                this.onWindowResize();
             });
     }
 
@@ -230,13 +231,20 @@ export default class FullScreen extends Component {
             // console.log('> container paysage');
             if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
                 // console.log("image portrait");
+                if (canvasRatio > imageRatio) {
+                    console.log('<');
+                    this.mesh.scale.x = w / h;
+                    this.mesh.scale.y = this.mesh.scale.x / imageRatio;
+                } else {
+                    this.mesh.scale.y = 1;
+                    this.mesh.scale.x = this.mesh.scale.y * imageRatio;
+                }
             } else { // image paysage ?
                 // console.log("image paysage", this.imageWidth, this.imageHeight);
                 if (canvasRatio > imageRatio) {
                     console.log('<');
                     this.mesh.scale.x = w / h;
                     this.mesh.scale.y = this.mesh.scale.x / imageRatio;
-
                 } else {
                     this.mesh.scale.y = 1;
                     this.mesh.scale.x = this.mesh.scale.y * imageRatio;
@@ -246,6 +254,14 @@ export default class FullScreen extends Component {
             // console.log('< container portrait');
             if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
                 // console.log("image portrait");
+                if (canvasRatio > imageRatio) {
+                    console.log('<');
+                    this.mesh.scale.x = w / h;
+                    this.mesh.scale.y = this.mesh.scale.x / imageRatio;
+                } else {
+                    this.mesh.scale.y = 1;
+                    this.mesh.scale.x = this.mesh.scale.y * imageRatio;
+                }
             } else { // image paysage ?
                 // console.log("image paysage");
                 this.mesh.scale.y = 1;
