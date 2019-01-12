@@ -65,12 +65,12 @@ class CursorContainer extends React.PureComponent {
                     ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
                 },
             )
-            : TweenLite.to(this, .3,
+            : TweenLite.to(this, .2,
                 {
                     height: this.node.getBoundingClientRect().height,
                     width: this.node.getBoundingClientRect().height,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 10,
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
+                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
+                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
                     onUpdate: () => {
                         this.setState({
                             cursorParams: {
@@ -81,7 +81,6 @@ class CursorContainer extends React.PureComponent {
                                 y: this.y,
                             }
                         });
-
                     },
                     ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
                 },
@@ -123,14 +122,15 @@ class CursorContainer extends React.PureComponent {
                             }
                         })
                     },
+                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
                 }
             )
-            : TweenLite.to(this, .3,
+            : TweenLite.to(this, .2,
                 {
                     height: this.node.getBoundingClientRect().height,
                     width: this.node.getBoundingClientRect().height,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 10,
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
+                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
+                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
                     onUpdate: () => {
                         this.setState({
                             cursorParams: {
@@ -141,8 +141,8 @@ class CursorContainer extends React.PureComponent {
                                 y: this.y,
                             }
                         });
-
                     },
+                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
                 }, 0,
             );
 
