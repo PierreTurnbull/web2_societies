@@ -7,11 +7,15 @@
   transform: translate(-50%, -50%);
   border: 2px solid white;
   border-radius: 50%;
+  box-sizing: content-box;
   z-index: 2;
   display: block;
   padding: 0;
   margin: 0;
-  pointer-events: none; }
+  pointer-events: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center; }
 
 .cursor.bigCursor {
   transform: translate(-50%, -50%); }

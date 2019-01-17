@@ -27,7 +27,8 @@ class CursorContainer extends React.PureComponent {
                 x: this.x,
                 y: this.y,
                 width: this.width,
-                height: this.height
+                height: this.height,
+                text: ""
             }
         }
     }
@@ -181,6 +182,7 @@ class CursorContainer extends React.PureComponent {
 
         this.animPos();
         this.setBack();
+        this.node ? this.setState({text: "Maintenir le clic"}) : this.setState({text: ""});
     }
 
     // shouldComponentUpdate() {
@@ -200,6 +202,7 @@ class CursorContainer extends React.PureComponent {
             <div className={"cursorContainer"}>
                 <Cursor
                     cursorParams={this.state.cursorParams}
+                    text={this.state.text}
                 />
             </div>
         )

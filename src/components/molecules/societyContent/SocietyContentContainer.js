@@ -48,9 +48,9 @@ class SocietyContentContainer extends Component {
                 // onWheel={(e) => { e.persist(); this.handleScroll(e) }} 
                 ref={this.societyContainer}>
                 <p onClick={() => this.props.history.goBack()}>Retour à l'acceuil</p>
-                {
+                {/* {
                     this.props.societyIntro
-                }
+                } */}
                 {
                     this.props.societyContent
                 }

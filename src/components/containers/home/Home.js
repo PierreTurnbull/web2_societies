@@ -6,19 +6,14 @@ import { throttle, debounce } from 'lodash';
 import { compose } from 'recompose';
 import FullScreen from '../../molecules/fullScreen/FullScreen';
 
-import Image1 from "images/1.jpg"
-import Image2 from "images/2.jpeg"
-import Image3 from "images/3.jpeg"
-import Image4 from "images/4.png"
-import Image5 from "images/5.jpeg"
-import TransitionMap from "images/transtionMap.jpg"
+import TransitionMap from "images/transtionMap.jpeg"
 import JarawaImage from "images/assets/jarawa.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
-import RastaImage from "images/assets/rasta_fullscreen.jpeg"
+import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
 import MainUi from '../../molecules/mainUi/MainUi';
-import CursorContainer from '../../atomes/cursor/CursorContainer';
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
 import TimerBarContainer from '../../atomes/timerBar/TimerBarContainer';
+import scrollImage from "images/scroll.png"
 
 export class Home extends React.PureComponent {
     constructor(props) {
@@ -86,11 +81,11 @@ export class Home extends React.PureComponent {
             console.groupEnd()
         });
 
-        this.progressAnimation = TweenLite.to(this, .7, {
+        this.progressAnimation = TweenLite.to(this, .5, {
             progress: 100,
             paused: true,
             onUpdate: () => { this.setState({ progress: this.progress }) },
-            ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0.326 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
+            // ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0526 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
             // ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
         });
     }
@@ -166,6 +161,7 @@ export class Home extends React.PureComponent {
 
     onWheel = throttle((e) => {
         // this.scrollValue = Math.abs(e.deltaY);
+        e.stopPropagation()
         this.scrollValue = e.deltaY;
 
         const x = () => {
@@ -176,18 +172,18 @@ export class Home extends React.PureComponent {
                 this.prevImage();
             }
         };
-        x()
+        x();
 
-        TweenLite.to(this, 1, {
+        TweenLite.to(this, .5, {
             scrollProgress: this.scrollValue,
             onUpdate: () => { this.setState({ scrollProgress: this.scrollProgress }); },
             onComplete: () => { this.setBack(); },
             // ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
         });
-    }, 0)
+    }, 0);
 
     setBack = debounce(() => {
-        TweenLite.to(this, 1, {
+        TweenLite.to(this, .5, {
             scrollProgress: 0,
             onUpdate: (e) => { this.setState({ scrollProgress: this.scrollProgress }) },
             // ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
@@ -208,7 +204,7 @@ export class Home extends React.PureComponent {
     }
 
     onWindowResize = () => {
-        if(window.innerWidth <= 768) {
+        if (window.innerWidth <= 768) {
             this.setState({
                 isMobile: true
             })
@@ -233,7 +229,7 @@ export class Home extends React.PureComponent {
         return (
             <div
                 onWheel={(e) => { e.persist(); this.onWheel(e); }}
-                style={{ display: 'flex', alignItems: "center", height: "100%" }}
+                style={{ display: 'flex', alignItems: "center", height: "100%", flexDirection: "column" }}
             >
                 {
                     this.state.isMobile && <TimerBarContainer onComplete={this.nextImage} />
@@ -255,6 +251,13 @@ export class Home extends React.PureComponent {
                     projectName={this.projects[this.state.imageIndex].name}
                     projectDescription={this.projects[this.state.imageIndex].description}
                 />
+                <div style={{ margin: "0 auto 24px auto" }}>
+                    {
+                        this.state.isMobile
+                            ? <p style={{ color: "white", fontFamily: "AktivGrotesk", fontWeight: 300, fontSize: 14 }}>Découvrir</p>
+                            : <img style={{ height: "50px", width: "auto", gridColumn: "1/3" }} src={scrollImage} alt="scroll icon" />
+                    }
+                </div>
             </div>
         )
     }

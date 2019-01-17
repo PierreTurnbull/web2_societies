@@ -101,12 +101,12 @@ export default class FullScreen extends Component {
 
     componentDidUpdate() {
         this.MyTexture = this.images[this.props.imageIndex];
-        // this.MyTexture2 = this.images[this.props.imageIndex + 1];
+        this.MyTexture2 = this.images[this.props.imageIndex + 1];
         this.MyMap = this.images[this.props.imageIndex];
 
         this.uniforms.map = { type: "sampler2D", value: this.MyMap };
         this.uniforms.texture = { type: "sampler2D", value: this.MyTexture, wrapS: THREE.RepeatWrapping, wrapT: THREE.RepeatWrapping, minFilter: THREE.LinearFilter };
-        // this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
+        this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
         this.setImageSize();
         
         // this.uniforms.gradientRGB = {
@@ -132,8 +132,9 @@ export default class FullScreen extends Component {
         this.geometry = new THREE.PlaneGeometry(
             1,
             1,
-            20,
-            20
+           1,
+           1,
+           1
         );
 
         this.geometry.verticesNeedUpdate = true;
@@ -154,11 +155,11 @@ export default class FullScreen extends Component {
         this.uniforms.scrollProgress = { type: "sampler2D", value: this.props.scrollProgress };
 
         let setSpeed = throttle((speed) => {
-            TweenLite.to(this.uniforms.userScrollSpeed, 1, { value: speed * 5 })
-        }, 10);
+            TweenLite.to(this.uniforms.userScrollSpeed, 0, { value: speed })
+        }, 100);
 
         let setBack = debounce(() => {
-            TweenLite.to(this.uniforms.userScrollSpeed, 1, { value: 0 })
+            TweenLite.to(this.uniforms.userScrollSpeed, 0, { value: 0 })
         }, 0);
 
         window.onscroll = () => {
