@@ -48,7 +48,7 @@ export default class TimerBarContainer extends Component {
         this.timerAnimation = TweenLite.to(this, 5, {
             timer: 5,
             delay: 2,
-            onUpdate: () => { this.setState({ timer: this.timer }) },
+            onUpdate: () => { this.setState({ timer: this.timer }); console.log("UPDATE bar") },
             onComplete: () => { this.nextStoryBar() }
             // ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0.326 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
         });
@@ -58,8 +58,10 @@ export default class TimerBarContainer extends Component {
     //     this.state.timer > 5 && this.stopTimer()
     // }
 
-    stopTimer = () => {
-        clearInterval(this.startTimer())
+    componentWillUnmount() {
+        this.timerAnimation.kill();
+        console.log("KILL");
+        
     }
 
     render() {

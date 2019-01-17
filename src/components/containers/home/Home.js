@@ -12,7 +12,7 @@ import Image3 from "images/3.jpeg"
 import Image4 from "images/4.png"
 import Image5 from "images/5.jpeg"
 import TransitionMap from "images/transtionMap.jpg"
-import JarawaImage from "images/assets/jarawa_fullscreen.jpg"
+import JarawaImage from "images/assets/jarawa.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
 import RastaImage from "images/assets/rasta_fullscreen.jpeg"
 import MainUi from '../../molecules/mainUi/MainUi';
@@ -45,7 +45,8 @@ export class Home extends React.PureComponent {
                 r: this.societiesGradient[0].r,
                 g: this.societiesGradient[0].g,
                 b: this.societiesGradient[0].b,
-            }
+            },
+            isMobile: false
         }
 
         this.onWheel = this.onWheel.bind(this);
@@ -85,12 +86,12 @@ export class Home extends React.PureComponent {
             console.groupEnd()
         });
 
-        this.progressAnimation = TweenLite.to(this, 1.5, {
+        this.progressAnimation = TweenLite.to(this, .7, {
             progress: 100,
             paused: true,
             onUpdate: () => { this.setState({ progress: this.progress }) },
-            // ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0.326 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
-            ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+            ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0.326 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
+            // ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
         });
     }
 
@@ -115,7 +116,7 @@ export class Home extends React.PureComponent {
     getGradient = () => {
         let index = this.state.imageIndex;
         console.log(index);
-        
+
         const nextGradient = {
             r: this.societiesGradient[index].r,
             g: this.societiesGradient[index].g,
@@ -126,7 +127,7 @@ export class Home extends React.PureComponent {
 
     gradientAnimation = () => {
         TweenLite.to(
-            this.gradientRGB, 2, {
+            this.gradientRGB, .7, {
                 r: { ...this.getGradient() }.r,
                 g: { ...this.getGradient() }.g,
                 b: { ...this.getGradient() }.b,
@@ -177,26 +178,48 @@ export class Home extends React.PureComponent {
         };
         x()
 
-        TweenLite.to(this, .5, {
+        TweenLite.to(this, 1, {
             scrollProgress: this.scrollValue,
             onUpdate: () => { this.setState({ scrollProgress: this.scrollProgress }); },
             onComplete: () => { this.setBack(); },
-            ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+            // ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
         });
     }, 0)
 
     setBack = debounce(() => {
-        TweenLite.to(this, .5, {
+        TweenLite.to(this, 1, {
             scrollProgress: 0,
             onUpdate: (e) => { this.setState({ scrollProgress: this.scrollProgress }) },
-            ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+            // ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
         });
     }, 0);
+
+    componentDidMount() {
+        this.onWindowResize();
+        window.addEventListener('resize', this.onWindowResize, false);
+    }
 
     componentWillReceiveProps() {
         // this.props.cursor_context.updateCursorParams(this.props.position);
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onWindowResize);
+    }
+
+    onWindowResize = () => {
+        if(window.innerWidth <= 768) {
+            this.setState({
+                isMobile: true
+            })
+        } else {
+            this.setState({
+                isMobile: false
+            })
+        }
+    }
+
+    // this.isMobile = window.innerWidth <= 768;
     render() {
         const monks = "linear-gradient(to right, rgba(87, 18, 0, 0.2), rgba(87, 18, 0, 0.4))";
         const jarawa = "linear-gradient(to right, rgba(146, 154, 63, 0.2), rgba(146, 154, 63, 0.4))";
@@ -207,14 +230,13 @@ export class Home extends React.PureComponent {
             rasta
         }
         const dynBackground = gradients[this.projects[this.state.imageIndex].name]
-        const isMobile = window.innerWidth <= 768;
         return (
             <div
                 onWheel={(e) => { e.persist(); this.onWheel(e); }}
                 style={{ display: 'flex', alignItems: "center", height: "100%" }}
             >
                 {
-                    isMobile && <TimerBarContainer onComplete={this.nextImage} />
+                    this.state.isMobile && <TimerBarContainer onComplete={this.nextImage} />
                 }
                 <FullScreen
                     transitionMap={TransitionMap}

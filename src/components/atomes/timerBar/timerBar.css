@@ -7,7 +7,7 @@
     background: white;
     opacity: .4; }
   .timerBar:not(:last-child) {
-    margin-right: 16px; }
+    margin-right: 3px; }
 
 .timerBarProgress {
   height: 2px;

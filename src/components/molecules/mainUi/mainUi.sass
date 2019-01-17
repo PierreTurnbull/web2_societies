@@ -2,13 +2,14 @@
     display: flex
     justify-content: space-between
     width: 100%
-    max-width: 1250px
-    padding: 0 50px
+    max-width: 900px
+    padding: 0 32px 24px 32px
     margin: 0 auto
     display: grid
-    grid-template-columns: minmax(auto, 400px) 150px
-    grid-column-gap: 200px
-    transform: translateY(-50%)
+    grid-template-columns: minmax(auto, 1fr) 150px
+    grid-template-rows: 1fr auto
+    height: 100%
+    grid-column-gap: 80px
     .p
         animation: none
         transform: none
@@ -16,7 +17,6 @@
     .project_title
         font-size: 34px
         text-align: left
-        text-transform: capitalize
         // position: absolute
         animation: none
         display: inline-block
@@ -26,13 +26,15 @@
         width: 100%
         font-family: AktivGrotesk
         font-weight: 600
+        margin-bottom: 8px
     .project_description
         position: relative
         width: 100%
         font-weight: 100
         color: white
-        line-height: 1.33
-        opacity: .6
+        line-height: 24px
+        font-size: 18px
+        padding-right: 70px
     .cta
         background: none
         border: none
@@ -48,5 +50,23 @@
 @media all and (max-width: 768px)
     .mainUi
         grid-template-columns: 1fr
+        padding: 0 24px
+        grid-template-columns: 1fr
+        grid-gap: 0
+        .project_title
+            font-size: 56px
+            line-height: 1.22
+            width: 80%
+            margin: 0
+            text-align: left
         .cta
             display: none
+        .project_description
+            padding-right: 0
+            display: none
+@media all and (max-width: 480px)
+    .mainUi
+        .project_title
+            font-size: 36px
+            line-height: 1.22
+            width: 100%

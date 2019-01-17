@@ -62,13 +62,13 @@ export default class FullScreen extends Component {
             userScrollSpeed: { type: "f", value: this.userScrollSpeed }
         };
 
-        this.uniforms2 = {
-            time: { type: "f", value: 1.0 },
-            random: { type: "f", value: this.random },
-            resolution: { type: "v2", value: new THREE.Vector2(this.imageWidth, this.imageHeight) },
-            uvRate1: { type: "f", value: new THREE.Vector2(1, 1) },
-            userScrollSpeed: { type: "f", value: this.userScrollSpeed }
-        };
+        // this.uniforms2 = {
+        //     time: { type: "f", value: 1.0 },
+        //     random: { type: "f", value: this.random },
+        //     resolution: { type: "v2", value: new THREE.Vector2(this.imageWidth, this.imageHeight) },
+        //     uvRate1: { type: "f", value: new THREE.Vector2(1, 1) },
+        //     userScrollSpeed: { type: "f", value: this.userScrollSpeed }
+        // };
 
         this.material = new THREE.ShaderMaterial({
             uniforms: this.uniforms,
@@ -77,16 +77,16 @@ export default class FullScreen extends Component {
             // wireframe: true
         });
 
-        this.material2 = new THREE.ShaderMaterial({
-            uniforms: this.uniforms2,
-            vertexShader: vertexShader,
-            fragmentShader: fragmentShader,
-            blendSrc: THREE.SrcAlphaFactor,
-            transparent: true,
-            combine: THREE.MixOperation,
-            blending: THREE.AdditiveBlending,
-            // wireframe: true
-        });
+        // this.material2 = new THREE.ShaderMaterial({
+        //     uniforms: this.uniforms2,
+        //     vertexShader: vertexShader,
+        //     fragmentShader: fragmentShader,
+        //     blendSrc: THREE.SrcAlphaFactor,
+        //     transparent: true,
+        //     combine: THREE.MixOperation,
+        //     blending: THREE.AdditiveBlending,
+        //     // wireframe: true
+        // });
     }
 
     componentDidMount() {
@@ -101,12 +101,12 @@ export default class FullScreen extends Component {
 
     componentDidUpdate() {
         this.MyTexture = this.images[this.props.imageIndex];
-        this.MyTexture2 = this.images[this.props.imageIndex + 1];
+        // this.MyTexture2 = this.images[this.props.imageIndex + 1];
         this.MyMap = this.images[this.props.imageIndex];
 
         this.uniforms.map = { type: "sampler2D", value: this.MyMap };
         this.uniforms.texture = { type: "sampler2D", value: this.MyTexture, wrapS: THREE.RepeatWrapping, wrapT: THREE.RepeatWrapping, minFilter: THREE.LinearFilter };
-        this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
+        // this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
         this.setImageSize();
         
         // this.uniforms.gradientRGB = {
@@ -138,16 +138,16 @@ export default class FullScreen extends Component {
 
         this.geometry.verticesNeedUpdate = true;
         this.MyTexture = this.images[this.props.imageIndex];
-        this.MyTexture2 = this.images[this.props.imageIndex + 1];
+        // this.MyTexture2 = this.images[this.props.imageIndex + 1];
         this.MyTransitionMap = this.loader.load(this.props.transitionMap);
         this.MyMap = this.images[this.props.imageIndex];
 
 
-        this.uniforms2.texture = { type: "sampler2D", value: this.scrollImage, wrapS: THREE.MirroredRepeatWrapping, transparent: true };
-        this.uniforms2.texture.transparent = true;
+        // this.uniforms2.texture = { type: "sampler2D", value: this.scrollImage, wrapS: THREE.MirroredRepeatWrapping, transparent: true };
+        // this.uniforms2.texture.transparent = true;
 
         this.uniforms.texture = { type: "sampler2D", value: this.MyTexture, wrapS: THREE.MirroredRepeatWrapping };
-        this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
+        // this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
         this.uniforms.map = { type: "sampler2D", value: this.MyMap };
         this.uniforms.transitionMap = { type: "sampler2D", value: this.MyTransitionMap };
         this.uniforms.progress = { type: "sampler2D", value: this.props.progress };
@@ -174,7 +174,7 @@ export default class FullScreen extends Component {
         this.sprite.position.set(0, 0, 3);
         this.sprite.scale.set(1., 1., 1.);
         // this.sprite.material.alphaTest = 0.1
-        this.scene.add(this.mesh, this.textMesh);
+        this.scene.add(this.mesh);
         // this.scene.add(this.mesh, this.textMesh);
 
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -190,10 +190,10 @@ export default class FullScreen extends Component {
     animate() {
         requestAnimationFrame(this.animate);
         this.uniforms.time.value += 0.03;
-        this.uniforms2.time.value += 0.04;
+        // this.uniforms2.time.value += 0.04;
         this.uniforms.progress.value = this.props.progress;
         this.uniforms.scrollProgress.value = this.props.scrollProgress;
-        this.textMesh.position.y = -this.textMesh.scale.y;
+        // this.textMesh.position.y = -1.5;
 
         this.renderer.render(this.scene, camera);
     }
@@ -224,15 +224,15 @@ export default class FullScreen extends Component {
         this.renderer.setSize(w, h);
         this.material.uniforms.uvRate1.value.y = canvasRatio;
 
-        this.textMesh.scale.x = .5;
-        this.textMesh.scale.y = .5 / 2;
+        this.textMesh.scale.x = 1;
+        this.textMesh.scale.y = 1;
 
         if (canvasRatio > 1) { // container paysage ?
             // console.log('> container paysage');
             if (this.imageWidth / this.imageHeight < 1) { // image portrait ?
                 // console.log("image portrait");
                 if (canvasRatio > imageRatio) {
-                    console.log('<');
+                    // console.log('<');
                     this.mesh.scale.x = w / h;
                     this.mesh.scale.y = this.mesh.scale.x / imageRatio;
                 } else {
@@ -242,7 +242,7 @@ export default class FullScreen extends Component {
             } else { // image paysage ?
                 // console.log("image paysage", this.imageWidth, this.imageHeight);
                 if (canvasRatio > imageRatio) {
-                    console.log('<');
+                    // console.log('<');
                     this.mesh.scale.x = w / h;
                     this.mesh.scale.y = this.mesh.scale.x / imageRatio;
                 } else {

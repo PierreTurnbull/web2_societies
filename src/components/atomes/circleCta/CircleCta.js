@@ -21,7 +21,7 @@ const CircleCta = (props) => {
 
             style={{ ...props.style }}
         >
-            Discover
+            Découvrir
     </div>
     )
 }
