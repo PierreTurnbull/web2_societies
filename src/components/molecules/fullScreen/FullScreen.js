@@ -155,6 +155,8 @@ export default class FullScreen extends Component {
         this.uniforms.scrollProgress = { type: "sampler2D", value: this.props.scrollProgress };
 
         let setSpeed = throttle((speed) => {
+            console.log(speed);
+            
             TweenLite.to(this.uniforms.userScrollSpeed, 0, { value: speed })
         }, 100);
 

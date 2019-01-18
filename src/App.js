@@ -24,9 +24,9 @@ class App extends React.PureComponent {
           <Header />
           <Router>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Route path="/" component={() => <Home />} />
-              <Route path="/monks" component={() => <SocietyContentContainer societyIntro={<MonksIntro />} societyContent={<MonksContent />} />} />
-              <Route path="/jarawa" component={() => <SocietyContentContainer societyIntro={<JarawaIntro />} societyContent={<JarawaContent />} />} />
+              <Route path="/" exact component={() => <Home />} />
+              <Route path="/monks" component={() => <SocietyContentContainer society="monks" />} />
+              {/* <Route path="/jarawa" component={() => <SocietyContentContainer societyIntro={<JarawaIntro />} societyContent={<JarawaContent />} />} /> */}
               {/* <Route path="/rasta" component={() => <SocietyContentContainer societyContent={<RastaContent />} />} /> */}
             </div>
           </Router>

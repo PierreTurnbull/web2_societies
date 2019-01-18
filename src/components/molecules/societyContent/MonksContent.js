@@ -11,15 +11,18 @@ import img3 from 'images/monks/3.png';
 
 import "./societyContent.css";
 
-export default function MonksContent() {
+export default function MonksContent(props) {
+    // console.log(props.scrollValue);
+    
     return (
-        <div className="societyContent">
+        <div className="societyContent"  style={{transform: `skewY(${props.scrollValue}deg)`}}>
             <Title h="h3" text="Qui son les moines du Mont Athos" />
             <ImageContainer
                 src={img1}
                 imageVariant="fullWidth"
                 // gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                 alt="eve"
+                // style={{transform: `skewY(${props.scrollValue}deg)`}}
             />
             <p className="p">Perferenda dierum <b>reverteris tandem omnem</b> amicitiam cum ad postridie tot in agnitus vel aetatem frustra discesseris adsiduitati ad agnitus unde.</p>
             <p className="p">Ad amicorum se Quod iam neutris dixisse <b>reverteris dixisse ceciderunt dumtaxat amicos habuisset</b> ceciderunt metuat tum habuisset fuerint iam quos diligat.</p>

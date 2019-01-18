@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
+import scrollSpeed from 'utils/scrollSpeed';
+import { TweenMax, TweenLite, Expo } from "gsap/TweenMax";
+import { throttle, debounce } from 'lodash';
 
 import "./societyContentContainer.css";
+import MonksContent from './MonksContent';
+import JarawaContent from './JarawaContent';
 // import JarawaIntro from '../intros/JarawaIntro';
 class SocietyContentContainer extends Component {
 
@@ -15,45 +20,54 @@ class SocietyContentContainer extends Component {
         this.scrollY = 0
         this.societyContainer = React.createRef()
 
-        this.scroller = {
-            target: this.societyContainer,
-            ease: 0.05, // <= scroll speed
-            endY: 0,
-            y: 0,
-            resizeRequest: 1,
-            scrollRequest: 0,
-        };
+
+        this.state = {
+            scrollValue: 0
+        }
+
+        this.contentComponentsList = {
+            monks: <MonksContent />,
+            jarawa: <JarawaContent />,
+        }
     }
 
-    // handleScroll = throttle((event) => {
-    //     event.persist()
-    //     // TweenMax.to(this, 1, {
-    //     //     scrollY: event.deltaY / 10,
-    //     //     ease:Power2.easeOut,
-    //     //     onUpdate: () => this.updateScroll()
-    //     // });
-    // }, 100)
+    onScroll = (e) => {
+        let offset = e.target.scrollTop / 100;
+        offset = offset > 30 ? 5 : offset;
+        offset = offset < -30 ? -5 : offset;
+        let animationTime = offset / 2;
+        console.log(offset, animationTime);
 
-    updateScroll = () => {
-        // console.log(this.scrollY, this.scroller.target.current.scrollTop);
-        // window.scrollTo({top: window.pageYOffset + this.scrollY});
-        this.scroller.target.current.scrollTop = this.scroller.target.current.scrollTop + this.scrollY;
+        let updateValue = TweenLite.to(this, .5, {
+            scrollValue: offset / 3,
+            paused: true,
+            onUpdate: () => { this.setState({ scrollValue: this.scrollValue }) },
+            ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0526 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
+        });
+
+        let resetValue = debounce(() => {
+            TweenLite.to(this, .5, {
+                scrollValue: 0,
+                onUpdate: () => { this.setState({ scrollValue: this.scrollValue }) },
+                ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0526 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
+            });
+        }, 0);
+
+
+        updateValue.play();
+        resetValue();
     }
 
     render() {
-        
+        const DynContent = this.contentComponentsList[this.props.society];
         return (
             <div
+                onScroll={this.onScroll}
                 className="societyContentContainer"
                 // onWheel={(e) => { e.persist(); this.handleScroll(e) }} 
                 ref={this.societyContainer}>
                 <p onClick={() => this.props.history.goBack()}>Retour à l'acceuil</p>
-                {/* {
-                    this.props.societyIntro
-                } */}
-                {
-                    this.props.societyContent
-                }
+                <MonksContent scrollValue={this.state.scrollValue} />
             </div>
         )
     }
