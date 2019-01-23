@@ -183,7 +183,7 @@ export default class FullScreen extends Component {
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
-        this.renderer.setClearColor(0xff0000, 1);
+        this.renderer.setClearColor(0x000000, 1);
         this.canvas.appendChild(this.renderer.domElement);
 
         this.onWindowResize();
@@ -216,8 +216,8 @@ export default class FullScreen extends Component {
     onWindowResize(event) {
         let w = this.canvas.clientWidth;
         let h = this.canvas.clientHeight;
-        const canvasRatio = this.canvas.clientWidth / this.canvas.clientHeight;
-        const imageRatio = this.imageWidth / this.imageHeight;
+        const canvasRatio = (this.canvas.clientWidth / this.canvas.clientHeight);
+        const imageRatio = (this.imageWidth / this.imageHeight );
         camera.aspect = canvasRatio;
 
         let dist = camera.position.z - this.mesh.position.z;

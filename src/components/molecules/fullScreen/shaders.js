@@ -50,7 +50,7 @@ const fragmentShader = `
     float transitionMap = texture2D(transitionMap, vec2(vUv.x + sin(time) * progress/1000., vUv.y + progress/1000.)).r * 3.;
     float distort = sin( cos(time)) * .001 + sin(time) * (progress/1000.) * 0.01;
     float distort2 = (progress/100.) * (progress/100.);
-    float scrollDistort = abs(sin(scrollProgress/1000.))/2.;
+    float scrollDistort = abs(sin(scrollProgress/1000. + progress/1000.))/2.;
 
     vec4 rgba1 = texture2D(texture, vec2(vUv.x + (distort * map), vUv.y + (distort * map) * sin(distort*map*2.) ));
     vec4 rgba2 = texture2D(texture2, vUv);
