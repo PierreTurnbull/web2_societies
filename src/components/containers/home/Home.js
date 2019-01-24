@@ -10,10 +10,12 @@ import TransitionMap from "images/transtionMap.jpeg"
 import JarawaImage from "images/assets/jarawa.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
 import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
+import SoonImage from "images/test.jpeg"
 import MainUi from '../../molecules/mainUi/MainUi';
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
 import TimerBarContainer from '../../atomes/timerBar/TimerBarContainer';
 import scrollImage from "images/scroll.png"
+import MobileNavEvents from './MobileNavEvents';
 
 export class Home extends React.PureComponent {
     constructor(props) {
@@ -28,6 +30,9 @@ export class Home extends React.PureComponent {
             },
             {
                 r: 63, g: 154, b: 146
+            },
+            {
+                r: 0, g: 0, b: 0
             },
         ]
 
@@ -47,8 +52,7 @@ export class Home extends React.PureComponent {
         this.onWheel = this.onWheel.bind(this);
         this.setBack = this.setBack.bind(this);
 
-        // this.images = [Image1, Image2, Image3, Image4, Image5, JarawaImage, MonksImage, RastaImage];
-        this.images = [MonksImage, JarawaImage, RastaImage];
+        this.images = [MonksImage, JarawaImage, RastaImage, SoonImage];
         this.projects = [
             {
                 name: "monks",
@@ -64,6 +68,11 @@ export class Home extends React.PureComponent {
                 name: "rasta",
                 intro: "Les rastas de Jamaïque",
                 description: "Découvrez cette communauté de jamaïcains vivant en autarcie selon des principes et une religion qui leurs sont propres.",
+            },
+            {
+                name: "soon",
+                intro: "Comming soon",
+                description: "",
             }
         ];
         this.progress = 0.0;
@@ -220,16 +229,18 @@ export class Home extends React.PureComponent {
         const monks = "linear-gradient(to right, rgba(87, 18, 0, 0.2), rgba(87, 18, 0, 0.4))";
         const jarawa = "linear-gradient(to right, rgba(146, 154, 63, 0.2), rgba(146, 154, 63, 0.4))";
         const rasta = "linear-gradient(to right, rgba(63, 154, 146, 0.2), rgba(63, 154, 146, 0.4))";
+        const soon = "linear-gradient(to right, rgba(0, 0 ,0 , 0.2), rgba(0, 0 ,0 , 0.4))";
         const gradients = {
             monks,
             jarawa,
-            rasta
+            rasta,
+            soon
         }
         const dynBackground = gradients[this.projects[this.state.imageIndex].name]
         return (
             <div
                 onWheel={(e) => { e.persist(); this.onWheel(e); }}
-                style={{ display: 'flex', alignItems: "center", height: "100%", flexDirection: "column" }}
+                style={{ display: 'flex', alignItems: "center", height: "100%", flexDirection: "column", width: "100%" }}
             >
                 {
                     this.state.isMobile && <TimerBarContainer onComplete={this.nextImage} />
@@ -256,6 +267,13 @@ export class Home extends React.PureComponent {
                         this.state.isMobile
                             ? <p style={{ color: "white", fontFamily: "AktivGrotesk", fontWeight: 300, fontSize: 14 }}>Découvrir</p>
                             : <img style={{ height: "50px", width: "auto", gridColumn: "1/3" }} src={scrollImage} alt="scroll icon" />
+                    }
+                    {
+                        this.state.isMobile && <MobileNavEvents
+                            path={this.projects[this.state.imageIndex].name}
+                            onNext={this.nextImage}
+                            onPrev={this.prevImage}
+                        />
                     }
                 </div>
             </div>

@@ -108,7 +108,7 @@ export default class FullScreen extends Component {
         this.uniforms.texture = { type: "sampler2D", value: this.MyTexture, wrapS: THREE.RepeatWrapping, wrapT: THREE.RepeatWrapping, minFilter: THREE.LinearFilter };
         this.uniforms.texture2 = { type: "sampler2D", value: this.MyTexture2 };
         this.setImageSize();
-        
+
         // this.uniforms.gradientRGB = {
         //     type: 'v3', value: new THREE.Vector3(
         //         this.props.gradientRGB.r,
@@ -132,9 +132,9 @@ export default class FullScreen extends Component {
         this.geometry = new THREE.PlaneGeometry(
             1,
             1,
-           1,
-           1,
-           1
+            1,
+            1,
+            1
         );
 
         this.geometry.verticesNeedUpdate = true;
@@ -156,7 +156,7 @@ export default class FullScreen extends Component {
 
         let setSpeed = throttle((speed) => {
             console.log(speed);
-            
+
             TweenLite.to(this.uniforms.userScrollSpeed, 0, { value: speed })
         }, 100);
 
@@ -210,14 +210,14 @@ export default class FullScreen extends Component {
                 //     type: "v2", value: new THREE.Vector2(this.w, this.h)
                 // }
             });
-            this.onWindowResize();
+        this.onWindowResize();
     }
 
     onWindowResize(event) {
         let w = this.canvas.clientWidth;
         let h = this.canvas.clientHeight;
         const canvasRatio = (this.canvas.clientWidth / this.canvas.clientHeight);
-        const imageRatio = (this.imageWidth / this.imageHeight );
+        const imageRatio = (this.imageWidth / this.imageHeight);
         camera.aspect = canvasRatio;
 
         let dist = camera.position.z - this.mesh.position.z;

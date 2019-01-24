@@ -66,9 +66,7 @@ hr {
   color: #ffffff;
   margin: 24px 0;
   width: 100%;
-  text-align: left;
-  opacity: 0;
-  animation: slideIn 3s ease 2s both; }
+  text-align: left; }
 
 .h3 {
   font-family: PlayfairDisplay;
@@ -81,9 +79,7 @@ hr {
   color: #ffffff;
   margin: 64px 0;
   width: 100%;
-  text-align: left;
-  opacity: 0;
-  animation: slideIn 3s ease 2.3s both; }
+  text-align: left; }
 
 .p {
   font-family: AktivGrotesk;
@@ -94,9 +90,7 @@ hr {
   line-height: 1.33;
   letter-spacing: 1.5;
   color: #999;
-  margin-bottom: 32px;
-  opacity: 0;
-  animation: slideIn 3s ease 2.6s both; }
+  margin-bottom: 32px; }
   .p b {
     color: #eee;
     font-weight: 300; }
@@ -116,11 +110,3 @@ hr {
     font-size: 22px; }
   .p {
     font-size: 14px; } }
-
-@keyframes slideIn {
-  0% {
-    transform: translateY(100px);
-    opacity: 0; }
-  100% {
-    transform: translateY(0px);
-    opacity: 1; } }

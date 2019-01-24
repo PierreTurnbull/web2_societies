@@ -1,7 +1,8 @@
 .societyContentImage {
   position: relative;
   margin-bottom: 64px;
-  flex: 2; }
+  flex: 2;
+  overflow: hidden; }
   .societyContentImage img {
     height: 400px;
     width: 100%;

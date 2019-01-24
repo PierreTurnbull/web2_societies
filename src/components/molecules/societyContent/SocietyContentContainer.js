@@ -25,10 +25,6 @@ class SocietyContentContainer extends Component {
             scrollValue: 0
         }
 
-        this.contentComponentsList = {
-            monks: <MonksContent />,
-            jarawa: <JarawaContent />,
-        }
     }
 
     onScroll = (e) => {
@@ -53,13 +49,11 @@ class SocietyContentContainer extends Component {
             });
         }, 0);
 
-
         updateValue.play();
         resetValue();
     }
 
     render() {
-        const DynContent = this.contentComponentsList[this.props.society];
         return (
             <div
                 onScroll={this.onScroll}
