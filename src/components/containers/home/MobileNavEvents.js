@@ -24,10 +24,10 @@ class MobileNavEvents extends Component {
                 onSwipedUp={this.swipedUp}
                 onSwipedLeft={this.swipedLeft}
                 onSwipedRight={this.swipedRight}
-                style={{ height: "100%", width: "100%", position: "absolute", top: '0', left: '0' }}
+                style={{ height: "100%", width: "100%", position: "absolute", top: '100px', left: '0' }}
+                onClick={(e) => e.preventDefault(e)}
             >
-                You can swipe here!
-          </Swipeable>
+            </Swipeable>
         )
     }
 }
