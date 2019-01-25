@@ -151,8 +151,8 @@ class CursorContainer extends React.PureComponent {
             : this.text === "LINK"
                 ? TweenLite.to(this, .5,
                     {
-                        height: 10,
-                        width: 10,
+                        height: 0,
+                        width: 0,
                         x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - 20 - Math.sin(this.angle) * this.hypotenuse / 10,
                         y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
                         onUpdate: () => {

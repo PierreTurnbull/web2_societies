@@ -13,7 +13,15 @@ export class Header extends React.PureComponent {
     return (
       <div className="header">
         <div className="logo">
-          <a href="/"><span className="t-main-color">f</span>society</a>
+          <a href="/"
+            onMouseEnter={(e) => {
+              this.props.cursor_context.hoverHandler(e.currentTarget, "LINK");
+            }}
+            onMouseLeave={() => {
+              this.props.cursor_context.hoverHandler();
+            }}
+            customRef={(ref) => this.cta = ref}
+          ><span className="t-main-color">f</span>society</a>
         </div>
         <div className="ctas">
           <Cta
