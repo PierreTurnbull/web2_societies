@@ -6,6 +6,9 @@ export default function Cta(props) {
         <button
             className={`${props.white ? 'cta cta-white' : 'cta '}`}
             onClick={props.onClick}
+            onMouseEnter={props.onMouseEnter}
+            onMouseLeave={props.onMouseLeave}
+            ref={props.customRef}
         >
             {props.text}
         </button>
