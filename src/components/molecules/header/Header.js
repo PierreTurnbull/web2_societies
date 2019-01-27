@@ -15,7 +15,7 @@ export class Header extends React.PureComponent {
         <div className="logo">
           <a href="/"
             onMouseEnter={(e) => {
-              this.props.cursor_context.hoverHandler(e.currentTarget, "LINK");
+              this.props.cursor_context.hoverHandler(e.currentTarget, "NONE");
             }}
             onMouseLeave={() => {
               this.props.cursor_context.hoverHandler();

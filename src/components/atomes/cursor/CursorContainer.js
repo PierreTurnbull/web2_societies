@@ -16,6 +16,7 @@ class CursorContainer extends React.PureComponent {
         this.defaultCursorSize = 3;
         this.width = this.defaultCursorSize;
         this.height = this.defaultCursorSize;
+        this.background = 0;
 
         this.animPos = this.animPos.bind(this);
         this.setBack = this.setBack.bind(this);
@@ -30,6 +31,197 @@ class CursorContainer extends React.PureComponent {
                 height: this.height,
                 text: ""
             }
+        }
+    }
+
+    cursorAnimsTo = (param) => {
+        switch (param) {
+            case "LINK":
+                TweenLite.to(this, .5,
+                    {
+                        height: 10,
+                        width: 10,
+                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - 20 - Math.sin(this.angle) * this.hypotenuse / 10,
+                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
+                        onUpdate: () => {
+                            this.setState({
+                                cursorParams: {
+                                    ...this.state.cursorParams,
+                                    width: this.width,
+                                    height: this.height,
+                                    x: this.x,
+                                    y: this.y,
+                                }
+                            });
+                        },
+                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                    });
+                break;
+            case "LOGO":
+                TweenLite.to(this, .5,
+                    {
+                        height: this.node.getBoundingClientRect().height + 10,
+                        width: this.node.getBoundingClientRect().width + 10,
+                        borderWidth: 0,
+                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().width / 2) - Math.sin(this.angle) * this.hypotenuse / 10,
+                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
+                        onUpdate: () => {
+                            this.setState({
+                                cursorParams: {
+                                    ...this.state.cursorParams,
+                                    width: this.width,
+                                    borderWidth: this.borderWidth,
+                                    height: this.height,
+                                    x: this.x,
+                                    y: this.y,
+                                }
+                            });
+                        },
+                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                    });
+                break;
+            case "NONE":
+                TweenLite.to(this, .5,
+                    {
+                        height: 10,
+                        width: 10,
+                        borderWidth: 0,
+                        x: this.props.cursor_context.state.cursorParams.x,
+                        y: this.props.cursor_context.state.cursorParams.y,
+                        onUpdate: () => {
+
+                            this.setState({
+                                cursorParams: {
+                                    ...this.state.cursorParams,
+                                    width: this.width,
+                                    borderWidth: this.borderWidth,
+                                    height: this.height,
+                                    x: this.x,
+                                    y: this.y,
+                                }
+                            });
+                        },
+                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                    });
+                break;
+            default:
+                TweenLite.to(this, .1,
+                    {
+                        height: this.node.getBoundingClientRect().height,
+                        width: this.node.getBoundingClientRect().height,
+                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
+                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
+                        onUpdate: () => {
+                            this.setState({
+                                cursorParams: {
+                                    ...this.state.cursorParams,
+                                    width: this.width,
+                                    height: this.height,
+                                    x: this.x,
+                                    y: this.y,
+                                }
+                            });
+                        },
+                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                    });
+                break;
+        }
+    }
+
+    cursorAnimsBack = (param) => {
+        switch (param) {
+            case "LINK":
+                TweenLite.to(this, .5,
+                    {
+                        height: 0,
+                        width: 0,
+                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - 20 - Math.sin(this.angle) * this.hypotenuse / 10,
+                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
+                        onUpdate: () => {
+                            this.setState({
+                                cursorParams: {
+                                    ...this.state.cursorParams,
+                                    width: this.width,
+                                    height: this.height,
+                                    x: this.x,
+                                    y: this.y,
+                                }
+                            });
+                        },
+                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                    }, 0)
+                break;
+            case "LOGO":
+                TweenLite.to(this, .5,
+                    {
+                        height: this.node.getBoundingClientRect().height + 10,
+                        width: this.node.getBoundingClientRect().width + 10,
+                        borderRadius: 0,
+                        borderWidth: 0,
+                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().width / 2) - Math.sin(this.angle) * this.hypotenuse / 10,
+                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
+                        onUpdate: () => {
+                            this.setState({
+                                cursorParams: {
+                                    ...this.state.cursorParams,
+                                    width: this.width,
+                                    height: this.height,
+                                    borderRadius: this.borderRadius,
+                                    borderWidth: this.borderWidth,
+                                    x: this.x,
+                                    y: this.y,
+                                }
+                            });
+                        },
+                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                    });
+                break;
+            case "NONE":
+                TweenLite.to(this, .5,
+                    {
+                        height: 0,
+                        width: 0,
+                        borderRadius: 0,
+                        borderWidth: 0,
+                        x: this.props.cursor_context.state.cursorParams.x,
+                        y: this.props.cursor_context.state.cursorParams.y,
+                        onUpdate: () => {
+                            this.setState({
+                                cursorParams: {
+                                    ...this.state.cursorParams,
+                                    width: this.width,
+                                    height: this.height,
+                                    borderRadius: this.borderRadius,
+                                    borderWidth: this.borderWidth,
+                                    x: this.x,
+                                    y: this.y,
+                                }
+                            });
+                        },
+                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                    });
+                break;
+            default:
+                TweenLite.to(this, .2,
+                    {
+                        height: this.node.getBoundingClientRect().height,
+                        width: this.node.getBoundingClientRect().height,
+                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
+                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
+                        onUpdate: () => {
+                            this.setState({
+                                cursorParams: {
+                                    ...this.state.cursorParams,
+                                    width: this.width,
+                                    height: this.height,
+                                    x: this.x,
+                                    y: this.y,
+                                }
+                            });
+                        },
+                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                    }, 0);
+                break;
         }
     }
 
@@ -66,47 +258,7 @@ class CursorContainer extends React.PureComponent {
                     ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
                 },
             )
-            : this.text === "LINK"
-                ? TweenLite.to(this, .5,
-                    {
-                        height: 10,
-                        width: 10,
-                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - 20 - Math.sin(this.angle) * this.hypotenuse / 10,
-                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
-                        onUpdate: () => {
-                            this.setState({
-                                cursorParams: {
-                                    ...this.state.cursorParams,
-                                    width: this.width,
-                                    height: this.height,
-                                    x: this.x,
-                                    y: this.y,
-                                }
-                            });
-                        },
-                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                    }
-                )
-                : TweenLite.to(this, .1,
-                    {
-                        height: this.node.getBoundingClientRect().height,
-                        width: this.node.getBoundingClientRect().height,
-                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
-                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
-                        onUpdate: () => {
-                            this.setState({
-                                cursorParams: {
-                                    ...this.state.cursorParams,
-                                    width: this.width,
-                                    height: this.height,
-                                    x: this.x,
-                                    y: this.y,
-                                }
-                            });
-                        },
-                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                    }
-                )
+            : this.cursorAnimsTo(this.text)
 
 
         // TweenLite.to(this, .5,
@@ -134,12 +286,18 @@ class CursorContainer extends React.PureComponent {
                     y: this.props.cursor_context.state.cursorParams.y,
                     height: this.defaultCursorSize,
                     width: this.defaultCursorSize,
+                    borderRadius: 50,
+                    background: 0,
+                    borderWidth: 2,
                     onUpdate: () => {
                         this.setState({
                             cursorParams: {
                                 ...this.state.cursorParams,
                                 x: this.x,
                                 y: this.y,
+                                borderRadius: this.borderRadius,
+                                background: this.background,
+                                borderWidth: this.borderWidth,
                                 width: this.width,
                                 height: this.height,
                             }
@@ -148,48 +306,7 @@ class CursorContainer extends React.PureComponent {
                     ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
                 }
             )
-            : this.text === "LINK"
-                ? TweenLite.to(this, .5,
-                    {
-                        height: 0,
-                        width: 0,
-                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - 20 - Math.sin(this.angle) * this.hypotenuse / 10,
-                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
-                        onUpdate: () => {
-                            this.setState({
-                                cursorParams: {
-                                    ...this.state.cursorParams,
-                                    width: this.width,
-                                    height: this.height,
-                                    x: this.x,
-                                    y: this.y,
-                                }
-                            });
-                        },
-                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                    }, 0,
-                )
-
-                : TweenLite.to(this, .2,
-                    {
-                        height: this.node.getBoundingClientRect().height,
-                        width: this.node.getBoundingClientRect().height,
-                        x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
-                        y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
-                        onUpdate: () => {
-                            this.setState({
-                                cursorParams: {
-                                    ...this.state.cursorParams,
-                                    width: this.width,
-                                    height: this.height,
-                                    x: this.x,
-                                    y: this.y,
-                                }
-                            });
-                        },
-                        ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                    }, 0,
-                );
+            : this.cursorAnimsBack(this.text)
 
         // TweenLite.to(this, .4,
         //     {

@@ -10,6 +10,9 @@ function Cursor(props) {
                 left: `${props.cursorParams.x || 0}px`,
                 width: `${props.cursorParams.width}px`,
                 height: `${props.cursorParams.height}px`,
+                borderRadius: `${props.cursorParams.borderRadius}%`,
+                background: props.cursorParams.background && `rgba(255, 255, 255, ${props.cursorParams.background})`,
+                borderWidth: props.cursorParams.borderWidth && `${props.cursorParams.borderWidth}px`,
             }}
         >
             {/* <svg 
