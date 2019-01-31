@@ -24,18 +24,18 @@ class SocietyContentContainer extends Component {
         this.state = {
             scrollValue: 0
         }
+        this.currentPixel = window.pageYOffset;
 
     }
 
     onScroll = (e) => {
-        let offset = e.target.scrollTop / 100;
-        offset = offset > 30 ? 5 : offset;
-        offset = offset < -30 ? -5 : offset;
-        let animationTime = offset / 2;
-        console.log(offset, animationTime);
-
+        let offset = window.pageYOffset;
+        const diff = offset - this.currentPixel;
+        const speed = diff * .25;
+        console.log(speed);
+        
         let updateValue = TweenLite.to(this, .5, {
-            scrollValue: offset / 3,
+            scrollValue: speed,
             paused: true,
             onUpdate: () => { this.setState({ scrollValue: this.scrollValue }) },
             ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0526 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
@@ -56,9 +56,9 @@ class SocietyContentContainer extends Component {
     render() {
         return (
             <div
-                onScroll={this.onScroll}
+                // onScroll={this.onScroll}
                 className="societyContentContainer"
-                // onWheel={(e) => { e.persist(); this.handleScroll(e) }} 
+                onWheel={(e) => { e.persist(); this.onScroll(e) }} 
                 ref={this.societyContainer}>
                 <p onClick={() => this.props.history.goBack()}>Retour à l'acceuil</p>
                 <MonksContent scrollValue={this.state.scrollValue} />

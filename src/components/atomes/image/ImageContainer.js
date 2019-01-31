@@ -25,7 +25,7 @@ export default class ImageContainer extends Component {
     }
 
     componentDidUpdate() {
-        console.log(this.props.isVisible);
+        // console.log(this.props.isVisible);
         this.imageAnim.play();
     }
 

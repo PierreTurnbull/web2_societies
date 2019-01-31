@@ -119,7 +119,7 @@ export class Home extends React.PureComponent {
 
     getGradient = () => {
         let index = this.state.imageIndex;
-        console.log(index);
+        // console.log(index);
 
         const nextGradient = {
             r: this.societiesGradient[index].r,

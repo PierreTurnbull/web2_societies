@@ -8,13 +8,24 @@ function Cursor(props) {
             style={{
                 top: `${props.cursorParams.y || 0}px`,
                 left: `${props.cursorParams.x || 0}px`,
-                width: `${props.cursorParams.width}px`,
-                height: `${props.cursorParams.height}px`,
+                width: `${props.cursorParams.cursorWidth}px`,
+                height: `${props.cursorParams.cursorWidth}px`,
                 borderRadius: `${props.cursorParams.borderRadius}%`,
-                background: props.cursorParams.background && `rgba(255, 255, 255, ${props.cursorParams.background})`,
+                borderColor: props.cursorParams.cursorOpacity && `rgba(255, 255, 255, ${props.cursorParams.cursorOpacity})`,
                 borderWidth: props.cursorParams.borderWidth && `${props.cursorParams.borderWidth}px`,
             }}
         >
+            <div
+                className="cursorInner"
+                style={{
+                    width: `${props.cursorParams.cursorInnerWidth}px`,
+                    height: `${props.cursorParams.cursorInnerWidth}px`,
+                    borderRadius: `${props.cursorParams.borderRadius}%`,
+                    borderWidth: props.cursorParams.borderWidth && `${props.cursorParams.borderWidth}px`,
+                }}
+            >
+
+            </div>
             {/* <svg 
             viewBox="0 0 500 500" 
             style={{ color: "white", margin: "0 auto", textAlign: "center"}}>
