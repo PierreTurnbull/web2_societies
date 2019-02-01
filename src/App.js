@@ -23,23 +23,23 @@ class App extends React.PureComponent {
         <div className="App">
           <Header />
           <Router>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", width: "100%" }}>
               <Route path="/" exact component={() => <Home />} />
               <Route path="/monks" component={() => <SocietyContentContainer society="monks" />} />
-              {/* <Route path="/jarawa" component={() => <SocietyContentContainer societyIntro={<JarawaIntro />} societyContent={<JarawaContent />} />} /> */}
+              <Route path="/jarawa" component={() => <SocietyContentContainer society="jarawa" />} />
               {/* <Route path="/rasta" component={() => <SocietyContentContainer societyContent={<RastaContent />} />} /> */}
             </div>
           </Router>
           {/* <CursorProvider>
 
-            <CursorContainer
-            // cursorParams={{
-            //   x: this.props.position.x,
-            //   y: this.props.position.y - this.props.elementDimensions.height
-            // }
-            // }
-            />
-            </CursorProvider> */}
+<CursorContainer
+// cursorParams={{
+  //   x: this.props.position.x,
+  //   y: this.props.position.y - this.props.elementDimensions.height
+  // }
+  // }
+  />
+</CursorProvider> */}
           {/* <p style={{ padding: "50px 50px 30px 50px", maxWidth: "1150px", margin: "0 auto" }}>© FSOCIETY a été pensé et réalisé par Salah, Alexandre, Pierre et Romain dans le cadre d’un projet à Hétic.</p> */}
           <CursorContainer
           // cursorParams={{

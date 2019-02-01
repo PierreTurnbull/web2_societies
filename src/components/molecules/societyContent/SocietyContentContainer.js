@@ -14,6 +14,10 @@ class SocietyContentContainer extends Component {
         super(props);
 
         // this.handleScroll = this.handleScroll.bind(this)
+        this.societyContentList = {
+            monks: MonksContent,
+            jarawa: JarawaContent
+        }
         this.scrollTime = 1.2;
         this.scrollDistance = 170;
 
@@ -33,7 +37,7 @@ class SocietyContentContainer extends Component {
         const diff = offset - this.currentPixel;
         const speed = diff * .25;
         console.log(speed);
-        
+
         let updateValue = TweenLite.to(this, .5, {
             scrollValue: speed,
             paused: true,
@@ -54,14 +58,19 @@ class SocietyContentContainer extends Component {
     }
 
     render() {
+        const { society } = this.props;
+        const DynSocietyContent = this.societyContentList[society];
+
         return (
             <div
                 // onScroll={this.onScroll}
                 className="societyContentContainer"
-                onWheel={(e) => { e.persist(); this.onScroll(e) }} 
+                onWheel={(e) => { e.persist(); this.onScroll(e) }}
                 ref={this.societyContainer}>
                 <p onClick={() => this.props.history.goBack()}>Retour à l'acceuil</p>
-                <MonksContent scrollValue={this.state.scrollValue} />
+                <DynSocietyContent scrollValue={this.state.scrollValue} />
+                {/* <MonksContent scrollValue={this.state.scrollValue} />
+                <JarawaContent scrollValue={this.state.scrollValue} /> */}
             </div>
         )
     }

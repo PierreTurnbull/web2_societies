@@ -16,13 +16,6 @@ export default class MonksContent extends Component {
 
     constructor(props) {
         super(props);
-
-        this.imageAnim = TweenLite.to(this, 2, {
-            imageProgress: 1,
-            paused: true,
-            onUpdate: () => { this.setState({ imageProgress: this.imageProgress }) },
-            ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0526 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
-        });
     }
 
     componentDidMount() {
@@ -40,7 +33,6 @@ export default class MonksContent extends Component {
                         imageVariant="fullWidth"
                         // gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                         alt="eve"
-                        anim={this.imageAnim}
                     // style={{transform: `skewY(${props.scrollValue}deg)`}}
                     />
                 </TrackVisibility>
