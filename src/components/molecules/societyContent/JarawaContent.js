@@ -24,6 +24,7 @@ export default class JarawaContent extends Component {
         const { scrollValue } = this.props;
         return (
             <div className="societyContent" style={{ transform: `skewY(${scrollValue}deg)` }}>
+                <p onClick={() => this.props.goBack()} style={{ color: "white" }}>Close</p>
                 <Title h="h1" text="Jarawa" />
                 <p className="p">Peuple autochtone vivant depuis des millénaires coupé du monde et du progrès technologique. Ils sont aujourd’hui menacés par le monde extérieur, notamment à cause du tourisme.</p>
                 <Title h="h3" text="Qui sont-ils ?" />

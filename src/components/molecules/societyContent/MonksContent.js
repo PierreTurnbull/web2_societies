@@ -26,6 +26,7 @@ export default class MonksContent extends Component {
         const { scrollValue } = this.props;
         return (
             <div className="societyContent" style={{ transform: `skewY(${scrollValue}deg)` }}>
+                <p onClick={() => this.props.goBack()} style={{ color: "white" }}>Close</p>
                 <Title h="h3" text="Qui son les moines du Mont Athos" />
                 <TrackVisibility>
                     <ImageContainer
