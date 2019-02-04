@@ -26,47 +26,43 @@ class CursorProvider extends React.PureComponent {
                 height: this.height,
                 node: null,
                 _text: null
+            },
+            updateCursorParams: (_params) => {
+                this.setState({
+                    ...this.state,
+                    cursorParams: {
+                        ...this.state.cursorParams,
+                        x: _params.x,
+                        y: _params.y
+                    }
+                });
+            },
+            hoverHandler: (_node, _text) => {
+                this.setState({
+                    ...this.state,
+                    cursorParams: {
+                        ...this.state.cursorParams,
+                        node: _node ? _node : null,
+                        text: _node ? _text : null
+                    }
+                });
             }
         }
     }
 
-    updateCursorParams = (_params) => {
-        this.setState({
-            ...this.state,
-            cursorParams: {
-                ...this.state.cursorParams,
-                x: _params.x,
-                y: _params.y
-            }
-        });
-    }
-
-    hoverHandler = (_node, _text) => {
-        this.setState({
-            ...this.state,
-            cursorParams: {
-                ...this.state.cursorParams,
-                node: _node ? _node : null,
-                text: _node ? _text : null
-            }
-        });
-    }
-
     render() {
-        
+
         return (
             <CursorContext.Provider
                 value={{
-                    state: this.state,
-                    updateCursorParams: this.updateCursorParams,
-                    hoverHandler: this.hoverHandler
+                    state: this.state
                 }}
             >
                 <ReactCursorPosition
                     className="curIn"
-                    onPositionChanged={(props) => this.updateCursorParams(props.position)}
+                    onPositionChanged={(props) => this.state.updateCursorParams(props.position)}
                     onClick={() => console.log('click')}
-                    // shouldDecorateChildren={false}
+                    shouldDecorateChildren={false}
                     activationInteractionMouse={INTERACTIONS.CLICK}
                 >
                     {this.props.children}

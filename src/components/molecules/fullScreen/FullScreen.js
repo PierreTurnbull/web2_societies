@@ -273,13 +273,12 @@ export default class FullScreen extends Component {
         }
 
         camera.updateProjectionMatrix();
-
     }
 
     render() {
         const gradientRGB = this.props.gradientRGB;
-        console.log(this.props.scrollProgress);
-        
+        // console.log(gradientRGB);
+
         return (
             <div className={this.props.className} ref={(ref) => this.canvas = ref}>
                 <Gradient

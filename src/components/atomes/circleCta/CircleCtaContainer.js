@@ -36,11 +36,11 @@ class CircleCtaContainer extends Component {
         return (
             <div
                 onMouseEnter={() => {
-                    this.props.cursor_context.hoverHandler(this.circleRef.current, "HOLD");
+                    this.props.cursor_context.state.hoverHandler(this.circleRef.current, "HOLD");
                     this.setState({ isHover: true });
                 }}
                 onMouseLeave={() => {
-                    this.props.cursor_context.hoverHandler();
+                    this.props.cursor_context.state.hoverHandler();
                     this.setState({ isHover: false });
                 }}
                 ref={this.circleRef}

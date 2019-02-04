@@ -15,10 +15,10 @@ export class Header extends React.PureComponent {
         <div className="logo">
           <a href="/"
             onMouseEnter={(e) => {
-              this.props.cursor_context.hoverHandler(e.currentTarget, "NONE");
+              this.props.cursor_context.state.hoverHandler(e.currentTarget, "NONE");
             }}
             onMouseLeave={() => {
-              this.props.cursor_context.hoverHandler();
+              this.props.cursor_context.state.hoverHandler();
             }}
             customRef={(ref) => this.cta = ref}
           ><span className="t-main-color">f</span>society</a>
@@ -28,10 +28,10 @@ export class Header extends React.PureComponent {
             text="En savoir plus"
             onClick={() => console.log("click savoir plus")}
             onMouseEnter={(e) => {
-              this.props.cursor_context.hoverHandler(e.currentTarget, "LINK");
+              this.props.cursor_context.state.hoverHandler(e.currentTarget, "LINK");
             }}
             onMouseLeave={() => {
-              this.props.cursor_context.hoverHandler();
+              this.props.cursor_context.state.hoverHandler();
             }}
             customRef={(ref) => this.cta = ref}
           />
@@ -39,10 +39,10 @@ export class Header extends React.PureComponent {
             text="Donnez votre avis"
             onClick={() => console.log("click avis")}
             onMouseEnter={(e) => {
-              this.props.cursor_context.hoverHandler(e.currentTarget, "LINK");
+              this.props.cursor_context.state.hoverHandler(e.currentTarget, "LINK");
             }}
             onMouseLeave={() => {
-              this.props.cursor_context.hoverHandler();
+              this.props.cursor_context.state.hoverHandler();
             }}
             customRef={(ref) => this.cta = ref}
           />
@@ -50,10 +50,10 @@ export class Header extends React.PureComponent {
             text="Crédits"
             onClick={() => console.log("click crédits")}
             onMouseEnter={(e) => {
-              this.props.cursor_context.hoverHandler(e.currentTarget, "LINK");
+              this.props.cursor_context.state.hoverHandler(e.currentTarget, "LINK");
             }}
             onMouseLeave={() => {
-              this.props.cursor_context.hoverHandler();
+              this.props.cursor_context.state.hoverHandler();
             }}
             customRef={(ref) => this.cta = ref}
           />

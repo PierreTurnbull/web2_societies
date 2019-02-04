@@ -71,7 +71,7 @@ export class Home extends React.PureComponent {
             },
             {
                 name: "soon",
-                intro: "Comming soon",
+                intro: "Coming soon",
                 description: "",
             }
         ];

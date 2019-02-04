@@ -63,14 +63,10 @@ class SocietyContentContainer extends Component {
 
         return (
             <div
-                // onScroll={this.onScroll}
                 className="societyContentContainer"
                 onWheel={(e) => { e.persist(); this.onScroll(e) }}
                 ref={this.societyContainer}>
-                <p onClick={() => this.props.history.goBack()}>Retour à l'acceuil</p>
-                <DynSocietyContent scrollValue={this.state.scrollValue} />
-                {/* <MonksContent scrollValue={this.state.scrollValue} />
-                <JarawaContent scrollValue={this.state.scrollValue} /> */}
+                <DynSocietyContent goBack={() => this.props.history.goBack()} scrollValue={this.state.scrollValue} />
             </div>
         )
     }

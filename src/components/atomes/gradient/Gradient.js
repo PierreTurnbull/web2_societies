@@ -13,7 +13,6 @@ const style = {
 }
 
 const Gradient = (props) => {
-    // console.log(props.background);
     return (
         <div
             style={{ ...style, background: props.background }}
