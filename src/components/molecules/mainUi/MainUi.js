@@ -3,11 +3,6 @@ import React, { Component } from 'react'
 import CircleCtaContainer from '../../atomes/circleCta/CircleCtaContainer';
 import './mainUi.css'
 export default class MainUi extends Component {
-
-    goTo = () => {
-
-    }
-
     render() {
         const { projectName, projectDescription, projectIntro } = this.props;
 
@@ -25,7 +20,7 @@ export default class MainUi extends Component {
                                         {projectDescription}
                                     </p>
                                 </div>
-                                <div className="cta" style={{ marginRight: 0 }}>
+                                <div className="cta" style={{ marginRight: 0, cursor: "none" }}>
                                     <CircleCtaContainer path={projectName} holdComplete={(path) => this.goTo(path)} />
                                 </div>
                             </>

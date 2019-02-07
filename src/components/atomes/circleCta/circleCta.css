@@ -11,4 +11,7 @@
   color: white;
   font-family: AktivGrotesk;
   border: 3px dashed white;
-  transition: all .3s ease; }
+  transition: all .3s ease;
+  cursor: none; }
+  .circleCta:hover {
+    border: 3px dashed rgba(255, 255, 255, 0); }

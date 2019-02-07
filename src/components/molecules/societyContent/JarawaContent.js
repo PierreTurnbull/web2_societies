@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from "react-router-dom";
 import Title from 'components/atomes/title/Title';
 import Quote from '../../atomes/Quote/Quote';
 import Text from '../../atomes/text/Text';
@@ -18,7 +19,7 @@ import img8 from 'images/jarawa/8.jpg';
 import '@material/react-material-icon/dist/material-icon.css';
 import "./societyContent.css";
 
-export default class JarawaContent extends Component {
+class JarawaContent extends Component {
 
     constructor(props) {
         super(props);
@@ -29,13 +30,22 @@ export default class JarawaContent extends Component {
         const { scrollValue } = this.props;
         return (
             <div className="societyContent" style={{ transform: `skewY(${scrollValue}deg)` }} ref={this.societyContentRef}>
-                <p onClick={() => this.props.goBack()} style={{ color: "white" }}>Close</p>
-                <Title h="h2" text="Un peuple menacé par la mondialisation" />
+                <div className="header">
+                    <Title h="h2" text="Un peuple menacé par la mondialisation" />
+                    <i
+                        className="material-icons"
+                        onClick={() => this.props.history.push('/')}
+                        style={{color: "black", background: "rgb(146, 146, 146)", borderRadius: "50%", padding: 2}}
+                    >
+                        close
+                    </i>
+                </div>
                 <ImageContainer
                     src={img1}
                     imageVariant="fullWidth"
                     // gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                     alt="eve"
+                    disabledVisible
                 />
                 <Text text="Les îles Andaman sont un <b>archipel situé entre le Golf du Bengal et la Mer d’Andaman </b>où habite la tribu des Jarawas, un peuple autochtone vivant depuis des millénaires coupés du monde et du progrès technologique." />
                 <Text text="Ils sont les derniers autochtones survivants de la grande île du sud et sont aujourd’hui menacés par le monde extérieur, notamment à cause du tourisme, du braconnage et de la déforestation." />
@@ -66,21 +76,12 @@ export default class JarawaContent extends Component {
                     Les moines, étant très pratiquants, organisent leurs repas selon leur religion. Ils mangent toujours à la même heure et juste assez pour ne plus avoir faim. De plus, ils respectent particulièrement les aliments qu’il consomment (pour les animaux par exemple).</br>
                     Les rastas quant à eux, cultivent tout ce qu’ils mangent tout en prenant soin de la terre : chaque plantation est nourrie en respectant celles qui grandiront à sa place plus tard. Ils sont aussi réputés pour fumer beaucoup de cannabis (qu’ils font pousser eux-mêmes) dans le cadre de leur religion : la ganja leur permet de vivre pleinement avec Dieu."
                 />
-                <ImageContainer
-                    src={img2}
-                    imageVariant="right"
-                    imageAdornment="CHASSE"
-                    adornmentVariant="horizontal"
-                    adornmentReverse
-                    gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
-                    alt="eve"
-                />
                 <Text text="Et non ! Bien qu’en 2000, une étude a conclu que leur régime alimentaire était optimal, qu’ils allaient chercher directement leurs besoins à la source et étaient autosuffisants au niveau des vivres." />
                 <Text text="Les aliments qu’ils consommaient n’étaient pas transformés, de plus, ils avaient une connaissance approfondie de plus de 150 plantes et 350 espèces animales. Mais aujourd’hui... les cochons sauvages sont en petit nombre et cela contraint les Jarawas à adapter leur alimentation et à se rabattre vers les autres espèces qui ne sont pas chassées par les braconniers." />
                 <ImageContainer
                     src={img4}
                     imageVariant="right"
-                    imageAdornment="CHASSE"
+                    imageAdornment="ALIMENTATION"
                     adornmentVariant="horizontal"
                     adornmentReverse
                     gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
@@ -90,7 +91,7 @@ export default class JarawaContent extends Component {
                 <ImageContainer
                     src={img5}
                     imageVariant="left"
-                    imageAdornment="pêche"
+                    imageAdornment="fruits"
                     adornmentVariant="vertical"
                     gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                     alt="eve"
@@ -103,7 +104,7 @@ export default class JarawaContent extends Component {
                 <ImageContainer
                     src={img6}
                     imageVariant="right"
-                    imageAdornment="CHASSE"
+                    imageAdornment="tourisme"
                     adornmentVariant="horizontal"
                     adornmentReverse
                     gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
@@ -115,7 +116,7 @@ export default class JarawaContent extends Component {
                 <ImageContainer
                     src={img7}
                     imageVariant="left"
-                    imageAdornment="pêche"
+                    imageAdornment="Menaces"
                     adornmentVariant="vertical"
                     gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                     alt="eve"
@@ -137,3 +138,4 @@ export default class JarawaContent extends Component {
     }
 }
 
+export default withRouter(JarawaContent)

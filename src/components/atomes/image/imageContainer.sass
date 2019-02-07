@@ -5,17 +5,23 @@
     .imageAdornment
         color: white
         display: flex
-        justify-content: space-around
         width: 30%
         text-align: center
+        flex-direction: row-reverse
+        justify-content: flex-end
+        margin: 0
+        padding-left: 24px
         p
             text-align: center
             font-family: AktivGrotesk
             word-break: break-all
-            width: 14px
+            width: 35px
             font-size: 28px
             text-transform: uppercase
             font-weight: 300
+            margin: 0 8px
+            letter-spacing: 11px
+            line-height: 28px
             &:nth-child(1)
                 opacity: .2
             &:nth-child(2)
@@ -33,15 +39,17 @@
 .imageAdornment.vertical
     flex-direction: column
     flex: 1
+    padding-right: 24px
     p
         width: 100%
         line-height: 0.79
         letter-spacing: 5.4px
         font-size: 38px
-        margin: 16px 0
+        margin: 8px 0
         // text-shadow: -.5px 0 white, 0 .5px white, .5px 0 white, 0 -.5px white
         -webkit-text-stroke: 1px white
         color: transparent
+        text-align: right
         &:nth-child(1)
             opacity: .2
         &:nth-child(2)
@@ -52,6 +60,11 @@
             opacity: .6
         &:nth-child(5)
             opacity: .2
+.imageContainer+.voteContainer
+    .societyContentImage
+        margin-bottom: 0
+    .voteContainer
+        margin: 24px 0
 @media all and (max-width: 750px)
     .imageContainer
         .imageAdornment

@@ -1,7 +1,7 @@
 .societyContentImage
     position: relative
     // padding: 0 24px
-    margin-bottom: 64px
+    margin-bottom: 24px
     flex: 2
     overflow: hidden
     img
@@ -30,15 +30,17 @@
         z-index: 1
 .societyContentImage.left
     margin-left: 0
-    margin-right: 32px
+    margin-right: 0px
     img
         height: 400px
 .societyContentImage.right
-    margin-left: 32px
+    margin-left: 0px
     margin-right: 0
     img
         height: 400px
-
+.p+.imageContainer
+    .societyContentImage
+        margin:  0 0 24px 0
 @media all and (max-width: 768px)
     .societyContentImage
         margin-bottom: 32px

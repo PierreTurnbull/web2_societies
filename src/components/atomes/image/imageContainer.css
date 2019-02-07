@@ -5,17 +5,23 @@
   .imageContainer .imageAdornment {
     color: white;
     display: flex;
-    justify-content: space-around;
     width: 30%;
-    text-align: center; }
+    text-align: center;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin: 0;
+    padding-left: 24px; }
     .imageContainer .imageAdornment p {
       text-align: center;
       font-family: AktivGrotesk;
       word-break: break-all;
-      width: 14px;
+      width: 35px;
       font-size: 28px;
       text-transform: uppercase;
-      font-weight: 300; }
+      font-weight: 300;
+      margin: 0 8px;
+      letter-spacing: 11px;
+      line-height: 28px; }
       .imageContainer .imageAdornment p:nth-child(1) {
         opacity: .2; }
       .imageContainer .imageAdornment p:nth-child(2) {
@@ -32,15 +38,17 @@
 
 .imageAdornment.vertical {
   flex-direction: column;
-  flex: 1; }
+  flex: 1;
+  padding-right: 24px; }
   .imageAdornment.vertical p {
     width: 100%;
     line-height: 0.79;
     letter-spacing: 5.4px;
     font-size: 38px;
-    margin: 16px 0;
+    margin: 8px 0;
     -webkit-text-stroke: 1px white;
-    color: transparent; }
+    color: transparent;
+    text-align: right; }
     .imageAdornment.vertical p:nth-child(1) {
       opacity: .2; }
     .imageAdornment.vertical p:nth-child(2) {
@@ -51,6 +59,12 @@
       opacity: .6; }
     .imageAdornment.vertical p:nth-child(5) {
       opacity: .2; }
+
+.imageContainer + .voteContainer .societyContentImage {
+  margin-bottom: 0; }
+
+.imageContainer + .voteContainer .voteContainer {
+  margin: 24px 0; }
 
 @media all and (max-width: 750px) {
   .imageContainer .imageAdornment {

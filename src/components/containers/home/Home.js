@@ -264,20 +264,30 @@ export class Home extends React.Component {
                     projectName={this.projects[this.state.imageIndex].name}
                     projectDescription={this.projects[this.state.imageIndex].description}
                 />
-                <div style={{ margin: "0 auto 24px auto" }}>
+                <div style={{ margin: "0 auto 24px auto", position: "absolute", bottom: 0, zIndex: 1 }}>
                     {
                         this.state.isMobile
-                            ? <p style={{ color: "white", fontFamily: "AktivGrotesk", fontWeight: 300, fontSize: 14 }}>Découvrir</p>
+                            ? <div onClick={() => this.props.history.push(this.projects[this.state.imageIndex].name)}>
+                                <i
+                                    className="material-icons"
+                                    style={{ color: 'white', display: "block", textAlign: "center", margin: '0 auto' }}
+                                >
+                                    keyboard_arrow_up
+                                </i>
+                                <p style={{ color: "white", fontFamily: "AktivGrotesk", fontWeight: 300, fontSize: 14 }}>
+                                    Découvrir
+                                </p>
+                            </div>
                             : <img style={{ height: "50px", width: "auto", gridColumn: "1/3" }} src={scrollImage} alt="scroll icon" />
                     }
-                    {
-                        this.state.isMobile && <MobileNavEvents
-                            path={this.projects[this.state.imageIndex].name}
-                            onNext={this.nextImage}
-                            onPrev={this.prevImage}
-                        />
-                    }
                 </div>
+                {
+                    this.state.isMobile && <MobileNavEvents
+                        path={this.projects[this.state.imageIndex].name}
+                        onNext={this.nextImage}
+                        onPrev={this.prevImage}
+                    />
+                }
             </div>
         )
     }

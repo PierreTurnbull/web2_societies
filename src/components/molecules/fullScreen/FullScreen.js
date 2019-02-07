@@ -292,7 +292,7 @@ export default class FullScreen extends Component {
                 onMouseMove={() => console.log("los")}
                 onMouseMoveCapture={() => console.log("los")}
             >
-                <Gradient
+                {/* <Gradient
                     background={
                         `linear-gradient(53deg, rgba(${gradientRGB.r + ',' + gradientRGB.g + ',' + gradientRGB.b}, .3),
                         rgba(${gradientRGB.r + ',' + gradientRGB.g + ',' + gradientRGB.b}, .5))`
@@ -300,7 +300,7 @@ export default class FullScreen extends Component {
                 <Gradient
                     background={
                         `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3))`
-                    } />
+                    } /> */}
             </div>
         )
     }
