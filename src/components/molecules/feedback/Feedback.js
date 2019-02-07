@@ -82,11 +82,11 @@ class Feedback extends React.Component {
           <input
             className="feedback-form-text feedback-form-emailAddress"
             onChange={(event) => { this.updateField('emailAddress', event.target.value) }}
-            placeholder="Renseignez votre nom d'utilisateur..." />
+            placeholder="Renseignez votre adresse e-mail..." />
           <input
             className="feedback-form-text feedback-form-username"
             onChange={(event) => { this.updateField('username', event.target.value) }}
-            placeholder="Renseignez votre adresse e-mail..." />
+            placeholder="Renseignez votre nom d'utilisateur..." />
           <textarea
             className="feedback-form-text feedback-form-message"
             onChange={(event) => { this.updateField('feedbackMessage', event.target.value) }}
