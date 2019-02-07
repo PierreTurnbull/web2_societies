@@ -40,6 +40,9 @@
     font-weight: bold;
     padding: 0 10px;
     margin-right: -10px;
+    cursor: none;
+    color: black;
+    text-decoration: none;
 }
 
 @media (min-width: 768px) {
@@ -87,6 +90,7 @@
     display: block;
     margin: 50%;
     transform: translateX(-50%) translateY(-50%);
+    border-radius: 100000px;
 }
 
 .feedback-form-text {
@@ -152,4 +156,11 @@
     .feedback-form-submit {
         font-size: 22px;
     }
+}
+
+.feedback-message {
+    text-align: center;
+    padding: 50px 30px;
+    font-family: AktivGrotesk;
+    transition: 0.3s;
 }
