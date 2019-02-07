@@ -66,27 +66,27 @@ export class Header extends React.PureComponent {
       <div className="header">
         <div className="logo">
           <a href={!this.state.isMobile ? '/' : 'https://www.instagram.com/fsocietywebdoc'} target={this.state.isMobile && 'blank'}
-            // onMouseEnter={(e) => {
-            //   this.props.cursor_context.state.hoverHandler(e.currentTarget, "NONE");
-            //   this.lottieRef.current.anim.setDirection(1);
-            //   this.lottieRef.current.anim.play();
-            //   this.setState({
-            //     playAnim: true
-            //   });
-            //   // this.lottieRef.current.anim.addEventListener('complete', () => {
-            //   //   console.log("end");
-            //   //   this.lottieRef.current.anim.setDirection(-1);
-            //   //   this.lottieRef.current.anim.play();
-            //   // });
-            // }}
-            // onMouseLeave={() => {
-            //   this.props.cursor_context.state.hoverHandler();
-            //   this.lottieRef.current.anim.setDirection(-1);
-            //   this.lottieRef.current.anim.play();
-            //   this.setState({
-            //     playAnim: true
-            //   });
-            // }}
+            onMouseEnter={(e) => {
+              this.props.cursor_context.state.hoverHandler(e.currentTarget, "LOGO");
+              this.lottieRef.current.anim.setDirection(1);
+              this.lottieRef.current.anim.play();
+              this.setState({
+                playAnim: true
+              });
+              // this.lottieRef.current.anim.addEventListener('complete', () => {
+              //   console.log("end");
+              //   this.lottieRef.current.anim.setDirection(-1);
+              //   this.lottieRef.current.anim.play();
+              // });
+            }}
+            onMouseLeave={() => {
+              this.props.cursor_context.state.hoverHandler();
+              this.lottieRef.current.anim.setDirection(-1);
+              this.lottieRef.current.anim.play();
+              this.setState({
+                playAnim: true
+              });
+            }}
             customRef={(ref) => this.cta = ref}>
             <Lottie
               options={this.defaultOptions}

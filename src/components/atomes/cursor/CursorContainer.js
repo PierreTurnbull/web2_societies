@@ -5,7 +5,7 @@ import { throttle, debounce } from 'lodash';
 
 import "./cursorContainer.css"
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
-class CursorContainer extends React.PureComponent {
+class CursorContainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -19,177 +19,155 @@ class CursorContainer extends React.PureComponent {
         this.cursorInnerHeight = this.defaultCursorInnerSize;
         this.cursorOpacity = 1;
 
+        this.innerCursorRef = React.createRef();
+        this.outerCursorRef = React.createRef();
         this.animPos = this.animPos.bind(this);
         this.setBack = this.setBack.bind(this);
 
         this.node = this.props.cursor_context.state.cursorParams.node;
-        this.clickAnimation = TweenLite.to(this, .3, {
-            paused: true,
-            cursorHeight: 100,
-            cursorWidth: 100,
-            cursorOpacity: 0,
-            borderWidth: 0,
-            overwrite: true,
-            onUpdate: () => {
-                this.setState({
-                    cursorParams: {
-                        ...this.state.cursorParams,
-                        borderRadius: this.borderRadius,
-                        cursorOpacity: this.cursorOpacity,
-                        borderWidth: this.borderWidth,
-                        cursorWidth: this.cursorWidth,
-                        cursorHeight: this.cursorHeight,
-                    }
-                })
-            },
-            onComplete: () => {
-                this.setState({
-                    cursorParams: {
-                        ...this.state.cursorParams,
-                        borderRadius: this.borderRadius,
-                        cursorOpacity: this.cursorOpacity,
-                        borderWidth: this.borderWidth,
-                        cursorWidth: this.cursorWidth,
-                        cursorHeight: this.cursorHeight,
-                    }
-                })
-            },
-            ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-        });
-        this.state = {
-            cursorParams: {
-                x: this.x,
-                y: this.y,
-                cursorWidth: this.cursorWidth,
-                cursorHeight: this.cursorHeight,
-                cursorInnerHeight: this.cursorInnerHeight,
-                cursorInnerWidth: this.cursorInnerWidth,
-                text: ""
-            }
-        }
     }
+
+    clickAnimation = () => {
+        // TweenLite.fromTo(this.outerCursorRef.current, 0, {
+        //     opacity: 1,
+        //     height: 41,
+        //     width: 41,
+        //     borderWidth: 2,
+        //     x: this.props.cursor_context.state.cursorParams.x,
+        //     y: this.props.cursor_context.state.cursorParams.y,
+        //     ease: 'CustomEase.create("custom", "M0,0 C0.554,0.014 0.482,0.4 0.516,0.51 0.654,0.957 0.896,0.996 1,1")'
+        // },
+        //     {
+        //         opacity: 1,
+        //         height: 51,
+        //         width: 51,
+        //         borderWidth: 10,
+        //         x: this.props.cursor_context.state.cursorParams.x,
+        //         y: this.props.cursor_context.state.cursorParams.y,
+        //         ease: 'CustomEase.create("custom", "M0,0 C0.554,0.014 0.482,0.4 0.516,0.51 0.654,0.957 0.896,0.996 1,1")'
+        //     }
+        // );
+        // TweenLite.to(this.innerCursorRef.current, .1, {
+        //     opacity: 1,
+        //     height: 5,
+        //     width: 5,
+        //     x: this.props.cursor_context.state.cursorParams.x,
+        //     y: this.props.cursor_context.state.cursorParams.y
+        // });
+    };
+
+    defaultAnim = () => {
+        TweenLite.to(this.outerCursorRef.current, .5, {
+            opacity: 1,
+            height: 41,
+            width: 41,
+            borderWidth: 2,
+            x: this.props.cursor_context.state.cursorParams.x,
+            y: this.props.cursor_context.state.cursorParams.y,
+            ease: 'CustomEase.create("custom", "M0,0 C0.554,0.014 0.482,0.4 0.516,0.51 0.654,0.957 0.896,0.996 1,1")'
+        });
+        TweenLite.to(this.innerCursorRef.current, .3, {
+            opacity: 1,
+            height: 10,
+            width: 10,
+            x: this.props.cursor_context.state.cursorParams.x,
+            y: this.props.cursor_context.state.cursorParams.y
+        });
+    };
+
+    ctaAnim = () => {
+        TweenLite.to(this.outerCursorRef.current, .5, {
+            height: this.node.getBoundingClientRect().height,
+            width: this.node.getBoundingClientRect().height,
+            opacity: 1,
+            x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
+            y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
+        });
+        TweenLite.to(this.innerCursorRef.current, .5, {
+            height: 0,
+            width: 0,
+            opacity: 0,
+            x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
+            y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
+        });
+    };
+
+    linkAnim = () => {
+        console.log("lonk");
+
+        TweenLite.to(this.outerCursorRef.current, .5, {
+            height: 51,
+            width: 51,
+            opacity: .5,
+            x: this.props.cursor_context.state.cursorParams.x,
+            y: this.props.cursor_context.state.cursorParams.y
+        });
+        TweenLite.to(this.innerCursorRef.current, .5, {
+            height: 5,
+            width: 5,
+            opacity: 1,
+            x: this.props.cursor_context.state.cursorParams.x,
+            y: this.props.cursor_context.state.cursorParams.y
+        });
+    };
+    logoAnim = () => {
+        TweenLite.to(this.outerCursorRef.current, .3, {
+            height: 5,
+            width: 5,
+            opacity: 0,
+            x: this.props.cursor_context.state.cursorParams.x,
+            y: this.props.cursor_context.state.cursorParams.y
+        });
+        TweenLite.to(this.innerCursorRef.current, .5, {
+            height: 5,
+            width: 5,
+            opacity: 1,
+            x: this.props.cursor_context.state.cursorParams.x,
+            y: this.props.cursor_context.state.cursorParams.y
+        });
+    };
+    iconAnim = () => {
+        TweenLite.to(this.outerCursorRef.current, .3, {
+            height: this.node.getBoundingClientRect().height,
+            width: this.node.getBoundingClientRect().height,
+            opacity: 1,
+            x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
+            y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
+        });
+        TweenLite.to(this.innerCursorRef.current, .5, {
+            height: 0,
+            width: 0,
+            opacity: 0,
+            x: this.props.cursor_context.state.cursorParams.x,
+            y: this.props.cursor_context.state.cursorParams.y
+        });
+    };
+    iconAnimBack = () => {
+        TweenLite.to(this.outerCursorRef.current, .3, {
+            height: this.node.getBoundingClientRect().height,
+            width: this.node.getBoundingClientRect().height,
+            opacity: 1,
+            x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
+            y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
+        });
+    };
 
     cursorAnimsTo = (param) => {
         switch (param) {
             case "LINK":
-                TweenLite.to(this, .3, {
-                    cursorHeight: 50,
-                    cursorWidth: 50,
-                    cursorInnerHeight: 13,
-                    cursorInnerWidth: 13,
-                    cursorOpacity: .1,
-                    x: this.props.cursor_context.state.cursorParams.x,
-                    y: this.props.cursor_context.state.cursorParams.y,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                cursorHeight: this.cursorHeight,
-                                cursorInnerHeight: this.cursorInnerHeight,
-                                cursorOpacity: this.cursorOpacity,
-                                cursorInnerWidth: this.cursorInnerWidth,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                });
+                this.linkAnim();
                 break;
             case "LOGO":
-                TweenLite.to(this, .5, {
-                    cursorHeight: this.node.getBoundingClientRect().height + 10,
-                    cursorWidth: this.node.getBoundingClientRect().width + 10,
-                    cursorInnerHeight: 5,
-                    cursorInnerWidth: 5,
-                    borderWidth: 0,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().width / 2) - Math.sin(this.angle) * this.hypotenuse / 10,
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                borderWidth: this.borderWidth,
-                                cursorHeight: this.cursorHeight,
-                                cursorInnerHeight: this.cursorInnerHeight,
-                                cursorInnerWidth: this.cursorInnerWidth,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                });
+                this.logoAnim();
                 break;
             case "COMPARE":
-                TweenLite.to(this, .5, {
-                    cursorHeight: this.node.getBoundingClientRect().height + 10,
-                    cursorWidth: this.node.getBoundingClientRect().width + 10,
-                    cursorInnerHeight: 5,
-                    cursorInnerWidth: 5,
-                    borderWidth: 0,
-                    x: this.props.cursor_context.state.cursorParams.x,
-                    y: this.props.cursor_context.state.cursorParams.y,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                borderWidth: this.borderWidth,
-                                cursorHeight: this.cursorHeight,
-                                cursorInnerHeight: this.cursorInnerHeight,
-                                cursorInnerWidth: this.cursorInnerWidth,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                });
+                this.logoAnim();
                 break;
-            case "NONE":
-                TweenLite.to(this, .5, {
-                    cursorHeight: 10,
-                    cursorWidth: 10,
-                    borderWidth: 0,
-                    x: this.props.cursor_context.state.cursorParams.x,
-                    y: this.props.cursor_context.state.cursorParams.y,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                borderWidth: this.borderWidth,
-                                cursorHeight: this.cursorHeight,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                });
+            case "ICON":
+                this.iconAnim();
                 break;
             default:
-                TweenLite.to(this, .3, {
-                    cursorHeight: this.node.getBoundingClientRect().height,
-                    cursorWidth: this.node.getBoundingClientRect().height,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                cursorHeight: this.cursorHeight,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                });
+                this.ctaAnim();
                 break;
         }
     }
@@ -197,117 +175,18 @@ class CursorContainer extends React.PureComponent {
     cursorAnimsBack = (param) => {
         switch (param) {
             case "LINK":
-                TweenLite.to(this, .5, {
-                    cursorHeight: 50,
-                    cursorWidth: 50,
-                    x: this.props.cursor_context.state.cursorParams.x,
-                    y: this.props.cursor_context.state.cursorParams.y,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                cursorHeight: this.cursorHeight,
-                                cursorOpacity: this.cursorOpacity,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                })
+                this.linkAnim();
                 break;
             case "LOGO":
-                TweenLite.to(this, .5, {
-                    cursorHeight: this.node.getBoundingClientRect().height + 10,
-                    cursorWidth: this.node.getBoundingClientRect().width + 10,
-                    borderWidth: 0,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().width / 2) - Math.sin(this.angle) * this.hypotenuse / 10,
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                cursorHeight: this.cursorHeight,
-                                borderWidth: this.borderWidth,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                });
+                this.logoAnim();
                 break;
             case "COMPARE":
-                TweenLite.to(this, .5, {
-                    cursorHeight: this.node.getBoundingClientRect().height + 10,
-                    cursorWidth: this.node.getBoundingClientRect().width + 10,
-                    borderWidth: 0,
-                    x: this.props.cursor_context.state.cursorParams.x,
-                    y: this.props.cursor_context.state.cursorParams.y,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                cursorHeight: this.cursorHeight,
-                                borderWidth: this.borderWidth,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                });
+                this.logoAnim();
                 break;
-            case "NONE":
-                TweenLite.to(this, .5, {
-                    cursorHeight: 0,
-                    cursorWidth: 0,
-                    borderWidth: 0,
-                    x: this.props.cursor_context.state.cursorParams.x,
-                    y: this.props.cursor_context.state.cursorParams.y,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                cursorHeight: this.cursorHeight,
-                                borderWidth: this.borderWidth,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                });
-                break;
+            case "ICON":
+                this.iconAnimBack();
             default:
-                TweenLite.to(this, .2, {
-                    cursorHeight: this.node.getBoundingClientRect().height,
-                    cursorWidth: this.node.getBoundingClientRect().height,
-                    cursorInnerHeight: 0,
-                    cursorOpacity: 1,
-                    cursorInnerWidth: 0,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
-                    onUpdate: () => {
-                        this.setState({
-                            cursorParams: {
-                                ...this.state.cursorParams,
-                                cursorWidth: this.cursorWidth,
-                                cursorHeight: this.cursorHeight,
-                                cursorInnerHeight: this.cursorInnerHeight,
-                                cursorInnerWidth: this.cursorInnerWidth,
-                                cursorOpacity: this.cursorOpacity,
-                                x: this.x,
-                                y: this.y,
-                            }
-                        });
-                    },
-                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-                });
+                this.ctaAnim();
                 break;
         }
     }
@@ -324,73 +203,25 @@ class CursorContainer extends React.PureComponent {
         this.angle = this.node && Math.atan2(this.distance.x, this.distance.y)
         this.hypotenuse = this.node && Math.sqrt(this.distance.x * this.distance.x + this.distance.y * this.distance.y)
         !this.node
-            ? TweenLite.to(this, .5, {
-                x: this.props.cursor_context.state.cursorParams.x,
-                y: this.props.cursor_context.state.cursorParams.y,
-                cursorHeight: this.defaultCursorSize,
-                cursorWidth: this.defaultCursorSize,
-                cursorInnerHeight: 8,
-                cursorInnerWidth: 8,
-                onUpdate: () => {
-                    this.setState({
-                        cursorParams: {
-                            ...this.state.cursorParams,
-                            x: this.x,
-                            y: this.y,
-                            cursorWidth: this.cursorWidth,
-                            cursorHeight: this.cursorHeight,
-                            cursorInnerHeight: this.cursorInnerHeight,
-                            cursorInnerWidth: this.cursorInnerWidth,
-                        }
-                    });
-                },
-                ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-            })
+            ? this.defaultAnim()
             : this.cursorAnimsTo(this.text)
     }, 0);
 
     setBack = debounce(() => {
         !this.node
-            ? TweenLite.to(this, .3, {
-                x: this.props.cursor_context.state.cursorParams.x,
-                y: this.props.cursor_context.state.cursorParams.y,
-                cursorHeight: this.defaultCursorSize,
-                cursorWidth: this.defaultCursorSize,
-                borderRadius: 50,
-                cursorOpacity: 0.3,
-                borderWidth: 2,
-                onUpdate: () => {
-                    this.setState({
-                        cursorParams: {
-                            ...this.state.cursorParams,
-                            x: this.x,
-                            y: this.y,
-                            borderRadius: this.borderRadius,
-                            cursorOpacity: this.cursorOpacity,
-                            borderWidth: this.borderWidth,
-                            cursorWidth: this.cursorWidth,
-                            cursorHeight: this.cursorHeight,
-                        }
-                    })
-                },
-                ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
-            })
+            ? this.defaultAnim()
             : this.cursorAnimsBack(this.text)
     }, 0);
 
     componentDidMount() {
         this.animPos();
         this.setBack();
-
-        document.body.onmousedown = () => this.clickHandler();
+        // document.body.onmousedown = () => this.clickHandler();
     }
 
-    clickHandler = () => {
-        console.log("CLICK", this.clickAnimation.isActive());
-
-        this.text !== "HOLD" && this.clickAnimation.play();
-
-    }
+    // clickHandler = () => {
+    //     this.clickAnimation();
+    // }
 
     componentWillReceiveProps() {
         this.animPos();
@@ -404,8 +235,8 @@ class CursorContainer extends React.PureComponent {
         return (
             <div className={"cursorContainer"}>
                 <Cursor
-                    cursorParams={this.state.cursorParams}
-                    text={this.state.text}
+                    innerCursorRef={this.innerCursorRef}
+                    outerCursorRef={this.outerCursorRef}
                 />
             </div>
         )
