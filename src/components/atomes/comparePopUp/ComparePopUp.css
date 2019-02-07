@@ -1,0 +1,11 @@
+.comparePopUp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  background: black; }
+  .comparePopUp .content {
+    max-width: 1200px;
+    margin: 0 auto; }

@@ -1,3 +1,13 @@
+body
+    overflow: hidden
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+.App 
+    cursor: none
+    display: grid
+    grid-template-rows: auto 1fr auto
+    height: 100vh
+// AktivGrotesk
 @font-face 
     font-family: 'AktivGrotesk'
     font-weight: 900
@@ -12,12 +22,93 @@
     src: url("./fonts/AktivGrotesk/AktivGrotesk-Light.otf") format("truetype")
 @font-face 
     font-family: 'AktivGrotesk'
-    font-weight: 300
+    font-weight: 400
     src: url("./fonts/AktivGrotesk/AktivGrotesk-Medium.otf") format("truetype")
 @font-face 
     font-family: 'AktivGrotesk'
-    font-weight: 600
+    font-weight: 300
     src: url("./fonts/AktivGrotesk/AktivGrotesk-Regular.otf") format("truetype")
+
+// PlayfairDisplay
+@font-face 
+    font-family: 'PlayfairDisplay'
+    font-weight: 900
+    src: url("./fonts/PlayfairDisplay/PlayfairDisplay-Black.ttf") format("truetype")
+@font-face 
+    font-family: 'PlayfairDisplay'
+    font-weight: 300
+    src: url("./fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf") format("truetype")
+@font-face 
+    font-family: 'PlayfairDisplay'
+    font-weight: 600
+    src: url("./fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf") format("truetype")
 
 *
     box-sizing: border-box
+hr
+    height: 1px
+    background-color: #2b2b2b
+    border: none
+.h1
+    font-family: PlayfairDisplay
+    font-size: 58px
+    font-weight: 300
+    font-style: normal
+    font-stretch: normal
+    line-height: normal
+    letter-spacing: normal
+    color: #ffffff
+    margin: 24px 0
+    width: 100%
+    text-align: left
+.h2
+    font-family: PlayfairDisplay
+    font-size: 42px
+    font-weight: 300
+    font-style: normal
+    font-stretch: normal
+    line-height: normal
+    letter-spacing: normal
+    color: #ffffff
+    margin: 24px 0
+    width: 100%
+    text-align: left
+.h3
+    font-family: PlayfairDisplay
+    font-size: 34px
+    font-weight: 300
+    font-style: normal
+    font-stretch: normal
+    line-height: normal
+    letter-spacing: normal
+    color: #ffffff
+    margin: 32px 0
+    width: 100%
+    text-align: left
+.p
+    font-family: AktivGrotesk
+    font-size: 18px
+    font-weight: 100
+    font-style: normal
+    font-stretch: normal
+    line-height: 1.33
+    letter-spacing: 1.5
+    color: #fff
+    margin-bottom: 16px
+    b
+        color: #fff
+        font-weight: 600
+@media all and (max-width: 768px)
+    .h2
+        font-size: 42px
+    .h3
+        font-size: 24px
+    .p
+        font-size: 14px
+@media all and (max-width: 480px)
+    .h2
+        font-size: 22px
+    .h3
+        font-size: 22px
+    .p
+        font-size: 14px

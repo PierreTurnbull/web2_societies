@@ -1,0 +1,35 @@
+.cursor
+    height: 41px
+    width: 41px
+    position: absolute
+    top: 0
+    left: 0
+    transform: translate(-50%, -50%)
+    // background: red
+    border: 2px solid white
+    mix-blend-mode: difference
+    border-radius: 50%
+    box-sizing: content-box
+    z-index: 2
+    display: block
+    padding: 0
+    margin: 0
+    pointer-events: none
+    // transition: width .5s ease, height .5s ease,
+    // transition: opacity .5 ease, width .5s ease, height .5s ease,
+    display: flex
+    align-items: flex-start
+    justify-content: center
+    display: flex
+    align-items: center
+    justify-content: center
+.cursorInner
+    height: 10px
+    width: 10px
+    background: white
+    position: absolute
+    border-radius: 50%
+.cursor.bigCursor
+    // width: 0px 
+    // height: 0px 
+    transform: translate(-50%, -50%)

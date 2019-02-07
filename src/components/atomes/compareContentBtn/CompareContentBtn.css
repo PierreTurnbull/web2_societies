@@ -1,0 +1,37 @@
+.compareContentBtn {
+  height: 55px;
+  width: 55px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  float: right;
+  z-index: 3; }
+  .compareContentBtn .icon {
+    color: black; }
+  .compareContentBtn::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    height: auto;
+    width: auto;
+    border: 2px solid white;
+    content: "";
+    border-radius: 50%;
+    animation: pulse infinite 2s ease;
+    transform: .3s; }
+  .compareContentBtn:hover::after {
+    animation: none;
+    opacity: 0; }
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1; }
+  100% {
+    transform: scale(1.5);
+    opacity: 0; } }

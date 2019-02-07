@@ -1,19 +1,36 @@
 @import "../../../constants/constants.sass"
-.logo
-    text-transform: uppercase
-    font-family: AktivGrotesk
-    font-size: 24px
-    font-weight: 900
-    font-style: normal
-    font-stretch: normal
-    line-height: normal
-    letter-spacing: 6px
-    text-align: justify
-    color: #000000
-.t-main-color
-    color: $main-color
 .header
     display: flex
     align-items: center
     justify-content: space-between
     padding: 50px
+    max-width: 1250px
+    margin: 0 auto
+    width: 100%
+    .cta
+        cursor: none
+.logo
+    text-transform: uppercase
+    font-family: AktivGrotesk
+    font-size: 24px
+    font-weight: 600
+    font-style: normal
+    font-stretch: normal
+    line-height: normal
+    letter-spacing: 6px
+    text-align: justify
+    a
+        text-decoration: none
+        -webkit-text-stroke: .5px white
+        color: transparent
+        letter-spacing: 8px
+        cursor: none
+.t-main-color
+    font-weight: 900
+    color: white
+    -webkit-text-stroke: 0px white
+@media all and (max-width: 768px)
+    .header 
+        padding: 24px
+        .ctas
+            display: none

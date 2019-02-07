@@ -1,0 +1,50 @@
+.intro {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative; }
+  .intro .h2, .intro .p {
+    opacity: 1; }
+  .intro .intro_image, .intro .intro_patern_image {
+    height: 700px;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; }
+  .intro .intro_patern_image {
+    z-index: 0;
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover; }
+
+.wrap {
+  animation: slideIn 3s ease;
+  padding: 24px; }
+
+.MonksGradient {
+  background-image: linear-gradient(to top, rgba(87, 18, 0, 0), rgba(87, 18, 0, 0.3)); }
+
+.JarawaGradient {
+  background-image: linear-gradient(to top, rgba(87, 18, 0, 0), rgba(146, 154, 63, 0.3)); }
+
+.RastaGradient {
+  background-image: linear-gradient(to top, rgba(87, 18, 0, 0), rgba(87, 18, 0, 0.3)); }
+
+@media all and (max-width: 768px) {
+  .wrap {
+    padding: 32px; }
+  .intro .intro_image {
+    height: 302px;
+    width: auto; } }
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(100px);
+    opacity: 0; }
+  100% {
+    transform: translateY(0px);
+    opacity: 1; } }
