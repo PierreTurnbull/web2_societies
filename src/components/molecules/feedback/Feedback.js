@@ -27,9 +27,9 @@ export default () => {
             <img src={img4} className="feedback-form-scale-imageContainer-content" />
           </div>
         </div>
-        <input className="feedback-form-emailAddress" placeholder="Renseignez votre nom d'utilisateur..." />
-        <input className="feedback-form-username" placeholder="Renseignez votre adresse e-mail..." />
-        <textarea className="feedback-form-message" placeholder="Laissez nous votre message..." />
+        <input className="feedback-form-text feedback-form-emailAddress" placeholder="Renseignez votre nom d'utilisateur..." />
+        <input className="feedback-form-text feedback-form-username" placeholder="Renseignez votre adresse e-mail..." />
+        <textarea className="feedback-form-text feedback-form-message" placeholder="Laissez nous votre message..." />
         <button className="feedback-form-submit" type="button">Envoyer l'évaluation</button>
       </form>
     </div>
