@@ -65,7 +65,7 @@ export class Header extends React.PureComponent {
     return (
       <div className="header">
         <div className="logo">
-          <a href="/"
+          <a href={!this.state.isMobile ? '/' : 'https://www.instagram.com/fsocietywebdoc'} target={this.state.isMobile && 'blank'}
             // onMouseEnter={(e) => {
             //   this.props.cursor_context.state.hoverHandler(e.currentTarget, "NONE");
             //   this.lottieRef.current.anim.setDirection(1);
