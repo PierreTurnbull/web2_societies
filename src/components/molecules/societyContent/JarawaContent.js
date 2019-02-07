@@ -45,6 +45,7 @@ class JarawaContent extends Component {
                     imageVariant="fullWidth"
                     // gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                     alt="eve"
+                    disabledVisible
                 />
                 <Text text="Les îles Andaman sont un <b>archipel situé entre le Golf du Bengal et la Mer d’Andaman </b>où habite la tribu des Jarawas, un peuple autochtone vivant depuis des millénaires coupés du monde et du progrès technologique." />
                 <Text text="Ils sont les derniers autochtones survivants de la grande île du sud et sont aujourd’hui menacés par le monde extérieur, notamment à cause du tourisme, du braconnage et de la déforestation." />

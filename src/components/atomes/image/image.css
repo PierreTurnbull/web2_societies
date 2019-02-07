@@ -1,6 +1,6 @@
 .societyContentImage {
   position: relative;
-  margin-bottom: 64px;
+  margin-bottom: 24px;
   flex: 2;
   overflow: hidden; }
   .societyContentImage img {
@@ -30,15 +30,18 @@
 
 .societyContentImage.left {
   margin-left: 0;
-  margin-right: 32px; }
+  margin-right: 0px; }
   .societyContentImage.left img {
     height: 400px; }
 
 .societyContentImage.right {
-  margin-left: 32px;
+  margin-left: 0px;
   margin-right: 0; }
   .societyContentImage.right img {
     height: 400px; }
+
+.p + .imageContainer .societyContentImage {
+  margin: 0 0 24px 0; }
 
 @media all and (max-width: 768px) {
   .societyContentImage {
