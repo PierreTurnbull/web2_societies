@@ -172,7 +172,7 @@ class CursorContainer extends React.PureComponent {
                 });
                 break;
             default:
-                TweenLite.to(this, .5, {
+                TweenLite.to(this, .3, {
                     cursorHeight: this.node.getBoundingClientRect().height,
                     cursorWidth: this.node.getBoundingClientRect().height,
                     x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - Math.sin(this.angle) * this.hypotenuse / 5,
@@ -351,7 +351,7 @@ class CursorContainer extends React.PureComponent {
 
     setBack = debounce(() => {
         !this.node
-            ? TweenLite.to(this, .5, {
+            ? TweenLite.to(this, .3, {
                 x: this.props.cursor_context.state.cursorParams.x,
                 y: this.props.cursor_context.state.cursorParams.y,
                 cursorHeight: this.defaultCursorSize,

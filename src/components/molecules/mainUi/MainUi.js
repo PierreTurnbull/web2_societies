@@ -20,7 +20,7 @@ export default class MainUi extends Component {
                                         {projectDescription}
                                     </p>
                                 </div>
-                                <div className="cta" style={{ marginRight: 0 }}>
+                                <div className="cta" style={{ marginRight: 0, cursor: "none" }}>
                                     <CircleCtaContainer path={projectName} holdComplete={(path) => this.goTo(path)} />
                                 </div>
                             </>
