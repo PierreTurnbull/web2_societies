@@ -1,0 +1,166 @@
+.feedback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #FFF;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    padding: 9%;
+}
+
+@media (min-width: 768px) {
+    .feedback {
+        padding-right: 18%;
+        padding-left: 18%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .feedback {
+        padding-right: 27%;
+        padding-left: 27%;
+    }
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feedback-header-title {
+    font-family: AktivGrotesk;
+    font-size: 4vw;
+    letter-spacing: 0.5px;
+    padding-top: 8px;
+}
+
+.feedback-header-close {
+    font-size: 6vw;
+    font-weight: bold;
+    padding: 0 10px;
+    margin-right: -10px;
+    cursor: none;
+    color: black;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .feedback-header-title {
+        font-size: 32px;
+    }
+
+    .feedback-header-close {
+        font-size: 50px;
+    }
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+}
+
+.feedback-form-scale {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 10%;
+}
+
+@media (min-width: 1024px) {
+    .feedback-form-scale {
+        padding: 0 12%;
+    }
+}
+
+.feedback-form-scale-imageContainer {
+    border: 1px solid #EAEAEA;
+    height: 10vw;
+    width: 10vw;
+    max-height: 72px;
+    max-width: 72px;
+    min-height: 42px;
+    min-width: 42px;
+    border-radius: 100000px;
+}
+
+.feedback-form-scale-imageContainer-content {
+    width: 60%;
+    height: 60%;
+    display: block;
+    margin: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 100000px;
+}
+
+.feedback-form-text {
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+    margin-top: 3vw;
+    padding: 12px;
+    font-family: AktivGrotesk;
+    font-weight: 200;
+    cursor: none;
+    font-size: 16px;
+}
+
+.feedback-form-text::placeholder {
+    color: #D8D8D8;
+    font-family: AktivGrotesk;
+    font-weight: 200;
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    .feedback-form-text, .feedback-form-text::placeholder {
+        font-size: 20px;
+    }
+}
+
+.feedback-form-username {
+}
+
+.feedback-form-emailAddress {
+}
+
+.feedback-form-message {
+    resize: none;
+    height: 100px;
+}
+
+@media (min-width: 1024px) {
+    resize: vertical
+}
+
+.feedback-form-submit {
+    border: none;
+    border-bottom: 1px solid black;
+    background: none;
+    font-family: AktivGrotesk;
+    font-weight: 300;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3vw;
+    cursor: none;
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    .feedback-form-submit {
+        font-size: 19px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .feedback-form-submit {
+        font-size: 22px;
+    }
+}
+
+.feedback-message {
+    text-align: center;
+    padding: 50px 30px;
+    font-family: AktivGrotesk;
+    transition: 0.3s;
+}

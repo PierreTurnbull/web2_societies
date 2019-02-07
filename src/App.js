@@ -6,6 +6,7 @@ import Header from 'components/molecules/header/Header';
 import './App.css';
 import ThumbnailContainer from './components/molecules/thumbnail/ThumbnailContainer';
 import SocietyContentContainer from './components/molecules/societyContent/SocietyContentContainer';
+import Feedback from './components/molecules/feedback/Feedback';
 import Modal from './components/molecules/modal/Modal';
 import MonksIntro from './components/molecules/intros/MonksIntro';
 import JarawaIntro from './components/molecules/intros/JarawaIntro';
@@ -38,14 +39,7 @@ class App extends React.Component {
                   />
                 )}
               />
-              <Route exact path="/avis"
-                component={() => (
-                  <Modal
-                    title={<Quote variant="simple" text={<p>Évaluez-nous !</p>} />}
-                    text={<Text text="Les îles Andaman sont un <b>archipel situé entre le Golf du Bengal et la Mer d’Andaman </b>où habite la tribu des Jarawas, un peuple autochtone vivant depuis des millénaires coupés du monde et du progrès technologique." />}
-                  />
-                )}
-              />
+              <Route exact path="/avis" component={() => <Feedback />} />
               <Route exact path="/credits"
                 component={() => (
                   <Modal
