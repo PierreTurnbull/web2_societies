@@ -38,14 +38,16 @@
     background: none;
     border: none;
     display: table;
-    align-self: center; }
+    align-self: center;
+    transform: translateY(-100px); }
   .mainUi .description {
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    align-self: center; }
+    align-self: center;
+    transform: translateY(-100px); }
 
 @media all and (max-width: 768px) {
   .mainUi {

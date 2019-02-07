@@ -1,64 +1,65 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { TweenLite } from "gsap/TweenMax";
-import TrackVisibility from 'react-on-screen';
-
 import Image from './Image';
+import VisibilitySensor from 'react-visibility-sensor';
 
 import './imageContainer.css';
-export default class ImageContainer extends Component {
+export default class ImageContainer extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            imageProgress: 0
+            isVisible: false
         }
-
-        this.imageProgress = 0;
-
-        this.imageAnim = TweenLite.to(this, 2, {
-            imageProgress: 1,
-            paused: true,
-            onUpdate: () => { this.setState({ imageProgress: this.imageProgress }) },
-            // ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0526 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
-        });
+        this.imageContainerRef = React.createRef();
+        this.anim = null;
     }
 
-    componentDidUpdate() {
-        // console.log(this.props.isVisible);
-        this.imageAnim.play();
+    onVisibilityChange = (isVisible) => {
+        this.setState({
+            isVisible
+        });
+
+        this.anim = isVisible && TweenLite.fromTo(this.imageContainerRef.current, .5,
+            { y: 100, opacity: 0, transformOrigin: "bottom left", ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")' },
+            { y: 0, opacity: 1, transformOrigin: "bottom left", ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")' }
+        );
     }
 
     render() {
-        const { src, imageVariant, adornmentVariant, gradient, alt, imageAdornment, adornmentReverse, anim, isVisible } = this.props;
+        const { src, imageVariant, adornmentVariant, gradient, alt, imageAdornment, adornmentReverse } = this.props;
         return (
-            <div className={adornmentReverse ? `imageContainer reverse` : 'imageContainer'} style={{ ...this.props.style }}>
-                {
-                    imageAdornment && (
-                        <div
-                            className={adornmentVariant ? `imageAdornment ${adornmentVariant}` : 'imageAdornment'}
-                            style={{
-                                width: 30 / 100 * this.state.imageProgress * 100 + "%",
-                                height: this.state.imageProgress * 100 + "%",
-                                opacity: this.state.imageProgress
-                            }}
-                        >
-                            <p>{imageAdornment}</p>
-                            <p>{imageAdornment}</p>
-                            <p>{imageAdornment}</p>
-                            <p>{imageAdornment}</p>
-                            <p>{imageAdornment}</p>
-                        </div>
-                    )
-                }
-                <Image
-                    src={src}
-                    variant={imageVariant}
-                    gradient={gradient}
-                    alt={alt}
-                    style={{ transform: `scale(${1.2 - this.state.imageProgress + .8})`, opacity: this.state.imageProgress }}
-                />
-            </div>
+            <VisibilitySensor onChange={this.state.isVisible === false && this.onVisibilityChange}>
+                <div
+                    className={adornmentReverse ? `imageContainer reverse` : 'imageContainer'}
+                    style={{
+                        ...this.props.style,
+                        opacity: 0,
+                    }}
+                    ref={this.imageContainerRef}
+                >
+                    {
+                        imageAdornment && (
+                            <div
+                                className={adornmentVariant ? `imageAdornment ${adornmentVariant}` : 'imageAdornment'}
+                            >
+                                <p>{imageAdornment}</p>
+                                <p>{imageAdornment}</p>
+                                <p>{imageAdornment}</p>
+                                <p>{imageAdornment}</p>
+                                <p>{imageAdornment}</p>
+                            </div>
+                        )
+                    }
+                    <Image
+                        src={src}
+                        variant={imageVariant}
+                        gradient={gradient}
+                        alt={alt}
+                    />
+                </div>
+            </VisibilitySensor>
         )
     }
 }

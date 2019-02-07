@@ -1,26 +1,17 @@
 import React, { Component } from 'react'
-import { TweenMax, TweenLite, Expo } from "gsap/TweenMax";
 
 import Title from 'components/atomes/title/Title';
 import Quote from '../../atomes/Quote/Quote';
 import VoteContainer from '../vote/VoteContainer';
 import ImageContainer from '../../atomes/image/ImageContainer';
+import TrackVisibility from 'react-on-screen';
 
 import img1 from 'images/monks/1.png';
 import img2 from 'images/monks/2.png';
 import img3 from 'images/monks/3.png';
 
 import "./societyContent.css";
-import TrackVisibility from 'react-on-screen';
 export default class MonksContent extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-
-    }
 
     render() {
         const { scrollValue } = this.props;

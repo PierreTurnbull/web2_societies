@@ -9,7 +9,7 @@ export default class VoteContainer extends Component {
             <React.Fragment>
                 <div className="voteContainer">
                     <hr />
-                    <Quote variant="question" text="Lorem ipsum dolor sit amet ?" style={{ textAlign: 'center', marginTop: '32px' }} />
+                    <Quote variant="question" text={this.props.question} />
                     <Vote onVote={(answer) => this.onVote(answer)} />
                     <hr />
                 </div>

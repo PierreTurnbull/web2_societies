@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactCursorPosition, { INTERACTIONS } from 'react-cursor-position';
-import { throttle, debounce } from 'lodash';
+import CursorContainer from '../../components/atomes/cursor/CursorContainer';
 
 export const CursorContext = React.createContext('cursor');
 
@@ -49,7 +49,7 @@ class CursorProvider extends React.PureComponent {
             }
         }
     }
-
+    
     render() {
 
         return (
@@ -67,6 +67,7 @@ class CursorProvider extends React.PureComponent {
                 >
                     {this.props.children}
                 </ReactCursorPosition>
+                <CursorContainer />
             </CursorContext.Provider>
         );
     }

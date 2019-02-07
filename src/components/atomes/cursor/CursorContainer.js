@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Cursor from './Cursor';
 import { TweenLite } from "gsap/TweenMax";
 import { throttle, debounce } from 'lodash';
@@ -9,8 +9,6 @@ class CursorContainer extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        // this.x = this.props.cursorParams.x;
-        // this.y = this.props.cursorParams.y;
         this.x = this.props.cursor_context.state.cursorParams.x;
         this.y = this.props.cursor_context.state.cursorParams.y;
         this.defaultCursorSize = 41;
@@ -75,13 +73,13 @@ class CursorContainer extends React.PureComponent {
         switch (param) {
             case "LINK":
                 TweenLite.to(this, .3, {
-                    cursorHeight: 20,
-                    cursorWidth: 20,
-                    cursorInnerHeight: 5,
-                    cursorInnerWidth: 5,
+                    cursorHeight: 50,
+                    cursorWidth: 50,
+                    cursorInnerHeight: 13,
+                    cursorInnerWidth: 13,
                     cursorOpacity: .1,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - 20 - Math.sin(this.angle) * this.hypotenuse / 5,
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
+                    x: this.props.cursor_context.state.cursorParams.x,
+                    y: this.props.cursor_context.state.cursorParams.y,
                     onUpdate: () => {
                         this.setState({
                             cursorParams: {
@@ -125,6 +123,32 @@ class CursorContainer extends React.PureComponent {
                     ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
                 });
                 break;
+            case "COMPARE":
+                TweenLite.to(this, .5, {
+                    cursorHeight: this.node.getBoundingClientRect().height + 10,
+                    cursorWidth: this.node.getBoundingClientRect().width + 10,
+                    cursorInnerHeight: 5,
+                    cursorInnerWidth: 5,
+                    borderWidth: 0,
+                    x: this.props.cursor_context.state.cursorParams.x,
+                    y: this.props.cursor_context.state.cursorParams.y,
+                    onUpdate: () => {
+                        this.setState({
+                            cursorParams: {
+                                ...this.state.cursorParams,
+                                cursorWidth: this.cursorWidth,
+                                borderWidth: this.borderWidth,
+                                cursorHeight: this.cursorHeight,
+                                cursorInnerHeight: this.cursorInnerHeight,
+                                cursorInnerWidth: this.cursorInnerWidth,
+                                x: this.x,
+                                y: this.y,
+                            }
+                        });
+                    },
+                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                });
+                break;
             case "NONE":
                 TweenLite.to(this, .5, {
                     cursorHeight: 10,
@@ -133,7 +157,6 @@ class CursorContainer extends React.PureComponent {
                     x: this.props.cursor_context.state.cursorParams.x,
                     y: this.props.cursor_context.state.cursorParams.y,
                     onUpdate: () => {
-
                         this.setState({
                             cursorParams: {
                                 ...this.state.cursorParams,
@@ -175,10 +198,10 @@ class CursorContainer extends React.PureComponent {
         switch (param) {
             case "LINK":
                 TweenLite.to(this, .5, {
-                    cursorHeight: 20,
-                    cursorWidth: 20,
-                    x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().height / 2) - 20 - Math.sin(this.angle) * this.hypotenuse / 5,
-                    y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 5,
+                    cursorHeight: 50,
+                    cursorWidth: 50,
+                    x: this.props.cursor_context.state.cursorParams.x,
+                    y: this.props.cursor_context.state.cursorParams.y,
                     onUpdate: () => {
                         this.setState({
                             cursorParams: {
@@ -201,6 +224,28 @@ class CursorContainer extends React.PureComponent {
                     borderWidth: 0,
                     x: this.node.getBoundingClientRect().x + (this.node.getBoundingClientRect().width / 2) - Math.sin(this.angle) * this.hypotenuse / 10,
                     y: this.node.getBoundingClientRect().y + (this.node.getBoundingClientRect().height / 2) - Math.cos(this.angle) * this.hypotenuse / 10,
+                    onUpdate: () => {
+                        this.setState({
+                            cursorParams: {
+                                ...this.state.cursorParams,
+                                cursorWidth: this.cursorWidth,
+                                cursorHeight: this.cursorHeight,
+                                borderWidth: this.borderWidth,
+                                x: this.x,
+                                y: this.y,
+                            }
+                        });
+                    },
+                    ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")'
+                });
+                break;
+            case "COMPARE":
+                TweenLite.to(this, .5, {
+                    cursorHeight: this.node.getBoundingClientRect().height + 10,
+                    cursorWidth: this.node.getBoundingClientRect().width + 10,
+                    borderWidth: 0,
+                    x: this.props.cursor_context.state.cursorParams.x,
+                    y: this.props.cursor_context.state.cursorParams.y,
                     onUpdate: () => {
                         this.setState({
                             cursorParams: {
@@ -348,10 +393,8 @@ class CursorContainer extends React.PureComponent {
     }
 
     componentWillReceiveProps() {
-
         this.animPos();
         this.setBack();
-        this.node && this.text === "HOLD" ? this.setState({ text: this.text }) : this.setState({ text: "" });
     }
 
     render() {

@@ -1,5 +1,7 @@
 body {
-  overflow: hidden; }
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 .App {
   cursor: none;
@@ -102,11 +104,11 @@ hr {
   font-stretch: normal;
   line-height: 1.33;
   letter-spacing: 1.5;
-  color: #999;
-  margin-bottom: 32px; }
+  color: #fff;
+  margin-bottom: 16px; }
   .p b {
-    color: #eee;
-    font-weight: 300; }
+    color: #fff;
+    font-weight: 600; }
 
 @media all and (max-width: 768px) {
   .h2 {

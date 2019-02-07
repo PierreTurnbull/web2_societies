@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import CircleCta from './CircleCta';
 import { TweenLite, Expo } from "gsap/TweenMax";
-import CursorContainer from '../cursor/CursorContainer';
 import { withRouter } from "react-router-dom";
 import { compose } from 'recompose';
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
@@ -37,14 +36,14 @@ class CircleCtaContainer extends Component {
             <div
                 onMouseEnter={() => {
                     this.props.cursor_context.state.hoverHandler(this.circleRef.current, "HOLD");
-                    this.setState({ isHover: true });
+                    // this.setState({ isHover: true });
                 }}
                 onMouseLeave={() => {
                     this.props.cursor_context.state.hoverHandler();
-                    this.setState({ isHover: false });
+                    // this.setState({ isHover: false });
                 }}
                 ref={this.circleRef}
-                className={this.state.isHover ? 'hide' : ''}
+                // className={this.state.isHover ? 'hide' : ''}
             >
                 <CircleCta
                     onMouseDown={() => {

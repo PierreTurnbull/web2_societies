@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import * as THREE from 'three';
-import { vertexShader, fragmentShader, setRandomShader } from './shaders';
+import { vertexShader, fragmentShader } from './shaders';
 import { throttle, debounce } from 'lodash';
 import scrollSpeed from 'utils/scrollSpeed';
 import { TweenLite } from "gsap/TweenMax";
-import { SpriteText2D, MeshText2D, textAlign } from 'three-text2d'
+import { MeshText2D, textAlign } from 'three-text2d'
 import scrollImage from "images/scroll.png"
 import Gradient from '../../atomes/gradient/Gradient';
 
@@ -21,6 +21,8 @@ export default class FullScreen extends Component {
         this.loader = new THREE.TextureLoader()
         this.images = this.props.images;
         this.scrollImage = this.loader.load(scrollImage);
+        this.mouse = { x: 0, y: 0 }
+
 
         this.loadImages = () => {
             const arr = [];
@@ -57,15 +59,16 @@ export default class FullScreen extends Component {
                     )
             },
             random: { type: "f", value: this.random },
-            resolution: { type: "v2", value: new THREE.Vector2(this.imageWidth, this.imageHeight) },
+            u_resolution: { type: "v2", value: new THREE.Vector2() },
             uvRate1: { type: "f", value: new THREE.Vector2(1, 1) },
-            userScrollSpeed: { type: "f", value: this.userScrollSpeed }
+            userScrollSpeed: { type: "f", value: this.userScrollSpeed },
+            mouse: { type: "v2", value: new THREE.Vector2() }
         };
 
         // this.uniforms2 = {
         //     time: { type: "f", value: 1.0 },
         //     random: { type: "f", value: this.random },
-        //     resolution: { type: "v2", value: new THREE.Vector2(this.imageWidth, this.imageHeight) },
+        //     u_resolution: { type: "v2", value: new THREE.Vector2(this.imageWidth, this.imageHeight) },
         //     uvRate1: { type: "f", value: new THREE.Vector2(1, 1) },
         //     userScrollSpeed: { type: "f", value: this.userScrollSpeed }
         // };
@@ -272,6 +275,9 @@ export default class FullScreen extends Component {
             }
         }
 
+        this.uniforms.u_resolution.value.x = this.renderer.domElement.width;
+        this.uniforms.u_resolution.value.y = this.renderer.domElement.height;
+
         camera.updateProjectionMatrix();
     }
 
@@ -280,7 +286,12 @@ export default class FullScreen extends Component {
         // console.log(gradientRGB);
 
         return (
-            <div className={this.props.className} ref={(ref) => this.canvas = ref}>
+            <div
+                className={this.props.className}
+                ref={(ref) => this.canvas = ref}
+                onMouseMove={() => console.log("los")}
+                onMouseMoveCapture={() => console.log("los")}
+            >
                 <Gradient
                     background={
                         `linear-gradient(53deg, rgba(${gradientRGB.r + ',' + gradientRGB.g + ',' + gradientRGB.b}, .3),

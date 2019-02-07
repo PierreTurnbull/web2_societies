@@ -50,11 +50,11 @@
     .societyContentImage.fullWidth img {
       height: 256px; }
   .societyContentImage.left {
-    margin-right: 24px; }
+    margin-right: 0px; }
     .societyContentImage.left img {
       height: 400px; }
   .societyContentImage.right {
-    margin-left: 24px; }
+    margin-left: 0px; }
     .societyContentImage.right img {
       height: 400px; } }
 
@@ -65,8 +65,4 @@
       height: 240px; }
   .societyContentImage.fullWidth {
     padding: 0;
-    margin: 0 -32px 32px -32px; }
-  .societyContentImage.left {
-    margin-right: 64px; }
-  .societyContentImage.right {
-    margin-left: 64px; } }
+    margin: 0 -24px 24px -24px; } }

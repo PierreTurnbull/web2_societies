@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TimerBar from './TimerBar'
-import { TweenMax, TweenLite, Expo } from "gsap/TweenMax";
+import { TweenLite } from "gsap/TweenMax";
 
 import "./timerBarContainer.css"
 export default class TimerBarContainer extends Component {

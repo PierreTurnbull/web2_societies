@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router'
-import { TweenMax, TweenLite, Expo } from "gsap/TweenMax";
+import { TweenLite } from "gsap/TweenMax";
 import { throttle, debounce } from 'lodash';
 
 import { compose } from 'recompose';
@@ -16,8 +16,9 @@ import { withCursorContext } from '../../../contexts/cursor/cursor.context';
 import TimerBarContainer from '../../atomes/timerBar/TimerBarContainer';
 import scrollImage from "images/scroll.png"
 import MobileNavEvents from './MobileNavEvents';
+import Modal from '../../molecules/modal/Modal';
 
-export class Home extends React.PureComponent {
+export class Home extends React.Component {
     constructor(props) {
         super(props);
 
@@ -242,6 +243,7 @@ export class Home extends React.PureComponent {
                 onWheel={(e) => { e.persist(); this.onWheel(e); }}
                 style={{ display: 'flex', alignItems: "center", height: "100%", flexDirection: "column", width: "100%" }}
             >
+                <div id="modalPortal" />
                 {
                     this.state.isMobile && <TimerBarContainer onComplete={this.nextImage} />
                 }

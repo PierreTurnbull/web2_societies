@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Scene from 'components/atomes/Scene/Scene';
 
 import "./thumbnail.css"
 export class Thumbnail extends Component {

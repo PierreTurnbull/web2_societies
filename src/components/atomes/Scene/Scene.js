@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as THREE from 'three';
-import { vertexShader, fragmentShader, setRandomShader } from './shaders';
+import { vertexShader, fragmentShader } from './shaders';
 import { throttle, debounce } from 'lodash';
 import scrollSpeed from 'utils/scrollSpeed';
 import { TweenLite } from "gsap/TweenMax";
@@ -243,8 +243,6 @@ export default class Scene extends Component {
         this.mesh1.scale.y = sceneH / sceneW;
         this.mesh2.scale.y = 0.1;
         this.mesh3.scale.y = 0.1;
-
-        const canvasRation = this.canvas.clientWidth / this.canvas.clientHeight;
 
         // this.mesh1.position.setX(-1)
         this.mesh1.position.x = (this.props.scene1.current.scene.current.getBoundingClientRect().x / (this.canvas.clientWidth) * 2) - .5

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
 import CircleCtaContainer from '../../atomes/circleCta/CircleCtaContainer';
-import { TweenLite } from "gsap/TweenMax";
-import scrollImage from "images/scroll.png"
 import './mainUi.css'
 export default class MainUi extends Component {
 

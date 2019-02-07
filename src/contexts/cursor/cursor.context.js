@@ -1,6 +1,5 @@
 import React from 'react';
 import { CursorContext } from './cursor.provider';
-import ReactCursorPosition from 'react-cursor-position';
 
 export function withCursorContext(Component) {
     function WrapperComponent(props) {

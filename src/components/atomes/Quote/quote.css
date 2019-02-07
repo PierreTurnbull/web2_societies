@@ -10,6 +10,13 @@
   text-align: justify;
   color: #ffffff;
   padding-left: 8px;
+  margin-bottom: 24px;
+  height: 34px;
+  display: flex;
+  align-items: center; }
+
+p + .quote {
+  margin-top: 8px;
   margin-bottom: 24px; }
 
 .quote.simple {
@@ -19,13 +26,15 @@
   font-family: AktivGrotesk;
   font-size: 24px;
   font-weight: 300;
+  margin-bottom: 16px;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
   letter-spacing: 1px;
-  text-align: justify;
+  text-align: center;
   color: #ffffff;
-  font-size: 18px; }
+  font-size: 18px;
+  height: auto; }
   .quote.question::before {
     position: relative;
     width: 22px;
@@ -90,9 +99,11 @@
     font-stretch: normal;
     line-height: normal;
     letter-spacing: 1px;
-    text-align: justify;
+    text-align: center;
     color: #ffffff;
-    font-size: 18px; }
+    font-size: 18px;
+    margin-bottom: 16px;
+    margin-top: 8px; }
     .question::before {
       position: relative;
       width: 16px;

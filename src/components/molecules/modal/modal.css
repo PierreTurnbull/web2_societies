@@ -1,0 +1,28 @@
+.modal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: white; }
+  .modal .content {
+    padding: 25px;
+    max-width: 900px;
+    margin: 0 auto; }
+    .modal .content .header {
+      padding: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 62px; }
+    .modal .content .quote {
+      color: black;
+      font-family: AktivGrotesk;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      font-weight: 500; }
+    .modal .content .p {
+      color: black; }
+      .modal .content .p b {
+        color: black; }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import scrollSpeed from 'utils/scrollSpeed';
-import { TweenMax, TweenLite, Expo } from "gsap/TweenMax";
+import { TweenLite } from "gsap/TweenMax";
 import { throttle, debounce } from 'lodash';
 
 import "./societyContentContainer.css";
@@ -32,11 +31,10 @@ class SocietyContentContainer extends Component {
 
     }
 
-    onScroll = (e) => {
+    onScroll = throttle((e) => {
         let offset = window.pageYOffset;
         const diff = offset - this.currentPixel;
         const speed = diff * .25;
-        console.log(speed);
 
         let updateValue = TweenLite.to(this, .5, {
             scrollValue: speed,
@@ -51,11 +49,11 @@ class SocietyContentContainer extends Component {
                 onUpdate: () => { this.setState({ scrollValue: this.scrollValue }) },
                 ease: 'CustomEase.create("custom", "M0,0 C0,0 0.294,-0.016 0.4,0.1 0.606,0526 0.604,0.708 0.684,0.822 0.771,0.946 1,1 1,1")'
             });
-        }, 0);
+        }, 100);
 
         updateValue.play();
         resetValue();
-    }
+    }, 200)
 
     render() {
         const { society } = this.props;
@@ -64,7 +62,7 @@ class SocietyContentContainer extends Component {
         return (
             <div
                 className="societyContentContainer"
-                onWheel={(e) => { e.persist(); this.onScroll(e) }}
+                // onWheel={(e) => { e.persist(); this.onScroll(e) }}
                 ref={this.societyContainer}>
                 <DynSocietyContent goBack={() => this.props.history.goBack()} scrollValue={this.state.scrollValue} />
             </div>
