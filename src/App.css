@@ -72,7 +72,7 @@ hr {
 
 .h2 {
   font-family: PlayfairDisplay;
-  font-size: 42px;
+  font-size: 22px;
   font-weight: 300;
   font-style: normal;
   font-stretch: normal;
@@ -112,7 +112,7 @@ hr {
 
 @media all and (max-width: 768px) {
   .h2 {
-    font-size: 42px; }
+    font-size: 24px; }
   .h3 {
     font-size: 24px; }
   .p {

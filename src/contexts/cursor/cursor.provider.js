@@ -19,6 +19,7 @@ class CursorProvider extends React.PureComponent {
         // this.setBack = this.setBack.bind(this);
 
         this.state = {
+            isMobile: false,
             cursorParams: {
                 x: this.x,
                 y: this.y,
@@ -49,7 +50,28 @@ class CursorProvider extends React.PureComponent {
             }
         }
     }
-    
+
+    componentDidMount() {
+        this.onWindowResize();
+        window.addEventListener('resize', this.onWindowResize, false);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onWindowResize);
+    }
+
+    onWindowResize = () => {
+        if (window.innerWidth <= 768) {
+            this.setState({
+                isMobile: true
+            })
+        } else {
+            this.setState({
+                isMobile: false
+            })
+        }
+    }
+
     render() {
 
         return (
@@ -67,7 +89,9 @@ class CursorProvider extends React.PureComponent {
                 >
                     {this.props.children}
                 </ReactCursorPosition>
-                <CursorContainer />
+                {
+                    !this.state.isMobile && <CursorContainer />
+                }
             </CursorContext.Provider>
         );
     }

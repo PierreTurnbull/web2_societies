@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withRouter } from "react-router-dom";
 import Swipeable from 'react-swipeable'
 
-class MobileNavEvents extends Component {
+class MobileNavEvents extends React.PureComponent {
     swipedUp = (e, deltaY, isFlick) => {
         console.log(deltaY)
         deltaY > 150 && this.props.history.push(this.props.path)

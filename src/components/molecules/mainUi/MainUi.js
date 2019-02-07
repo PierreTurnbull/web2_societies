@@ -3,11 +3,6 @@ import React, { Component } from 'react'
 import CircleCtaContainer from '../../atomes/circleCta/CircleCtaContainer';
 import './mainUi.css'
 export default class MainUi extends Component {
-
-    goTo = () => {
-
-    }
-
     render() {
         const { projectName, projectDescription, projectIntro } = this.props;
 

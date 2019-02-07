@@ -11,8 +11,11 @@ export class Header extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      playAnim: false
+      playAnim: false,
+      isMobile: false,
+      menuOpen: false
     }
+
     this.cta = React.createRef();
     this.lottieRef = React.createRef();
     this.defaultOptions = {
@@ -29,7 +32,24 @@ export class Header extends React.PureComponent {
   }
 
   componentDidMount() {
-    console.log(this.lottieRef.current);
+    this.onWindowResize();
+    window.addEventListener('resize', this.onWindowResize, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onWindowResize);
+  }
+
+  onWindowResize = () => {
+    if (window.innerWidth <= 768) {
+      this.setState({
+        isMobile: true
+      })
+    } else {
+      this.setState({
+        isMobile: false
+      })
+    }
   }
 
   // shouldComponentUpdate(nextProps, nextState) {
@@ -79,6 +99,18 @@ export class Header extends React.PureComponent {
             {/* <span className="t-main-color">f</span>society */}
           </a>
         </div>
+        {
+          this.state.isMobile && (
+            <i
+              className="material-icons"
+              style={{ color: 'white' }}
+              onClick={() => this.setState({ menuOpen: !this.state.menuOpen })}
+            >
+              more_horiz
+          </i>
+          )
+        }
+        {this.state.menuOpen && <p>fefse</p>}
         <div className="ctas">
           <Cta
             text="En savoir plus"
