@@ -1,5 +1,9 @@
 import React from 'react'
 import './feedback.css'
+import img1 from './img/1.png'
+import img2 from './img/2.png'
+import img3 from './img/3.png'
+import img4 from './img/4.png'
 
 export default () => {
   return (
@@ -11,16 +15,16 @@ export default () => {
       <form className="feedback-form">
         <div className="feedback-form-scale">
           <div className="feedback-form-scale-imageContainer">
-            <img className="feedback-form-scale-imageContainer-content" />
+            <img src={img1} className="feedback-form-scale-imageContainer-content" />
           </div>
           <div className="feedback-form-scale-imageContainer">
-            <img className="feedback-form-scale-imageContainer-content" />
+            <img src={img2} className="feedback-form-scale-imageContainer-content" />
           </div>
           <div className="feedback-form-scale-imageContainer">
-            <img className="feedback-form-scale-imageContainer-content" />
+            <img src={img3} className="feedback-form-scale-imageContainer-content" />
           </div>
           <div className="feedback-form-scale-imageContainer">
-            <img className="feedback-form-scale-imageContainer-content" />
+            <img src={img4} className="feedback-form-scale-imageContainer-content" />
           </div>
         </div>
         <input className="feedback-form-emailAddress" placeholder="Renseignez votre nom d'utilisateur..." />
