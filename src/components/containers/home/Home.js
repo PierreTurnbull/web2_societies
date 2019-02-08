@@ -9,7 +9,7 @@ import FullScreen from '../../molecules/fullScreen/FullScreen';
 import TransitionMap from "images/transtionMap.jpeg"
 import JarawaImage from "images/assets/jarawa.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
-import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
+import RastaImage from "images/assets/rastaa_fullscreen.jpg"
 import MainUi from '../../molecules/mainUi/MainUi';
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
 import TimerBarContainer from '../../atomes/timerBar/TimerBarContainer';

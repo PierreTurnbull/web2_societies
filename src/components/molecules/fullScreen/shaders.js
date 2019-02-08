@@ -47,14 +47,14 @@ const fragmentShader = `
   void main() {
     float map = texture2D(map, vec2(vUv.x + progress/1000., vUv.y + progress/1000.)).r * 3.;
     float transitionMap = texture2D(transitionMap, vec2(vUv.x + sin(time) * progress/1000., vUv.y + progress/1000.)).r * 3.;
-    float distort = sin( cos(time)) * .001 + sin(time) * (progress/1000.) * scrollProgress/100.* 0.01;
+    float distort = sin( cos(time)) * .001 + sin(time) * (progress/1000.) * scrollProgress/100.* 0.1;
     float distort2 = (scrollProgress/100.) * (progress/100.);
     float scrollDistort = sin((scrollProgress/1000. * progress/1000.)* sin(time));
 
     vec4 rgba1 = texture2D(texture, vec2(vUv.x + (distort * map), vUv.y + (distort * map) * sin(distort*map*2.) ));
     vec4 rgba2 = texture2D(texture2, vUv);
   
-    vec4 color = texture2D(texture, vec2(vUv.x + (distort*map) + (sin(scrollProgress/5000.) * transitionMap) + (scrollDistort*2. * transitionMap) + (distort * transitionMap*2.) * distort2*2. * transitionMap, vUv.y + distort* map));
+    vec4 color = texture2D(texture, vec2(vUv.x + distort* map, vUv.y + (distort*map) + (sin(scrollProgress/5000.) * transitionMap) + (scrollDistort*2. * transitionMap) + (distort * transitionMap*2.) * distort2*2. * transitionMap));
     vec4 rgba = mix(rgba1, rgba2, progress/200.);
     vec4 rgba3 = mix(color, vec4(gradientRGB, 1), progress/1000.);
 
