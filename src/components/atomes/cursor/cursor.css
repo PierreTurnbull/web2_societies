@@ -1,11 +1,8 @@
 .cursor {
-  height: 41px;
-  width: 41px;
   position: absolute;
   top: 0;
   left: 0;
   transform: translate(-50%, -50%);
-  border: 2px solid white;
   mix-blend-mode: difference;
   border-radius: 50%;
   box-sizing: content-box;
@@ -15,9 +12,6 @@
   margin: 0;
   pointer-events: none;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  display: flex;
   align-items: center;
   justify-content: center; }
 
@@ -26,7 +20,15 @@
   width: 10px;
   background: white;
   position: absolute;
-  border-radius: 50%; }
+  border-radius: 50%;
+  mix-blend-mode: difference; }
+
+.cursorOuter {
+  height: 41px;
+  width: 41px;
+  border-radius: 50%;
+  border: 2px solid white;
+  mix-blend-mode: difference; }
 
 .cursor.bigCursor {
   transform: translate(-50%, -50%); }

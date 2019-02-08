@@ -18,6 +18,8 @@ import img8 from 'images/jarawa/8.jpg';
 
 import '@material/react-material-icon/dist/material-icon.css';
 import "./societyContent.css";
+import { compose } from 'recompose';
+import { withCursorContext } from '../../../contexts/cursor/cursor.context';
 
 class JarawaContent extends Component {
 
@@ -36,6 +38,12 @@ class JarawaContent extends Component {
                         className="material-icons"
                         onClick={() => this.props.history.push('/')}
                         style={{color: "black", background: "rgb(146, 146, 146)", borderRadius: "50%", padding: 2}}
+                        onMouseEnter={(e) => {
+                            this.props.cursor_context.state.hoverHandler(e.currentTarget, "ICON");
+                          }}
+                          onMouseLeave={() => {
+                            this.props.cursor_context.state.hoverHandler();
+                          }}
                     >
                         close
                     </i>
@@ -138,4 +146,4 @@ class JarawaContent extends Component {
     }
 }
 
-export default withRouter(JarawaContent)
+export default compose(withRouter, withCursorContext)(JarawaContent)
