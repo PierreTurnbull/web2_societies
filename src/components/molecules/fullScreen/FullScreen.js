@@ -6,7 +6,7 @@ import scrollSpeed from 'utils/scrollSpeed';
 import { TweenLite } from "gsap/TweenMax";
 import { MeshText2D, textAlign } from 'three-text2d'
 import scrollImage from "images/scroll.png"
-import Gradient from '../../atomes/gradient/Gradient';
+// import Gradient from '../../atomes/gradient/Gradient';
 
 THREE.ImageUtils.crossOrigin = '';
 let camera;
@@ -282,7 +282,7 @@ export default class FullScreen extends Component {
     }
 
     render() {
-        const gradientRGB = this.props.gradientRGB;
+        // const gradientRGB = this.props.gradientRGB;
         // console.log(gradientRGB);
 
         return (

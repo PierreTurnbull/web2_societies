@@ -8,7 +8,6 @@ import ImageContainer from '../../atomes/image/ImageContainer';
 import ComparePopUpContainer from '../../atomes/comparePopUp/ComparePopUpContainer';
 
 import img1 from 'images/jarawa/1.jpg';
-import img2 from 'images/jarawa/2.jpg';
 import img3 from 'images/jarawa/3.jpg';
 import img4 from 'images/jarawa/4.jpg';
 import img5 from 'images/jarawa/5.jpg';

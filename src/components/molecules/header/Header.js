@@ -65,7 +65,7 @@ export class Header extends React.PureComponent {
     return (
       <div className="header">
         <div className="logo">
-          <a href={!this.state.isMobile ? '/' : 'https://www.instagram.com/fsocietywebdoc'} target={this.state.isMobile && 'blank'}
+          <a href={!this.state.isMobile ? '/' : 'https://www.instagram.com/fsocietywebdoc'} target={this.state.isMobile ? 'blank' : 'null'}
             onMouseEnter={(e) => {
               this.props.cursor_context.state.hoverHandler(e.currentTarget, "LOGO");
               this.lottieRef.current.anim.setDirection(1);
@@ -74,7 +74,7 @@ export class Header extends React.PureComponent {
                 playAnim: true
               });
               // this.lottieRef.current.anim.addEventListener('complete', () => {
-              //   console.log("end");
+              //   console.log("end");w
               //   this.lottieRef.current.anim.setDirection(-1);
               //   this.lottieRef.current.anim.play();
               // });

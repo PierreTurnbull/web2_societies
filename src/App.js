@@ -22,7 +22,6 @@ import PopUpProvider from './contexts/popUp/popUp.provider';
 
 class App extends React.Component {
   render() {
-    console.log('HOME', this.props);
     return (
       <CursorProvider>
         <PopUpProvider>

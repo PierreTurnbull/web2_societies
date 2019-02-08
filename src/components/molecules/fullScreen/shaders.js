@@ -2,7 +2,6 @@ let randomFunction = null;
 const setRandomShader = (_params) => {
   // console.log('_params', _params);
   randomFunction = _params >= 50 ? "sin" : "cos"
-  console.log("randomFunction", randomFunction);
 }
 
 setRandomShader();

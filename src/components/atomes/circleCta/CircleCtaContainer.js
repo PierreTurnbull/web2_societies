@@ -47,23 +47,23 @@ class CircleCtaContainer extends Component {
             // className={this.state.isHover ? 'hide' : ''}
             >
                 <CircleCta
-                    onMouseDown={() => {
-                        this.holdAnimation.play();
-                    }}
-                    onTouchStart={() => {
-                        this.props.holdAnimation.play();
-                    }}
-                    onMouseUp={() => {
-                        this.reverseAnimation()
-                    }}
-                    onTouchEnd={() => {
-                        this.reverseAnimation()
-                    }}
+                    // onMouseDown={() => {
+                    //     this.holdAnimation.play();
+                    // }}
+                    // onTouchStart={() => {
+                    //     this.props.holdAnimation.play();
+                    // }}
+                    // onMouseUp={() => {
+                    //     this.reverseAnimation()
+                    // }}
+                    // onTouchEnd={() => {
+                    //     this.reverseAnimation()
+                    // }}
                     onMouseLeave={() => this.reverseAnimation()}
 
                     holdProgess={this.state.holdProgess}
-
-                    style={{ background: `rgba(255, 255, 255, ${this.state.holdProgess / 100}` }}
+                    onClick={() => this.props.history.push(this.props.path)}
+                // style={{ background: `rgba(255, 255, 255, ${this.state.holdProgess / 100}` }}
                 />
                 {/* <CursorContainer cursorPosition={this.props.position || { x: 10, y: 10 } } /> */}
 
