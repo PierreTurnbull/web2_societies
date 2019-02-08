@@ -5,19 +5,20 @@ const CircleCta = (props) => {
     return (
         <div
             className="circleCta"
-            onMouseDown={() => {
-                props.onMouseDown();
-            }}
-            onTouchStart={() => {
-                props.onTouchStart();
-            }}
-            onMouseUp={() => {
-                props.onMouseUp()
-            }}
-            onTouchEnd={() => {
-                props.onTouchEnd()
-            }}
-            onMouseLeave={() => props.onMouseLeave()}
+            // onMouseDown={() => {
+            //     props.onMouseDown();
+            // }}
+            // onTouchStart={() => {
+            //     props.onTouchStart();
+            // }}
+            // onMouseUp={() => {
+            //     props.onMouseUp()
+            // }}
+            // onTouchEnd={() => {
+            //     props.onTouchEnd()
+            // }}
+            // onMouseLeave={() => props.onMouseLeave()}
+            onClick={props.onClick}
 
             style={{ ...props.style }}
         >
