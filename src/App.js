@@ -31,6 +31,7 @@ class App extends React.Component {
               <Home />
               <Route path="/monks" component={() => <SocietyContentContainer society="monks" />} />
               <Route path="/jarawa" component={() => <SocietyContentContainer society="jarawa" />} />
+              <Route path="/rasta" component={() => <SocietyContentContainer society="rasta" />} />
               <Route exact path="/informations"
                 component={() => (
                   <Modal

@@ -7,7 +7,7 @@ export default class MainUi extends Component {
         const { projectName, projectDescription, projectIntro } = this.props;
 
         return (
-            <div className="mainUi" style={projectName === "soon" ? { gridTemplateColumns: "1fr" } : {}}>
+            <div className={`mainUi ${projectName === "soon" && 'mainUi--fullscreen'}`}>
                 {
                     projectName !== "soon"
                         ? (
@@ -28,6 +28,9 @@ export default class MainUi extends Component {
                         : <div className="description">
                             <p className="project_title">
                                 {projectIntro}
+                            </p>
+                            <p className="p project_description">
+                                {projectDescription}
                             </p>
                         </div>
                 }
