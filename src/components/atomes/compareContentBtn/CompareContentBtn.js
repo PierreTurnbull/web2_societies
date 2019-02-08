@@ -9,7 +9,7 @@ class CompareContentBtn extends React.PureComponent {
     }
 
     render() {
-        const { icon, onMouseEnter, onMouseLeave, onMouseMove } = this.props;
+        const { icon, onMouseEnter, onMouseLeave, onMouseMove, onClick } = this.props;
         return (
             <div
                 className={`compareContentBtn`}
@@ -17,6 +17,7 @@ class CompareContentBtn extends React.PureComponent {
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 onMouseMoveCapture={onMouseMove}
+                onClick={onClick}
             >
                 {
                     icon

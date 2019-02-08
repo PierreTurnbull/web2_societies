@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import ComparePopUp from './ComparePopUp';
 import CompareContentBtnContainer from '../compareContentBtn/CompareContentBtnContainer';
+import { withPopUpContext } from '../../../contexts/popUp/popUp.context';
 
-export default class ComparePopUpContainer extends Component {
+class ComparePopUpContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -10,11 +11,25 @@ export default class ComparePopUpContainer extends Component {
         this.state = {
             isOpen: false
         }
+        this.popUpRef = React.createRef();
     }
 
     onClick = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+        console.log(this.popUpRef);
+    }
+
+    componentDidMount() {
+        console.log(this.props);
+    }
+
+    componentDidUpdate() {
+        console.log(this.props);
 
     }
+
     render() {
         const { text } = this.props;
         const { isOpen } = this.state;
@@ -27,10 +42,11 @@ export default class ComparePopUpContainer extends Component {
                             compare_arrows
                         </i>
                     }
-                    onClick={this.onClick}
+                    onClick={() => this.props.popUp_context.state.tooglePopUp(text)}
                 />
-                {/* <ComparePopUp text={text} isOpen={isOpen} /> */}
             </div>
         )
     }
 }
+
+export default withPopUpContext(ComparePopUpContainer)

@@ -78,8 +78,8 @@ class JarawaContent extends Component {
                 />
                 <VoteContainer question="Pensez-vous que les Jarawas ont une alimentation adaptée à leur organisme ?" />
                 <ComparePopUpContainer 
-                    text="La tribu des Jarawas a un lien spécial avec la nature et conserve depuis maintenant longtemps une forte connaissance de la faune et de la flore… Qu’en est-il des moines du Mont Athos et des rastas de Jamaïque ? </br>
-                    Les moines, étant très pratiquants, organisent leurs repas selon leur religion. Ils mangent toujours à la même heure et juste assez pour ne plus avoir faim. De plus, ils respectent particulièrement les aliments qu’il consomment (pour les animaux par exemple).</br>
+                    text="La tribu des Jarawas a un lien spécial avec la nature et conserve depuis maintenant longtemps une forte connaissance de la faune et de la flore… Qu’en est-il des moines du Mont Athos et des rastas de Jamaïque ? </br> </br>
+                    Les moines, étant très pratiquants, organisent leurs repas selon leur religion. Ils mangent toujours à la même heure et juste assez pour ne plus avoir faim. De plus, ils respectent particulièrement les aliments qu’il consomment (pour les animaux par exemple).</br> </br>
                     Les rastas quant à eux, cultivent tout ce qu’ils mangent tout en prenant soin de la terre : chaque plantation est nourrie en respectant celles qui grandiront à sa place plus tard. Ils sont aussi réputés pour fumer beaucoup de cannabis (qu’ils font pousser eux-mêmes) dans le cadre de leur religion : la ganja leur permet de vivre pleinement avec Dieu."
                 />
                 <Text text="Et non ! Bien qu’en 2000, une étude a conclu que leur régime alimentaire était optimal, qu’ils allaient chercher directement leurs besoins à la source et étaient autosuffisants au niveau des vivres." />
@@ -97,7 +97,7 @@ class JarawaContent extends Component {
                 <ImageContainer
                     src={img5}
                     imageVariant="left"
-                    imageAdornment="fruits"
+                    imageAdornment="chasseurs"
                     adornmentVariant="vertical"
                     gradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000)"
                     alt="eve"

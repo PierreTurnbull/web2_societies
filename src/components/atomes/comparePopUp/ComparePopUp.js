@@ -8,14 +8,29 @@ const ComparePopUp = (props) => {
         return { __html: html };
     }
 
-    return ReactDOM.createPortal(
-        <div className="comparePopUp">
+    return (
+        <div className="comparePopUp" onClick={props.onClick}>
+            <i
+                className="material-icons"
+                style={{
+                    color: "white",
+                    margin: "0 auto",
+                    marginBottom: "32px",
+                    display: "table",
+                    textAlign: "center",
+                    padding: "10px",
+                    background: "white",
+                    borderRadius: "50%",
+                    color: "black"
+                }}
+            >
+                close
+            </i>
             <div className="content">
                 <p className="p" dangerouslySetInnerHTML={createMarkup(text)}>
                 </p>
             </div>
-        </div>,
-        document.getElementById('home')
+        </div>
     )
 }
 

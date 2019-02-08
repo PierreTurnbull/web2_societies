@@ -65,6 +65,7 @@ class CompareContentBtnContainer extends Component {
                     icon={icon}
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
+                    onClick={this.props.onClick}
                 />
             </VisibilitySensor>
         )
