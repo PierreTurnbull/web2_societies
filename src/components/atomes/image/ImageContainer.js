@@ -28,7 +28,7 @@ export default class ImageContainer extends React.PureComponent {
             isVisible
         });
 
-        this.anim = isVisible && TweenLite.fromTo(this.imageContainerRef.current, .5,
+        this.anim = isVisible && TweenLite.fromTo(this.imageContainerRef.current, .7,
             { y: 100, opacity: 0, transformOrigin: "bottom left", ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")' },
             { y: 0, opacity: 1, transformOrigin: "bottom left", ease: 'CustomEase.create("custom", "M0,0 C0.21,0 0.074,0.458 0.252,0.686 0.413,0.893 0.818,1 1,1")' }
         );
@@ -39,8 +39,10 @@ export default class ImageContainer extends React.PureComponent {
         return (
             <VisibilitySensor
                 onChange={this.state.isVisible === false && this.onVisibilityChange}
-                // offset={{ top: -200 }}
-                minTopValue={1000}
+                offset={{
+                    value: -50
+                }}
+                partialVisible={true}
             >
                 <div
                     className={adornmentReverse ? `imageContainer reverse` : 'imageContainer'}

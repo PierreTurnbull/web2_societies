@@ -58,18 +58,18 @@ class CursorContainer extends React.Component {
 
     defaultAnim = () => {
         TweenLite.to(this.outerCursorRef.current, .5, {
-            opacity: 1,
+            opacity: .5,
             height: 41,
             width: 41,
-            borderWidth: 2,
+            borderWidth: 1,
             x: this.props.cursor_context.state.cursorParams.x,
             y: this.props.cursor_context.state.cursorParams.y,
             ease: 'CustomEase.create("custom", "M0,0 C0.554,0.014 0.482,0.4 0.516,0.51 0.654,0.957 0.896,0.996 1,1")'
         });
         TweenLite.to(this.innerCursorRef.current, .3, {
             opacity: 1,
-            height: 10,
-            width: 10,
+            height: 8,
+            width: 8,
             x: this.props.cursor_context.state.cursorParams.x,
             y: this.props.cursor_context.state.cursorParams.y
         });
