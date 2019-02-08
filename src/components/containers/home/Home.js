@@ -53,7 +53,7 @@ export class Home extends React.Component {
         this.onWheel = this.onWheel.bind(this);
         this.setBack = this.setBack.bind(this);
 
-        this.images = [MonksImage, JarawaImage, RastaImage, SoonImage];
+        this.images = [MonksImage, JarawaImage, RastaImage];
         this.projects = [
             {
                 name: "monks",
@@ -66,14 +66,9 @@ export class Home extends React.Component {
                 description: "Découvrez ce peuple autochtone vivant depuis des années coupé du monde moderne et du progrès technologique.",
             },
             {
-                name: "rasta",
-                intro: "Les rastas de Jamaïque",
-                description: "Découvrez cette communauté de jamaïcains vivant en autarcie selon des principes et une religion qui leurs sont propres.",
-            },
-            {
                 name: "soon",
-                intro: "Coming soon",
-                description: "",
+                intro: "Les rastas de Jamaïque",
+                description: "Épisode prochainement disponible.",
             }
         ];
         this.progress = 0.0;
@@ -234,8 +229,7 @@ export class Home extends React.Component {
         const gradients = {
             monks,
             jarawa,
-            rasta,
-            soon
+            rasta
         }
         const dynBackground = gradients[this.projects[this.state.imageIndex].name]
         return (

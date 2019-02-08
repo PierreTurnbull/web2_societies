@@ -5,7 +5,8 @@
   height: 100%;
   width: 100%;
   z-index: 2;
-  background: black; }
+  background: black;
+  padding: 32px 24px; }
   .comparePopUp .content {
-    max-width: 1200px;
-    margin: 0 auto; }
+    max-width: 900px;
+    margin: auto; }

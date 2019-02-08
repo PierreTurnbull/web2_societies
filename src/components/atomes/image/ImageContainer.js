@@ -65,12 +65,26 @@ export default class ImageContainer extends React.PureComponent {
                             </div>
                         )
                     }
-                    <Image
-                        src={src}
-                        variant={imageVariant}
-                        gradient={gradient}
-                        alt={alt}
-                    />
+                    {
+                        this.props.type === "video"
+                            ? (
+                                <div className={`societyContentImage ${imageVariant}`}>
+                                    <video autoplay={"true"} preload muted loop={"true"} style={{ width: '100%', height: '100%' }}>
+                                        <source src={src} type="video/mp4" />
+                                        <p>Your browser doesn't support HTML5 video. Here is
+                                    a <a href="myVideo.mp4">link to the video</a> instead.</p>
+                                    </video>
+                                </div>
+                            )
+                            : (
+                                <Image
+                                    src={src}
+                                    variant={imageVariant}
+                                    gradient={gradient}
+                                    alt={alt}
+                                />
+                            )
+                    }
                 </div>
             </VisibilitySensor>
         )
