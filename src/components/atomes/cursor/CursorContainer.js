@@ -93,8 +93,6 @@ class CursorContainer extends React.Component {
     };
 
     linkAnim = () => {
-        console.log("lonk");
-
         TweenLite.to(this.outerCursorRef.current, .5, {
             height: 51,
             width: 51,
@@ -185,6 +183,7 @@ class CursorContainer extends React.Component {
                 break;
             case "ICON":
                 this.iconAnimBack();
+                break
             default:
                 this.ctaAnim();
                 break;

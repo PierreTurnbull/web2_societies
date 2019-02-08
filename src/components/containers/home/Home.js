@@ -10,13 +10,11 @@ import TransitionMap from "images/transtionMap.jpeg"
 import JarawaImage from "images/assets/jarawa.jpg"
 import MonksImage from "images/assets/monks_fullscreen.jpg"
 import RastaImage from "images/assets/rastaa_fullscreen.jpeg"
-import SoonImage from "images/test.jpeg"
 import MainUi from '../../molecules/mainUi/MainUi';
 import { withCursorContext } from '../../../contexts/cursor/cursor.context';
 import TimerBarContainer from '../../atomes/timerBar/TimerBarContainer';
 import scrollImage from "images/scroll.png"
 import MobileNavEvents from './MobileNavEvents';
-import Modal from '../../molecules/modal/Modal';
 
 export class Home extends React.Component {
     constructor(props) {
@@ -225,7 +223,6 @@ export class Home extends React.Component {
         const monks = "linear-gradient(to right, rgba(87, 18, 0, 0.2), rgba(87, 18, 0, 0.4))";
         const jarawa = "linear-gradient(to right, rgba(146, 154, 63, 0.2), rgba(146, 154, 63, 0.4))";
         const rasta = "linear-gradient(to right, rgba(63, 154, 146, 0.2), rgba(63, 154, 146, 0.4))";
-        const soon = "linear-gradient(to right, rgba(0, 0 ,0 , 0.2), rgba(0, 0 ,0 , 0.4))";
         const gradients = {
             monks,
             jarawa,

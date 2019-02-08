@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import './ComparePopUp.css'
 
 const ComparePopUp = (props) => {
@@ -13,7 +12,6 @@ const ComparePopUp = (props) => {
             <i
                 className="material-icons"
                 style={{
-                    color: "white",
                     margin: "0 auto",
                     marginBottom: "32px",
                     display: "table",

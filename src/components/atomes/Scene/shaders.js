@@ -1,11 +1,3 @@
-let randomFunction = null;
-const setRandomShader = (_params) => {
-  // console.log('_params', _params);
-  randomFunction = _params >= 50 ? "sin" : "cos"
-  console.log("randomFunction", randomFunction);
-}
-
-setRandomShader();
 const vertexShader = `
   varying vec2 vUv;
   varying vec2 vUv1;
@@ -56,4 +48,4 @@ const fragmentShader = `
   `
   // vec4 color = texture2D(texture, vec2(vUv.x + distort*map*2. + (distort * map), vUv.y + distort*map*2. + (distort * map) ));
   
-  export { vertexShader, fragmentShader, setRandomShader }
+  export { vertexShader, fragmentShader }

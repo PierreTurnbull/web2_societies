@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router-dom";
-import Quote from '../../atomes/Quote/Quote';
-import Text from '../../atomes/text/Text';
-import ReactDOM from 'react-dom';
 import './modal.css'
 class Modal extends Component {
     constructor(props) {
